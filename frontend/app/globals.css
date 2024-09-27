@@ -564,3 +564,70 @@ body::after {
 .btn-precision:active {
   transform: translateY(0);
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   STUDIO-GRADE CREATIVE TECHNOLOGY LANDING PAGE STYLES
+   ══════════════════════════════════════════════════════════════════ */
+.bg-obsidian {
+  background-color: #0a0a09;
+}
+
+.text-ivory {
+  color: #f4f1ea;
+}
+
+.bg-ivory {
+  background-color: #f4f1ea;
+}
+
+.text-electric-green {
+  color: #00e83f;
+}
+
+.bg-electric-green {
+  background-color: #00e83f;
+}
+
+.border-electric-green {
+  border-color: #00e83f;
+}
+
+.text-soft-pink {
+  color: #f5a7e8;
+}
+
+.bg-soft-pink {
+  background-color: #f5a7e8;
+}
+
+.border-soft-pink {
+  border-color: #f5a7e8;
+}
+
+.text-brand-orange {
+  color: #ff7a00;
+}
+
+.bg-brand-orange {
+  background-color: #ff7a00;
+}
+
+/* Kinetic Display Typography */
+.font-display-hero {
+  font-family: var(--font-sans);
+  font-weight: 800;
+  letter-spacing: -0.045em;
+  line-height: 0.92;
+}
+
+.noise-overlay {
+  background-image: radial-gradient(rgba(244, 241, 234, 0.05) 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Horizontal Scroll Pin Section */
+.horizontal-scroll-container {
+  display: flex;
+  flex-wrap: nowrap;
+  width: max-content;
+}

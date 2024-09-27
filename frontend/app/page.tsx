@@ -10,10 +10,9 @@ import {
   Sliders, Layers, Radio, Terminal, Cpu, Check, X, Info, Droplet, Globe
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip as ChartTooltip
-} from "recharts";
+import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip as ChartTooltip } from "recharts";
 import Lenis from "lenis";
+import { StudioLandingPage } from "./landing/StudioLandingPage";
 
 /* =========================================================
    VIRALYTIX — 2D/3D PARTICLE WAVE GRID ENGINE
@@ -1198,6 +1197,7 @@ const HeroGridPixelCanvas: React.FC = () => {
 };
 
 export default function Dashboard() {
+  const [activeView, setActiveView] = useState<"landing" | "app">("landing");
   const [mode, setMode] = useState<"single" | "ab">("single");
   const [activeTab, setActiveTab] = useState<"overview" | "swarm" | "signals" | "recommendations">("overview");
   const [file, setFile] = useState<File | null>(null);
@@ -1681,6 +1681,10 @@ export default function Dashboard() {
 
   const activeRoundState = cascadeRounds[simRound] || [];
 
+  if (activeView === "landing") {
+    return <StudioLandingPage onLaunchApp={() => setActiveView("app")} />;
+  }
+
   return (
     <div className="z-content min-h-screen text-slate-100 flex flex-col font-sans relative selection:bg-emerald-500 selection:text-slate-950">
       {/* ── TOP MARQUEE TICKER BANNER (3D Tactile Ribbon + Upward Liquid Fill) ── */}
@@ -1703,12 +1707,19 @@ export default function Dashboard() {
           
           {/* Left Circle: Logo Badge Button */}
           <div
-            onClick={handleReset}
+            onClick={() => setActiveView("landing")}
             className="w-11 h-11 rounded-full bg-white border-2 border-[#05190e] flex items-center justify-center p-1.5 shadow-md hover:scale-110 transition-transform cursor-pointer"
-            title="VIRALYTIX Home / Reset"
+            title="Return to Landing Page"
           >
             <img src="/logo.png" alt="VIRALYTIX Logo" className="w-full h-full object-contain" />
           </div>
+
+          <button
+            onClick={() => setActiveView("landing")}
+            className="bg-[#05190e] hover:bg-emerald-950 text-emerald-400 border border-emerald-500/40 px-3 py-1.5 rounded-full font-mono font-bold text-xs flex items-center gap-1 shadow hover:scale-105 transition-all cursor-pointer"
+          >
+            ← Landing Page
+          </button>
 
           {/* Center Main Pill Button */}
           {stage === "idle" ? (
