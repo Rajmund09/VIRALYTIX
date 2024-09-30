@@ -6,8 +6,9 @@
 
 [![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Next.js](https://img.shields.io/badge/Next.js-14-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-88CE02?style=for-the-badge&logo=greensock&logoColor=white)](https://greensock.com/gsap/)
 [![XGBoost](https://img.shields.io/badge/XGBoost-ML_Engine-FF6F00?style=for-the-badge&logo=xgboost&logoColor=white)](https://xgboost.readthedocs.io/)
 [![SHAP](https://img.shields.io/badge/SHAP-Explainability-red?style=for-the-badge)](https://shap.readthedocs.io/)
 [![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
@@ -22,6 +23,7 @@
 
 - [Overview](#-overview)
 - [Key Features](#-key-features)
+- [GSAP Kinetic Hero & Horizontal Showcase](#-gsap-kinetic-hero--horizontal-showcase)
 - [System Architecture](#-system-architecture)
 - [Multimodal Signal Processing](#-multimodal-signal-processing)
 - [Persona Engagement Swarm Engine](#-persona-engagement-swarm-engine)
@@ -44,13 +46,29 @@
 
 ## ✨ Key Features
 
-- **🎥 Multimodal Feature Extraction**: Extracts over 15 frame-level, audio-level, and transcript-level signals including scene transition frequency, motion vectors, acoustic energy, visual contrast, pitch variation, and speech sentiment.
+- **⚡ GSAP Kinetic Hero Engine**: WebGL Silk shader background coupled with parallel 3D letter assembly choreography, offscreen replacement push badges (`c`, `a`), 3D reciprocal flips for `i`, and elastic vibration effects.
+- **↔️ Sideways Horizontal GSAP Scroll Showcase**: Interactive pinned horizontal scroll track (`300vw`) displaying Multimodal Signal Streams, 32-D Vector Cluster Topology, and Persona Swarm Simulations with floating tilted sticker badges.
+- **🎥 Multimodal Feature Extraction**: Extracts frame-level, audio-level, and transcript-level signals including scene transition frequency, motion vectors, acoustic energy, visual contrast, pitch variation, and speech sentiment.
 - **👥 Persona-Based Swarm Simulation**: Simulates content propagation through 6 distinct synthetic target demographic personas (*Tech Enthusiasts, Students, Founders, Creators, Designers, General Viewers*) across discrete time cascade rounds.
 - **🤖 Comparative ML Ensemble**: Harnesses XGBoost, Random Forest, Neural Networks, and Ridge Regression to forecast continuous virality metrics and discrete performance tier classifications.
 - **🔍 SHAP Explainability**: Integrates TreeSHAP factor attribution to break down positive and negative drivers behind every prediction score.
-- **⚡ AI Optimization Recommendations**: Generates tailored actionable advice (e.g., *“Increase audio pacing in seconds 0-3 to prevent student drop-off”*).
 - **⚔️ A/B Comparison Dashboard**: Side-by-side comparative analysis between two video variations to identify optimal hooks and pacing.
-- **🎨 Glassmorphic Interactive Dashboard**: Premium Next.js frontend featuring high-performance canvas wave simulations, interactive node swarm charts, and Recharts analytics.
+
+---
+
+## 🎭 GSAP Kinetic Hero & Horizontal Showcase
+
+### 1. Hero Kinetic Assembly Choreography (`HeroHeadline.tsx`)
+- **Parallel Assembly**: "Predict" and "virality" assemble concurrently starting at $t = 0.15\text{s}$.
+- **Offscreen Replacement Push Badges**:
+  - `c`: Razor-sharp 8-point purple star badge enters from offscreen left, holds for 1.0s, and is pushed straight UP off top of screen when letter `c` rises from below.
+  - `a`: Emerald clover gem badge drops from offscreen top, holds for 1.0s, and is pushed straight UP off top of screen when letter `a` rises from below.
+- **Reciprocal 3D Letter Flips**: 1st `i` in "virality" enters smoothly and performs a 3D Downward Flip (`rotationX: -360`) after a gap pause; 2nd `i` performs a 3D Upward Flip (`rotationX: 360`, vice-versa).
+- **Elastic Shake**: Letter `t` executes a 5-cycle elastic vibration shake (`rotationZ: ±6°`, `x: ±5px`).
+
+### 2. Sideways Horizontal GSAP Scroll (`HorizontalShowcase.tsx`)
+- **Pinned Viewport Scroll**: Pins the container during vertical scroll while transforming horizontal track across 3 panels (`300vw`).
+- **Floating Tilted Sticker Badges**: Styled with micro-floating tilt animations (-6° to +6°) for badge tags (`EXTRACTOR`, `FEATURE SPACE`, `ONE PERSON`, `MOTION DENSITY`, `HOOK INTENSITY`, `AUDIO PACING`, `CUT RATE`, `PITCH VARIATION`, `SENTIMENT`).
 
 ---
 
@@ -58,11 +76,11 @@
 
 ```mermaid
 flowchart TD
-    subgraph Client ["Frontend (Next.js 14)"]
-        UI["Dashboard / UI"]
-        SingleView["Single Video Analysis"]
+    subgraph Client ["Frontend (Next.js 16 + GSAP + Three.js)"]
+        HeroUI["GSAP Kinetic Assembly Hero"]
+        HorizontalUI["Sideways Scroll Showcase (300vw)"]
+        Dashboard["Predictive Analytics Dashboard"]
         ABView["A/B Comparative Mode"]
-        SwarmUI["Persona Swarm Graph"]
     end
 
     subgraph API ["Backend Gateway (FastAPI)"]
@@ -86,7 +104,7 @@ flowchart TD
         SHAPEngine["SHAP Explainability Attribution"]
     end
 
-    UI -->|Upload Video| UploadHandler
+    Dashboard -->|Upload Video| UploadHandler
     UploadHandler --> FFmpeg
     UploadHandler --> Whisper
     FFmpeg & Whisper --> FeatureVector
@@ -95,7 +113,7 @@ flowchart TD
     FeatureVector & CascadeSim --> XGBoost
     XGBoost --> SHAPEngine
     SHAPEngine --> Router
-    Router -->|JSON Payload| UI
+    Router -->|JSON Payload| Dashboard
 ```
 
 ---
@@ -127,7 +145,7 @@ graph LR
 
 ## 👥 Persona Engagement Swarm Engine
 
-Rather than treating target audiences as static averages, VIRALYTIX runs an **agentic audience network cascade**:
+VIRALYTIX runs an **agentic audience network cascade**:
 
 | Persona | Interest Vector | Attention Span | Share Rate | Skip Threshold |
 | :--- | :--- | :---: | :---: | :---: |
@@ -169,7 +187,7 @@ $$\text{Engagement Score} = w_1 \cdot \text{Similarity}(\vec{I}_{\text{persona}}
 
 | Layer | Technologies Used |
 | :--- | :--- |
-| **Frontend UI** | Next.js 14, React 18, TypeScript, Tailwind CSS, Framer Motion, Recharts, Lenis Smooth Scroll |
+| **Frontend UI & Animations** | Next.js 16, React 18, TypeScript, Tailwind CSS, GSAP (ScrollTrigger), Three.js / WebGL, Framer Motion, Recharts |
 | **Backend API** | Python 3.10+, FastAPI, Pydantic v2, Uvicorn, SQLAlchemy |
 | **Database** | SQLite (Development) / PostgreSQL (Production) |
 | **ML & Data Science** | XGBoost, Scikit-Learn, NumPy, Pandas, SHAP |
@@ -194,6 +212,10 @@ viralytix/
 │   └── .env                  # Environment variables
 ├── frontend/                 # Next.js Application
 │   ├── app/                  # Next.js App Router (pages, layout, globals.css)
+│   │   ├── landing/          # Studio Landing Page Modules
+│   │   │   ├── hero/         # GSAP Kinetic Hero & WebGL Shader
+│   │   │   ├── HorizontalShowcase.tsx # Sideways GSAP Scroll Showcase
+│   │   │   └── StudioLandingPage.tsx  # Master Landing Page Layout
 │   ├── public/               # Static assets & icons
 │   ├── package.json          # Dependencies & npm scripts
 │   ├── tailwind.config.ts    # Tailwind styling config
@@ -229,7 +251,7 @@ viralytix/
 - **Node.js** $\ge 18.0.0$
 - **FFmpeg** installed on PATH
 
-### 1. Clone & Setup Backend
+### 1. Setup Backend
 
 ```bash
 cd viralytix/backend
@@ -285,9 +307,10 @@ npm run dev
 | **05** | Persona Simulation Engine | ✅ Completed |
 | **06** | XGBoost Prediction API Integration | ✅ Completed |
 | **07** | SHAP Factor Explainability & Recommendations | ✅ Completed |
-| **08** | Glassmorphism Dashboard UI Rebuild | ✅ Completed |
-| **09** | A/B Video Testing Mode | ✅ Completed |
-| **10** | Cloud Production Deployment | ⬜ Pending |
+| **08** | WebGL & GSAP Kinetic Assembly Hero | ✅ Completed |
+| **09** | Sideways Horizontal Scroll Showcase (`300vw`) | ✅ Completed |
+| **10** | A/B Video Testing Mode | ✅ Completed |
+| **11** | Cloud Production Deployment | ⬜ Pending |
 
 ---
 
@@ -298,4 +321,3 @@ Distributed under the MIT License. See `LICENSE` for details.
 <div align="center">
   <sub>Built with ❤️ by Prabhu Shankar Mund (Raj) </sub>
 </div>
-
