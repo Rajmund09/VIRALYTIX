@@ -1697,7 +1697,7 @@ export default function Dashboard() {
       </div>
 
       {/* ── Floating Bottom Dock Navbar ────────────────────────────────── */}
-      <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center">
+      <div className="fixed bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center w-max max-w-[95vw]">
         {/* Outer Frosted Pill Container */}
         <div className="bg-slate-300/40 backdrop-blur-2xl border-2 border-white/60 p-1.5 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center gap-2">
           
@@ -1717,7 +1717,7 @@ export default function Dashboard() {
                 if (file) runAnalysis();
                 else document.getElementById("file-input-a")?.click();
               }}
-              className="bg-[#1c1c1e] hover:bg-black text-white px-7 py-2.5 rounded-full font-display font-extrabold text-sm tracking-tight flex items-center gap-2 transition-all cursor-pointer shadow-lg hover:scale-105"
+              className="bg-[#1c1c1e] hover:bg-black text-white px-4 md:px-7 py-2.5 rounded-full font-display font-extrabold text-xs md:text-sm tracking-tight flex items-center gap-2 transition-all cursor-pointer shadow-lg hover:scale-105 whitespace-nowrap"
             >
               <Zap size={16} className="text-emerald-400 fill-emerald-400" />
               <span>{file ? "Run Virality Engine" : "Upload Video"}</span>
@@ -1725,13 +1725,13 @@ export default function Dashboard() {
           ) : result ? (
             <button
               onClick={handleReset}
-              className="bg-[#1c1c1e] hover:bg-black text-white px-7 py-2.5 rounded-full font-display font-extrabold text-sm tracking-tight flex items-center gap-2 transition-all cursor-pointer shadow-lg hover:scale-105"
+              className="bg-[#1c1c1e] hover:bg-black text-white px-4 md:px-7 py-2.5 rounded-full font-display font-extrabold text-xs md:text-sm tracking-tight flex items-center gap-2 transition-all cursor-pointer shadow-lg hover:scale-105 whitespace-nowrap"
             >
               <RotateCcw size={16} className="text-emerald-400" />
               <span>Reset Engine</span>
             </button>
           ) : (
-            <div className="bg-[#1c1c1e] text-white px-7 py-2.5 rounded-full font-display font-extrabold text-sm tracking-tight flex items-center gap-2 shadow-lg">
+            <div className="bg-[#1c1c1e] text-white px-4 md:px-7 py-2.5 rounded-full font-display font-extrabold text-xs md:text-sm tracking-tight flex items-center gap-2 shadow-lg whitespace-nowrap">
               <Activity size={16} className="text-emerald-400 animate-spin" />
               <span>Processing Signals...</span>
             </div>
@@ -2352,7 +2352,7 @@ export default function Dashboard() {
                       <span>Target: {targetDemo}</span>
                     </div>
 
-                    <div className="relative w-full h-[360px] bg-[#0b2e1c] rounded-xl border-2 border-[#05190e] overflow-hidden flex items-center justify-center shadow-inner">
+                    <div className="relative w-full aspect-square sm:aspect-[680/380] bg-[#0b2e1c] rounded-xl border-2 border-[#05190e] overflow-hidden flex items-center justify-center shadow-inner">
                       <svg width="100%" height="100%" viewBox="0 0 680 380" className="w-full h-full relative z-10">
                         {/* Radar grids for visual structure */}
                         <circle cx="340" cy="190" r="40" fill="none" stroke="#0f3b25" strokeWidth="2" strokeDasharray="4 4" />
@@ -2459,7 +2459,7 @@ export default function Dashboard() {
                   </div>
 
                   {/* Live Event Ticker Feed */}
-                  <div className="brutal-card p-6 flex flex-col h-[440px]">
+                  <div className="brutal-card p-6 flex flex-col h-[440px] max-h-[60vh]">
                     <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#05190e] pb-3 border-b-2 border-[#05190e] font-black">
                       <Terminal size={15} className="text-[#05190e]" /> Live Decision Stream
                     </div>
