@@ -1299,7 +1299,7 @@ export default function Dashboard() {
     return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
   };
 
-  const validateAndSetFile = (selectedFile: File, target: "A" | "B" = "A", e?: React.MouseEvent | React.DragEvent) => {
+  const validateAndSetFile = (selectedFile: File, target: "A" | "B" = "A", e?: React.MouseEvent | React.DragEvent | React.ChangeEvent<HTMLInputElement>) => {
     setFileError(null);
     const validMime = ["video/mp4", "video/quicktime", "video/webm", "video/x-msvideo"];
     
@@ -2304,7 +2304,7 @@ export default function Dashboard() {
                         <ChartTooltip content={({ active, payload }) => {
                           if (!active || !payload?.length) return null;
                           const sec = payload[0].payload.second;
-                          const val = Math.round(payload[0].value * 100);
+                          const val = Math.round(Number(payload[0].value || 0) * 100);
                           return (
                             <div className="bg-white border-2 border-[#05190e] p-2.5 rounded-xl text-xs space-y-1 shadow-lg">
                               <div className="font-mono text-slate-600 font-bold">Timestamp: {sec}s</div>
