@@ -505,12 +505,12 @@ const FFmpegProbeVisualizer: React.FC = () => {
 
   return (
     <div className="mt-4 p-5 rounded-2xl bg-[#fafafa] border border-slate-200 shadow-sm relative overflow-hidden space-y-4 font-mono text-xs">
-      <div className="flex items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-2">
-        <span className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)]" />
-          FFMPEG DEMUXER & CONTAINER PROBE
+      <div className="flex flex-col md:flex-row md:items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-2 gap-1 md:gap-0">
+        <span className="flex items-center gap-2 w-full md:w-auto">
+          <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)] shrink-0" />
+          <span className="text-[10px] md:text-xs truncate">FFMPEG DEMUXER & CONTAINER PROBE</span>
         </span>
-        <span className="text-slate-400 text-[10px]">PROBE_OK // 0x46464D50</span>
+        <span className="text-slate-400 text-[9px] md:text-[10px] shrink-0">PROBE_OK // 0x46464D50</span>
       </div>
       
       {/* Smooth Apple-style progress indicator */}
@@ -559,22 +559,22 @@ const FrameSamplerVisualizer: React.FC = () => {
 
   return (
     <div className="mt-4 p-5 rounded-2xl bg-[#fafafa] border border-slate-200 shadow-sm relative overflow-hidden space-y-4 font-mono text-xs">
-      <div className="flex items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-2">
-        <span className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)]" />
-          1FPS KEYFRAME EXTRACTOR
+      <div className="flex flex-col md:flex-row md:items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-2 gap-1 md:gap-0">
+        <span className="flex items-center gap-2 w-full md:w-auto">
+          <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)] shrink-0" />
+          <span className="text-[10px] md:text-xs truncate">1FPS KEYFRAME EXTRACTOR</span>
         </span>
-        <span className="text-slate-400 text-[10px]">CAPTURING SNAPSHOTS</span>
+        <span className="text-slate-400 text-[9px] md:text-[10px] shrink-0">CAPTURING SNAPSHOTS</span>
       </div>
 
       {/* Moving Filmstrip Thumbnails with Apple-style Spring Easing */}
-      <div className="grid grid-cols-5 gap-3 perspective-1000">
+      <div className="flex overflow-x-auto hide-scrollbar snap-x gap-2 md:gap-3 perspective-1000 pb-2">
         {[1, 2, 3, 4, 5].map((num) => {
           const isCapturing = num === activeFrame;
           return (
             <div
               key={num}
-              className={`p-2.5 rounded-xl flex flex-col items-center justify-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
+              className={`p-2.5 rounded-xl flex flex-col items-center justify-center shrink-0 min-w-[64px] flex-1 snap-center transition-all duration-700 ease-[cubic-bezier(0.23,1,0.32,1)] ${
                 isCapturing
                   ? "bg-white border border-blue-300 shadow-[0_8px_20px_rgba(37,99,235,0.15)] scale-[1.08] z-10 -translate-y-1"
                   : "bg-slate-50 border border-slate-200 shadow-sm opacity-60 scale-95"
@@ -645,12 +645,12 @@ const AudioSeparatorVisualizer: React.FC = () => {
 
   return (
     <div className="mt-4 p-5 rounded-2xl bg-[#fafafa] border border-slate-200 shadow-sm relative overflow-hidden space-y-4 font-mono text-xs">
-      <div className="flex items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-2">
-        <span className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)]" />
-          16kHz MONO AUDIO BANDPASS
+      <div className="flex flex-col md:flex-row md:items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-2 gap-1 md:gap-0">
+        <span className="flex items-center gap-2 w-full md:w-auto">
+          <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)] shrink-0" />
+          <span className="text-[10px] md:text-xs truncate">16kHz MONO AUDIO BANDPASS</span>
         </span>
-        <span className="text-slate-500 font-bold text-[10px]">RMS: -14.2dB</span>
+        <span className="text-slate-500 font-bold text-[9px] md:text-[10px] shrink-0">RMS: -14.2dB</span>
       </div>
 
       <div className="relative h-16 rounded-xl bg-white border border-slate-200 overflow-hidden flex items-center justify-center shadow-inner">
@@ -708,15 +708,15 @@ const OpenCVSignalVisualizer: React.FC = () => {
 
   return (
     <div className="mt-4 p-5 rounded-2xl bg-[#fafafa] border border-slate-200 shadow-sm relative overflow-hidden space-y-4 font-mono text-xs">
-      <div className="flex items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-2">
-        <span className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)]" />
-          OPENCV OPTICAL FLOW & SCENE CUT DETECTOR
+      <div className="flex flex-col md:flex-row md:items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-2 gap-1 md:gap-0">
+        <span className="flex items-center gap-2 w-full md:w-auto">
+          <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)] shrink-0" />
+          <span className="text-[10px] md:text-xs truncate">OPENCV OPTICAL FLOW & SCENE CUT</span>
         </span>
-        <span className="text-slate-500 font-bold text-[10px]">SCENE_CUT @ F#142</span>
+        <span className="text-slate-500 font-bold text-[9px] md:text-[10px] shrink-0">SCENE_CUT @ F#142</span>
       </div>
 
-      <div className="relative h-16 rounded-xl bg-white border border-slate-200 p-4 flex items-center justify-between overflow-hidden shadow-inner">
+      <div className="relative h-auto md:h-16 min-h-[64px] rounded-xl bg-white border border-slate-200 p-3 md:p-4 flex flex-col md:flex-row items-start md:items-center justify-between overflow-hidden shadow-inner gap-3 md:gap-0">
         {/* Smooth canvas optical flow background */}
         <canvas ref={canvasRef} width={400} height={64} className="absolute inset-0 w-full h-full" />
         
@@ -903,12 +903,12 @@ const SwarmEngineVisualizer: React.FC = () => {
 
   return (
     <div className="mt-5 p-6 rounded-3xl bg-[#fafafa] border border-slate-200 shadow-sm relative overflow-hidden space-y-4 font-mono text-xs">
-      <div className="flex items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-3">
-        <span className="flex items-center gap-2.5 text-sm uppercase tracking-wide">
-          <span className="w-3 h-3 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)]" />
-          Persona Swarm Network Topology
+      <div className="flex flex-col md:flex-row md:items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-3 gap-2 md:gap-0">
+        <span className="flex items-center gap-2.5 text-xs md:text-sm uppercase tracking-wide w-full md:w-auto">
+          <span className="w-2.5 h-2.5 md:w-3 md:h-3 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)] shrink-0" />
+          <span className="truncate">Persona Swarm Network Topology</span>
         </span>
-        <span className="text-slate-600 font-extrabold text-xs px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm">
+        <span className="text-slate-600 font-extrabold text-[10px] md:text-xs px-2 md:px-3 py-1 rounded-full bg-white border border-slate-200 shadow-sm shrink-0 w-fit">
           CONSENSUS: 87.4%
         </span>
       </div>
@@ -918,7 +918,7 @@ const SwarmEngineVisualizer: React.FC = () => {
         <canvas ref={canvasRef} width={800} height={256} className="w-full h-full" />
       </div>
 
-      <div className="flex items-center justify-center text-xs text-slate-500 pt-2 font-bold flex-wrap gap-5 uppercase tracking-wider">
+      <div className="flex items-center justify-center text-[9px] md:text-xs text-slate-500 pt-2 font-bold flex-wrap gap-3 md:gap-5 uppercase tracking-wider">
         <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-[#2563eb]" /> In-Target</span>
         <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-[#9ca3af]" /> Mixed</span>
         <span className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-full bg-[#ea580c]" /> Out-of-Target</span>
@@ -1053,12 +1053,12 @@ const SHAPEvaluatorVisualizer: React.FC = () => {
 
   return (
     <div className="mt-4 p-5 rounded-2xl bg-[#fafafa] border border-slate-200 shadow-sm relative overflow-hidden space-y-4 font-mono text-xs">
-      <div className="flex items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-2">
-        <span className="flex items-center gap-2">
-          <span className="w-2.5 h-2.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)]" />
-          XGBOOST SHAP FEATURE IMPACT
+      <div className="flex flex-col md:flex-row md:items-center justify-between text-slate-800 font-bold border-b border-slate-200 pb-2 gap-1 md:gap-0">
+        <span className="flex items-center gap-2 w-full md:w-auto">
+          <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-blue-600 animate-pulse shadow-[0_0_8px_rgba(37,99,235,0.6)] shrink-0" />
+          <span className="text-[10px] md:text-xs truncate">XGBOOST SHAP FEATURE IMPACT</span>
         </span>
-        <span className="text-slate-500 font-bold text-[10px]">SCORE: <span className="text-blue-600 font-extrabold tracking-widest text-xs">88/100</span></span>
+        <span className="text-slate-500 font-bold text-[9px] md:text-[10px] shrink-0">SCORE: <span className="text-blue-600 font-extrabold tracking-widest text-[10px] md:text-xs">88/100</span></span>
       </div>
 
       <div className="relative h-28 rounded-xl bg-white border border-slate-200 p-2 flex items-center overflow-hidden shadow-inner w-full">
