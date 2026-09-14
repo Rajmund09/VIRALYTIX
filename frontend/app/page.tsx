@@ -1719,21 +1719,21 @@ export default function Dashboard() {
               }}
               className="bg-[#1c1c1e] hover:bg-black text-white px-4 md:px-7 py-2.5 rounded-full font-display font-extrabold text-xs md:text-sm tracking-tight flex items-center gap-2 transition-all cursor-pointer shadow-lg hover:scale-105 whitespace-nowrap"
             >
-              <Zap size={16} className="text-emerald-400 fill-emerald-400 shrink-0" />
-              <span className="hidden sm:inline">{file ? "Run Virality Engine" : "Upload Video"}</span>
+              <Zap size={16} className="text-emerald-400 fill-emerald-400" />
+              <span>{file ? "Run Virality Engine" : "Upload Video"}</span>
             </button>
           ) : result ? (
             <button
               onClick={handleReset}
               className="bg-[#1c1c1e] hover:bg-black text-white px-4 md:px-7 py-2.5 rounded-full font-display font-extrabold text-xs md:text-sm tracking-tight flex items-center gap-2 transition-all cursor-pointer shadow-lg hover:scale-105 whitespace-nowrap"
             >
-              <RotateCcw size={16} className="text-emerald-400 shrink-0" />
-              <span className="hidden sm:inline">Reset Engine</span>
+              <RotateCcw size={16} className="text-emerald-400" />
+              <span>Reset Engine</span>
             </button>
           ) : (
             <div className="bg-[#1c1c1e] text-white px-4 md:px-7 py-2.5 rounded-full font-display font-extrabold text-xs md:text-sm tracking-tight flex items-center gap-2 shadow-lg whitespace-nowrap">
-              <Activity size={16} className="text-emerald-400 animate-spin shrink-0" />
-              <span className="hidden sm:inline">Processing Signals...</span>
+              <Activity size={16} className="text-emerald-400 animate-spin" />
+              <span>Processing Signals...</span>
             </div>
           )}
 
@@ -2086,8 +2086,7 @@ export default function Dashboard() {
                 }`}
               >
                 <Zap size={20} className={file ? "fill-[#05190e] text-[#05190e]" : "text-slate-500"} />
-                <span className="hidden md:inline">{file ? "Initialize Signal Extraction & Swarm Simulation" : "Upload Video to Activate Engine"}</span>
-                <span className="md:hidden">{file ? "Start" : "Upload"}</span>
+                <span>{file ? "Initialize Signal Extraction & Swarm Simulation" : "Upload Video to Activate Engine"}</span>
               </button>
             </div>
           </div>
