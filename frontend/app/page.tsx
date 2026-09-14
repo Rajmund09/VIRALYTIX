@@ -1861,7 +1861,10 @@ export default function Dashboard() {
               </div>
 
               {/* Dynamic Description Box (Shows Selected or Hovered Persona Info) */}
-              <div className="mt-3 p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-lg">
+              <div className="mt-3 p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-lg relative">
+                {/* Speech Bubble Pointer */}
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-slate-900 border-t border-l border-white/10 rotate-45 rounded-sm" />
+                
                 {(() => {
                   const activeDemo = TARGET_DEMOGRAPHICS.find(d => d.value === (hoveredDemo || targetDemo));
                   if (!activeDemo) return null;
