@@ -1811,13 +1811,15 @@ export default function Dashboard() {
 
             {/* MICRO-GLASS FLOATING AUDIENCE SELECTOR BAR WITH SELF-EXPANDING MESSAGE BOX BUBBLE */}
             <div className="relative z-30">
-              <div className="flex items-center justify-between gap-4 p-3 md:p-3.5 rounded-2xl metallic-card-3d relative w-full">
+              
+              {/* === DESKTOP LAYOUT (Expanding Hover Cards) === */}
+              <div className="hidden md:flex items-center justify-between gap-4 p-3 md:p-3.5 rounded-2xl metallic-card-3d relative w-full">
                 {/* Left Label */}
                 <div className="flex items-center gap-2.5 pl-2 shrink-0">
                   <div className="w-7 h-7 rounded-xl bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-400 shadow-sm">
                     <Users size={16} />
                   </div>
-                  <span className="text-xs md:text-sm font-mono font-black text-white uppercase tracking-wider hidden sm:inline">
+                  <span className="text-xs md:text-sm font-mono font-black text-white uppercase tracking-wider">
                     Target Audience
                   </span>
                 </div>
@@ -1836,54 +1838,55 @@ export default function Dashboard() {
                         onClick={() => setTargetDemo(demo.value)}
                         onMouseEnter={() => setHoveredDemo(demo.value)}
                         onMouseLeave={() => setHoveredDemo(null)}
-                        style={{ transition: "all 0.3s ease" }}
-                        className={`cursor-pointer text-left overflow-hidden flex flex-col transform-gpu flex-1 px-1.5 md:px-4 py-2.5 h-10.5 justify-center rounded-xl ${
-                          isSelected
-                            ? "bg-white text-[#05190e] shadow-md border-2 border-[#05190e]"
-                            : "text-white font-black bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-800/80 hover:border-emerald-300"
+                        style={{
+                          transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                          willChange: "width, height, transform, padding, background-color"
+                        }}
+                        className={`cursor-pointer text-left overflow-hidden flex flex-col transform-gpu ${
+                          isHovered
+                            ? "w-68 h-48 p-4.5 rounded-2xl bg-white text-[#05190e] border-3 border-[#05190e] shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(255,255,255,0.4)] scale-105 justify-between"
+                            : isSelected
+                            ? "flex-1 px-2 md:px-4 py-2.5 rounded-xl bg-white text-[#05190e] shadow-md border-2 border-[#05190e] h-10.5 justify-center"
+                            : "flex-1 px-2 md:px-4 py-2.5 rounded-xl text-white font-black bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-800/80 hover:border-emerald-300 h-10.5 justify-center"
                         }`}
                       >
-                        <div className="flex items-center justify-center w-full">
-                          <div className={`flex items-center gap-1.5 md:gap-2 font-display font-black text-[10px] md:text-sm ${
-                            isSelected ? "text-[#05190e]" : "text-white"
+                        {/* Heading Row */}
+                        <div className="flex items-center justify-between w-full">
+                          <div className={`flex items-center gap-1.5 md:gap-2 font-display font-black text-xs md:text-sm ${
+                            isHovered || isSelected ? "text-[#05190e]" : "text-white"
                           }`}>
-                            <MicroIcon size={16} className={`shrink-0 ${isSelected ? "text-[#05190e] stroke-[2.5]" : "text-emerald-400 stroke-[2.5]"}`} />
+                            <MicroIcon size={16} className={`shrink-0 ${isHovered || isSelected ? "text-[#05190e] stroke-[2.5]" : "text-emerald-400 stroke-[2.5]"}`} />
                             <span className="truncate">{demo.label.split(" ")[0]}</span>
                           </div>
-                          {isSelected && (
-                            <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0 ml-1.5 md:ml-2" />
-                          )}
+
+                          {isHovered ? (
+                            <span className="text-[9px] font-mono font-black text-white bg-[#05190e] px-2.5 py-0.5 rounded-full shrink-0 ml-2">
+                              100 Agents
+                            </span>
+                          ) : isSelected ? (
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0 ml-2" />
+                          ) : null}
                         </div>
+
+                        {/* Hover Description Body */}
+                        {isHovered && (
+                          <div className="space-y-2 mt-2 pt-2 border-t-2 border-[#05190e]/15 transition-all duration-500 ease-out animate-fade-in flex-1 flex flex-col justify-between">
+                            <p className="text-xs font-sans font-semibold text-slate-800 leading-relaxed line-clamp-3">
+                              {demo.description}
+                            </p>
+                            <div className="flex gap-1 flex-wrap pt-1">
+                              {demo.personas.map((p) => (
+                                <span key={p} className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-[#05190e] text-white font-black shadow">
+                                  {p}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                        )}
                       </button>
                     );
                   })}
                 </div>
-              </div>
-
-              {/* Dynamic Description Box (Shows Selected or Hovered Persona Info) */}
-              <div className="mt-3 p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-lg relative">
-                {/* Speech Bubble Pointer */}
-                <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-slate-900 border-t border-l border-white/10 rotate-45 rounded-sm" />
-                
-                {(() => {
-                  const activeDemo = TARGET_DEMOGRAPHICS.find(d => d.value === (hoveredDemo || targetDemo));
-                  if (!activeDemo) return null;
-                  return (
-                    <>
-                      <p className="text-xs md:text-sm font-sans font-semibold text-slate-300 leading-relaxed max-w-2xl">
-                        <span className="text-emerald-400 font-bold mr-2">{activeDemo.label}:</span>
-                        {activeDemo.description}
-                      </p>
-                      <div className="flex gap-1.5 flex-wrap shrink-0">
-                        {activeDemo.personas.map((p) => (
-                          <span key={p} className="text-[9px] md:text-[10px] font-mono px-2 py-1 rounded-md bg-[#0b2e1c] text-emerald-300 border border-emerald-500/30 font-black shadow-sm">
-                            {p}
-                          </span>
-                        ))}
-                      </div>
-                    </>
-                  );
-                })()}
 
                 {/* Active Persona Tag Chips */}
                 {(() => {
@@ -1902,6 +1905,76 @@ export default function Dashboard() {
                   );
                 })()}
               </div>
+
+              {/* === MOBILE LAYOUT (Static Buttons + Dedicated Description Box) === */}
+              <div className="flex md:hidden flex-col gap-3">
+                <div className="flex items-center justify-between gap-4 p-3 rounded-2xl metallic-card-3d relative w-full">
+                  {/* Left Label */}
+                  <div className="flex items-center gap-2 pl-2 shrink-0">
+                    <div className="w-7 h-7 rounded-xl bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-400 shadow-sm">
+                      <Users size={16} />
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2.5 p-1.5 rounded-2xl bg-slate-950/90 border border-white/15 flex-1 max-w-xl w-full justify-between">
+                    {TARGET_DEMOGRAPHICS.map((demo, idx) => {
+                      const isSelected = targetDemo === demo.value;
+                      const icons = [Zap, Cpu, Globe];
+                      const MicroIcon = icons[idx % icons.length];
+
+                      return (
+                        <button
+                          key={demo.value}
+                          onClick={() => setTargetDemo(demo.value)}
+                          style={{ transition: "all 0.3s ease" }}
+                          className={`cursor-pointer text-left overflow-hidden flex flex-col transform-gpu flex-1 px-1.5 py-2.5 h-10.5 justify-center rounded-xl ${
+                            isSelected
+                              ? "bg-white text-[#05190e] shadow-md border-2 border-[#05190e]"
+                              : "text-white font-black bg-emerald-950/60 border border-emerald-500/40"
+                          }`}
+                        >
+                          <div className="flex items-center justify-center w-full">
+                            <div className={`flex items-center gap-1.5 font-display font-black text-[10px] ${
+                              isSelected ? "text-[#05190e]" : "text-white"
+                            }`}>
+                              <MicroIcon size={16} className={`shrink-0 ${isSelected ? "text-[#05190e] stroke-[2.5]" : "text-emerald-400 stroke-[2.5]"}`} />
+                              <span className="truncate">{demo.label.split(" ")[0]}</span>
+                            </div>
+                            {isSelected && (
+                              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0 ml-1.5" />
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Mobile Description Box */}
+                <div className="p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-white/10 flex flex-col gap-4 shadow-lg relative">
+                  <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-slate-900 border-t border-l border-white/10 rotate-45 rounded-sm" />
+                  {(() => {
+                    const activeDemo = TARGET_DEMOGRAPHICS.find(d => d.value === targetDemo);
+                    if (!activeDemo) return null;
+                    return (
+                      <>
+                        <p className="text-xs font-sans font-semibold text-slate-300 leading-relaxed">
+                          <span className="text-emerald-400 font-bold mr-2">{activeDemo.label}:</span>
+                          {activeDemo.description}
+                        </p>
+                        <div className="flex gap-1.5 flex-wrap shrink-0">
+                          {activeDemo.personas.map((p) => (
+                            <span key={p} className="text-[9px] font-mono px-2 py-1 rounded-md bg-[#0b2e1c] text-emerald-300 border border-emerald-500/30 font-black shadow-sm">
+                              {p}
+                            </span>
+                          ))}
+                        </div>
+                      </>
+                    );
+                  })()}
+                </div>
+              </div>
+
             </div>
 
             {/* PARTICLE WAVE MATRIX CANVAS CARD CONTAINER (3D Black Metallic & Shine) */}
