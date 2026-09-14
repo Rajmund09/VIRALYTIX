@@ -1844,16 +1844,16 @@ export default function Dashboard() {
                           isHovered
                             ? "w-68 h-48 p-4.5 rounded-2xl bg-white text-[#05190e] border-3 border-[#05190e] shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(255,255,255,0.4)] scale-105 justify-between"
                             : isSelected
-                            ? "flex-1 px-4 py-2.5 rounded-xl bg-white text-[#05190e] shadow-md border-2 border-[#05190e] h-10.5 justify-center"
-                            : "flex-1 px-4 py-2.5 rounded-xl text-white font-black bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-800/80 hover:border-emerald-300 h-10.5 justify-center"
+                            ? "flex-1 px-2 md:px-4 py-2.5 rounded-xl bg-white text-[#05190e] shadow-md border-2 border-[#05190e] h-10.5 justify-center"
+                            : "flex-1 px-2 md:px-4 py-2.5 rounded-xl text-white font-black bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-800/80 hover:border-emerald-300 h-10.5 justify-center"
                         }`}
                       >
                         {/* Heading Row (⚡ Tech smoothly stays as the header in Söhne font family) */}
                         <div className="flex items-center justify-between w-full">
-                          <div className={`flex items-center gap-2 font-display font-black text-sm ${
+                          <div className={`flex items-center gap-1.5 md:gap-2 font-display font-black text-xs md:text-sm ${
                             isHovered || isSelected ? "text-[#05190e]" : "text-white"
                           }`}>
-                            <MicroIcon size={18} className={isHovered || isSelected ? "text-[#05190e] stroke-[2.5]" : "text-emerald-400 stroke-[2.5]"} />
+                            <MicroIcon size={16} className={`shrink-0 ${isHovered || isSelected ? "text-[#05190e] stroke-[2.5]" : "text-emerald-400 stroke-[2.5]"}`} />
                             <span className="truncate">{demo.label.split(" ")[0]}</span>
                           </div>
 
