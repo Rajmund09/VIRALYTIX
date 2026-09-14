@@ -1836,55 +1836,51 @@ export default function Dashboard() {
                         onClick={() => setTargetDemo(demo.value)}
                         onMouseEnter={() => setHoveredDemo(demo.value)}
                         onMouseLeave={() => setHoveredDemo(null)}
-                        style={{
-                          transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
-                          willChange: "width, height, transform, padding, background-color"
-                        }}
-                        className={`cursor-pointer text-left overflow-hidden flex flex-col transform-gpu ${
-                          isHovered
-                            ? "w-68 h-48 p-4.5 rounded-2xl bg-white text-[#05190e] border-3 border-[#05190e] shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(255,255,255,0.4)] scale-105 justify-between"
-                            : isSelected
-                            ? "flex-1 px-2 md:px-4 py-2.5 rounded-xl bg-white text-[#05190e] shadow-md border-2 border-[#05190e] h-10.5 justify-center"
-                            : "flex-1 px-2 md:px-4 py-2.5 rounded-xl text-white font-black bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-800/80 hover:border-emerald-300 h-10.5 justify-center"
+                        style={{ transition: "all 0.3s ease" }}
+                        className={`cursor-pointer text-left overflow-hidden flex flex-col transform-gpu flex-1 px-1.5 md:px-4 py-2.5 h-10.5 justify-center rounded-xl ${
+                          isSelected
+                            ? "bg-white text-[#05190e] shadow-md border-2 border-[#05190e]"
+                            : "text-white font-black bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-800/80 hover:border-emerald-300"
                         }`}
                       >
-                        {/* Heading Row (⚡ Tech smoothly stays as the header in Söhne font family) */}
-                        <div className="flex items-center justify-between w-full">
-                          <div className={`flex items-center gap-1.5 md:gap-2 font-display font-black text-xs md:text-sm ${
-                            isHovered || isSelected ? "text-[#05190e]" : "text-white"
+                        <div className="flex items-center justify-center w-full">
+                          <div className={`flex items-center gap-1.5 md:gap-2 font-display font-black text-[10px] md:text-sm ${
+                            isSelected ? "text-[#05190e]" : "text-white"
                           }`}>
-                            <MicroIcon size={16} className={`shrink-0 ${isHovered || isSelected ? "text-[#05190e] stroke-[2.5]" : "text-emerald-400 stroke-[2.5]"}`} />
+                            <MicroIcon size={16} className={`shrink-0 ${isSelected ? "text-[#05190e] stroke-[2.5]" : "text-emerald-400 stroke-[2.5]"}`} />
                             <span className="truncate">{demo.label.split(" ")[0]}</span>
                           </div>
-
-                          {isHovered ? (
-                            <span className="text-[9px] font-mono font-black text-white bg-[#05190e] px-2.5 py-0.5 rounded-full shrink-0 ml-2">
-                              100 Agents
-                            </span>
-                          ) : isSelected ? (
-                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0 ml-2" />
-                          ) : null}
+                          {isSelected && (
+                            <span className="w-2 h-2 md:w-2.5 md:h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0 ml-1.5 md:ml-2" />
+                          )}
                         </div>
-
-                        {/* Small Square Message Box Body Content (Smoothly Fades In on Hover) */}
-                        {isHovered && (
-                          <div className="space-y-2 mt-2 pt-2 border-t-2 border-[#05190e]/15 transition-all duration-500 ease-out animate-fade-in flex-1 flex flex-col justify-between">
-                            <p className="text-xs font-sans font-semibold text-slate-800 leading-relaxed line-clamp-3">
-                              {demo.description}
-                            </p>
-                            <div className="flex gap-1 flex-wrap pt-1">
-                              {demo.personas.map((p) => (
-                                <span key={p} className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-[#05190e] text-white font-black shadow">
-                                  {p}
-                                </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
                       </button>
                     );
                   })}
                 </div>
+              </div>
+
+              {/* Dynamic Description Box (Shows Selected or Hovered Persona Info) */}
+              <div className="mt-3 p-4 rounded-xl bg-slate-900/90 backdrop-blur-md border border-white/10 flex flex-col md:flex-row md:items-center justify-between gap-4 shadow-lg">
+                {(() => {
+                  const activeDemo = TARGET_DEMOGRAPHICS.find(d => d.value === (hoveredDemo || targetDemo));
+                  if (!activeDemo) return null;
+                  return (
+                    <>
+                      <p className="text-xs md:text-sm font-sans font-semibold text-slate-300 leading-relaxed max-w-2xl">
+                        <span className="text-emerald-400 font-bold mr-2">{activeDemo.label}:</span>
+                        {activeDemo.description}
+                      </p>
+                      <div className="flex gap-1.5 flex-wrap shrink-0">
+                        {activeDemo.personas.map((p) => (
+                          <span key={p} className="text-[9px] md:text-[10px] font-mono px-2 py-1 rounded-md bg-[#0b2e1c] text-emerald-300 border border-emerald-500/30 font-black shadow-sm">
+                            {p}
+                          </span>
+                        ))}
+                      </div>
+                    </>
+                  );
+                })()}
 
                 {/* Active Persona Tag Chips */}
                 {(() => {
