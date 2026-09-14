@@ -1983,15 +1983,7 @@ export default function Dashboard() {
                 </div>
               )}
 
-              {/* WAVE ANIMATION RUNNING STATUS PILL (during 2.6s wave sequence) */}
-              {file && !showMediaPreview && (
-                <div className="relative z-10 flex flex-col items-center gap-2 pointer-events-none animate-pulse">
-                  <div className="px-4 py-2 rounded-full bg-slate-950/80 border border-emerald-400/80 text-emerald-300 text-xs font-mono font-extrabold flex items-center gap-2 shadow-2xl backdrop-blur-md">
-                    <Droplet size={14} className="text-emerald-400 animate-bounce" />
-                    <span>3D Water Wave Shockwave Active — Preview in 2s</span>
-                  </div>
-                </div>
-              )}
+
 
               {/* MEDIA PREVIEW CARD OVERLAY (enters with liquid blob scale expansion AFTER 2.6s 3D wave delay) */}
               {file && showMediaPreview && (
