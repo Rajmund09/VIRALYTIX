@@ -2070,14 +2070,14 @@ export default function Dashboard() {
               <button
                 onClick={runAnalysis}
                 disabled={!file}
-                className={`w-full py-4.5 rounded-2xl font-display font-black text-sm md:text-base uppercase tracking-wider transition-all flex items-center justify-center gap-2.5 cursor-pointer shadow-2xl ${
+                className={`w-full py-4 px-4 rounded-2xl font-display font-black text-[11px] sm:text-sm md:text-base uppercase tracking-wider transition-all flex items-center justify-center gap-2 md:gap-2.5 cursor-pointer shadow-2xl ${
                   file
                     ? "btn-tactile-white-3d"
                     : "metallic-card-3d text-emerald-300/80 cursor-not-allowed"
                 }`}
               >
-                <Zap size={20} className={file ? "fill-[#05190e] text-[#05190e]" : "text-slate-500"} />
-                <span>{file ? "Initialize Signal Extraction & Swarm Simulation" : "Upload Video to Activate Engine"}</span>
+                <Zap size={20} className={`shrink-0 ${file ? "fill-[#05190e] text-[#05190e]" : "text-slate-500"}`} />
+                <span className="text-center leading-tight whitespace-normal">{file ? "Initialize Signal Extraction & Swarm Simulation" : "Upload Video to Activate Engine"}</span>
               </button>
             </div>
           </div>
