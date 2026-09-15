@@ -2249,8 +2249,8 @@ export default function Dashboard() {
         {stage === "done" && result && (
           <div className="space-y-8 animate-fade-in" id="results-panel">
             {/* Tab Navigation */}
-            <div className="flex items-center justify-between border-b-2 border-white/20 pb-4 flex-wrap gap-4">
-              <div className="flex gap-2">
+            <div className="flex flex-col md:flex-row md:items-center justify-between border-b-2 border-white/20 pb-4 gap-4">
+              <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 snap-x hide-scrollbar max-w-full [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {[
                   { id: "overview", label: "Executive Dashboard", icon: BarChart3 },
                   { id: "swarm", label: "100-Agent Swarm Simulation", icon: Users },
@@ -2262,13 +2262,13 @@ export default function Dashboard() {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id as any)}
-                      className={`px-4.5 py-2.5 rounded-xl text-xs font-display font-extrabold transition-all flex items-center gap-2 cursor-pointer ${
+                      className={`snap-start whitespace-nowrap flex-shrink-0 px-4 py-2.5 rounded-xl text-xs font-display font-extrabold transition-all flex items-center gap-2 cursor-pointer ${
                         activeTab === tab.id
                           ? "bg-white text-[#05190e] border-2 border-[#05190e] shadow-lg glow-emerald scale-[1.02]"
                           : "bg-[#062013]/80 text-emerald-100 hover:text-white border border-white/20"
                       }`}
                     >
-                      <Icon size={15} />
+                      <Icon size={15} className="flex-shrink-0" />
                       <span>{tab.label}</span>
                     </button>
                   );
