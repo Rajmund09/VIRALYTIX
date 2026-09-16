@@ -296,6 +296,6 @@ npm run dev
 Distributed under the MIT License. See `LICENSE` for details.
 
 <div align="center">
-  <sub>Built with ❤️ by Prabhu Shankar Mund (Raj) for Centurion University of Technology and Management</sub>
+  <sub>Built with ❤️ by Prabhu Shankar Mund (Raj) </sub>
 </div>
 
