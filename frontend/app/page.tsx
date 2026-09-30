@@ -1198,6 +1198,23 @@ const HeroGridPixelCanvas: React.FC = () => {
 
 export default function Dashboard() {
   const [activeView, setActiveView] = useState<"landing" | "app">("landing");
+
+  // Restore activeView from localStorage on mount (prevents reset to landing on page reload)
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const savedView = localStorage.getItem("viralytix_active_view");
+      if (savedView === "app" || savedView === "landing") {
+        setActiveView(savedView);
+      }
+    }
+  }, []);
+
+  const handleSetView = (view: "landing" | "app") => {
+    setActiveView(view);
+    if (typeof window !== "undefined") {
+      localStorage.setItem("viralytix_active_view", view);
+    }
+  };
   const [mode, setMode] = useState<"single" | "ab">("single");
   const [activeTab, setActiveTab] = useState<"overview" | "swarm" | "signals" | "recommendations">("overview");
   const [file, setFile] = useState<File | null>(null);
@@ -1693,7 +1710,7 @@ export default function Dashboard() {
   const activeRoundState = cascadeRounds[simRound] || [];
 
   if (activeView === "landing") {
-    return <StudioLandingPage onLaunchApp={() => setActiveView("app")} />;
+    return <StudioLandingPage onLaunchApp={() => handleSetView("app")} />;
   }
 
   return (
@@ -1718,7 +1735,7 @@ export default function Dashboard() {
           
           {/* Left Circle: Logo Badge Button */}
           <div
-            onClick={() => setActiveView("landing")}
+            onClick={() => handleSetView("landing")}
             className="w-11 h-11 rounded-full bg-white border-2 border-[#05190e] flex items-center justify-center p-1.5 shadow-md hover:scale-110 transition-transform cursor-pointer"
             title="Return to Landing Page"
           >
@@ -1726,7 +1743,7 @@ export default function Dashboard() {
           </div>
 
           <button
-            onClick={() => setActiveView("landing")}
+            onClick={() => handleSetView("landing")}
             className="bg-[#05190e] hover:bg-emerald-950 text-emerald-400 border border-emerald-500/40 px-3 py-1.5 rounded-full font-mono font-bold text-xs flex items-center gap-1 shadow hover:scale-105 transition-all cursor-pointer"
           >
             ← Landing Page
