@@ -87,7 +87,6 @@ class ParticleWaveEngine {
     const parent = this.canvas.parentElement;
     this.w = rect.width || (parent ? parent.clientWidth : 0) || 800;
     this.h = rect.height || (parent ? parent.clientHeight : 0) || 380;
-    if (this.w === 0 || this.h === 0) return;
     this.canvas.width = Math.round(this.w * this.dpr);
     this.canvas.height = Math.round(this.h * this.dpr);
     this.ctx.setTransform(this.dpr, 0, 0, this.dpr, 0, 0);
@@ -1314,7 +1313,7 @@ export default function Dashboard() {
       if (ro) ro.disconnect();
       if (engine) engine.stop();
     };
-  }, [stage]);
+  }, [stage, activeView]);
 
   const fmtBytes = (bytes: number) => {
     const mb = bytes / (1024 * 1024);
