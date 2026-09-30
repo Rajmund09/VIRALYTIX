@@ -1258,35 +1258,46 @@ export default function Dashboard() {
   // Initialize Particle Wave Canvas Engine
   useEffect(() => {
     if (stage !== "idle") return;
-    if (!waveCanvasRef.current) return;
-    const engine = new ParticleWaveEngine(waveCanvasRef.current);
-    engine.setState("idle");
-    engine.start();
-    waveEngineRef.current = engine;
 
-    const handleResize = () => engine.resize();
-    handleResize();
-
-    // Staggered fallback timers to guarantee canvas build after DOM layout reflow
-    const timer1 = setTimeout(handleResize, 100);
-    const timer2 = setTimeout(handleResize, 500);
-
-    window.addEventListener("resize", handleResize);
-
+    let engine: ParticleWaveEngine | null = null;
+    let timer1: NodeJS.Timeout | null = null;
+    let timer2: NodeJS.Timeout | null = null;
     let ro: ResizeObserver | null = null;
-    if (waveCanvasRef.current.parentElement && typeof ResizeObserver !== "undefined") {
-      ro = new ResizeObserver(handleResize);
-      ro.observe(waveCanvasRef.current.parentElement);
-    }
+
+    const initEngine = () => {
+      if (!waveCanvasRef.current) return;
+      if (waveEngineRef.current) waveEngineRef.current.stop();
+
+      engine = new ParticleWaveEngine(waveCanvasRef.current);
+      engine.setState("idle");
+      engine.start();
+      waveEngineRef.current = engine;
+
+      const handleResize = () => engine && engine.resize();
+      handleResize();
+
+      timer1 = setTimeout(handleResize, 100);
+      timer2 = setTimeout(handleResize, 500);
+
+      window.addEventListener("resize", handleResize);
+
+      if (waveCanvasRef.current.parentElement && typeof ResizeObserver !== "undefined") {
+        ro = new ResizeObserver(handleResize);
+        ro.observe(waveCanvasRef.current.parentElement);
+      }
+    };
+
+    const rafId = requestAnimationFrame(initEngine);
 
     return () => {
-      clearTimeout(timer1);
-      clearTimeout(timer2);
-      window.removeEventListener("resize", handleResize);
+      cancelAnimationFrame(rafId);
+      if (timer1) clearTimeout(timer1);
+      if (timer2) clearTimeout(timer2);
+      window.removeEventListener("resize", () => engine && engine.resize());
       if (ro) ro.disconnect();
-      engine.stop();
+      if (engine) engine.stop();
     };
-  }, [stage === "idle"]);
+  }, [stage]);
 
   const fmtBytes = (bytes: number) => {
     const mb = bytes / (1024 * 1024);
@@ -1823,8 +1834,8 @@ export default function Dashboard() {
             {/* MICRO-GLASS FLOATING AUDIENCE SELECTOR BAR WITH SELF-EXPANDING MESSAGE BOX BUBBLE */}
             <div className="relative z-30">
               
-              {/* === DESKTOP LAYOUT (Clean Balanced Bar) === */}
-              <div className="hidden md:flex items-center justify-between gap-3 p-3 md:p-3.5 rounded-2xl metallic-card-3d relative w-full overflow-visible">
+              {/* === DESKTOP LAYOUT (Expanding Hover Cards) === */}
+              <div className="hidden md:flex items-center justify-between gap-4 p-3 md:p-3.5 rounded-2xl metallic-card-3d relative w-full">
                 {/* Left Label */}
                 <div className="flex items-center gap-2.5 pl-2 shrink-0">
                   <div className="w-7 h-7 rounded-xl bg-emerald-500/20 border border-emerald-400/50 flex items-center justify-center text-emerald-400 shadow-sm">
@@ -1835,8 +1846,8 @@ export default function Dashboard() {
                   </span>
                 </div>
 
-                {/* 3 Compact Equal-Width Capsule Buttons */}
-                <div className="flex items-center gap-2 p-1.5 rounded-2xl bg-slate-950/90 border border-white/15 flex-1 max-w-2xl w-full justify-between relative">
+                {/* 3 Compact Micro Capsule Buttons with Elastic Small Square Morphing Message Box */}
+                <div className="flex items-center gap-2.5 p-1.5 rounded-2xl bg-slate-950/90 border border-white/15 flex-1 max-w-xl w-full justify-between">
                   {TARGET_DEMOGRAPHICS.map((demo, idx) => {
                     const isSelected = targetDemo === demo.value;
                     const isHovered = hoveredDemo === demo.value;
@@ -1844,80 +1855,70 @@ export default function Dashboard() {
                     const MicroIcon = icons[idx % icons.length];
 
                     return (
-                      <div
+                      <button
                         key={demo.value}
-                        className="relative flex-1"
+                        onClick={() => setTargetDemo(demo.value)}
                         onMouseEnter={() => setHoveredDemo(demo.value)}
                         onMouseLeave={() => setHoveredDemo(null)}
+                        style={{
+                          transition: "all 0.65s cubic-bezier(0.22, 1, 0.36, 1)",
+                          willChange: "width, height, transform, padding, background-color"
+                        }}
+                        className={`cursor-pointer text-left overflow-hidden flex flex-col transform-gpu ${
+                          isHovered
+                            ? "w-68 h-48 p-4.5 rounded-2xl bg-white text-[#05190e] border-3 border-[#05190e] shadow-[0_25px_60px_rgba(0,0,0,0.95),0_0_30px_rgba(255,255,255,0.4)] scale-105 justify-between"
+                            : isSelected
+                            ? "flex-1 px-2 md:px-4 py-2.5 rounded-xl bg-white text-[#05190e] shadow-md border-2 border-[#05190e] h-10.5 justify-center"
+                            : "flex-1 px-2 md:px-4 py-2.5 rounded-xl text-white font-black bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-800/80 hover:border-emerald-300 h-10.5 justify-center"
+                        }`}
                       >
-                        <button
-                          onClick={() => setTargetDemo(demo.value)}
-                          className={`w-full cursor-pointer px-3 md:px-4 py-2.5 rounded-xl h-11 flex items-center justify-between gap-2 font-display font-black text-xs md:text-sm transition-all duration-300 ${
-                            isSelected
-                              ? "bg-white text-[#05190e] shadow-lg border-2 border-[#05190e]"
-                              : "text-white bg-emerald-950/60 border border-emerald-500/40 hover:bg-emerald-900/80 hover:border-emerald-300"
-                          }`}
-                        >
-                          <div className="flex items-center gap-2 truncate">
-                            <MicroIcon
-                              size={16}
-                              className={`shrink-0 ${
-                                isSelected ? "text-[#05190e] stroke-[2.5]" : "text-emerald-400 stroke-[2.5]"
-                              }`}
-                            />
+                        {/* Heading Row */}
+                        <div className="flex items-center justify-between w-full">
+                          <div className={`flex items-center gap-1.5 md:gap-2 font-display font-black text-xs md:text-sm ${
+                            isHovered || isSelected ? "text-[#05190e]" : "text-white"
+                          }`}>
+                            <MicroIcon size={16} className={`shrink-0 ${isHovered || isSelected ? "text-[#05190e] stroke-[2.5]" : "text-emerald-400 stroke-[2.5]"}`} />
                             <span className="truncate">{demo.label.split(" ")[0]}</span>
                           </div>
 
-                          {isSelected && (
-                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0 ml-1" />
-                          )}
-                        </button>
+                          {isHovered ? (
+                            <span className="text-[9px] font-mono font-black text-white bg-[#05190e] px-2.5 py-0.5 rounded-full shrink-0 ml-2">
+                              100 Agents
+                            </span>
+                          ) : isSelected ? (
+                            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse shrink-0 ml-2" />
+                          ) : null}
+                        </div>
 
-                        {/* Floating Morphing Hover Popover Card */}
-                        <AnimatePresence>
-                          {isHovered && (
-                            <motion.div
-                              initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                              animate={{ opacity: 1, y: 0, scale: 1 }}
-                              exit={{ opacity: 0, y: 5, scale: 0.95 }}
-                              transition={{ duration: 0.2 }}
-                              className="absolute top-14 left-0 z-50 w-72 p-4 rounded-2xl bg-white text-[#05190e] border-2 border-[#05190e] shadow-[0_20px_50px_rgba(0,0,0,0.8)] space-y-2 pointer-events-none"
-                            >
-                              <div className="flex items-center justify-between border-b border-slate-200 pb-2">
-                                <span className="font-bold text-xs font-mono uppercase tracking-wide">
-                                  {demo.label}
+                        {/* Hover Description Body */}
+                        {isHovered && (
+                          <div className="space-y-2 mt-2 pt-2 border-t-2 border-[#05190e]/15 transition-all duration-500 ease-out animate-fade-in flex-1 flex flex-col justify-between">
+                            <p className="text-xs font-sans font-semibold text-slate-800 leading-relaxed line-clamp-3">
+                              {demo.description}
+                            </p>
+                            <div className="flex gap-1 flex-wrap pt-1">
+                              {demo.personas.map((p) => (
+                                <span key={p} className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-[#05190e] text-white font-black shadow">
+                                  {p}
                                 </span>
-                                <span className="text-[9px] font-mono font-black text-white bg-[#05190e] px-2 py-0.5 rounded-full">
-                                  100 Agents
-                                </span>
-                              </div>
-                              <p className="text-xs font-sans text-slate-700 leading-relaxed">
-                                {demo.description}
-                              </p>
-                              <div className="flex gap-1 flex-wrap pt-1">
-                                {demo.personas.map((p) => (
-                                  <span key={p} className="text-[9px] font-mono px-2 py-0.5 rounded-md bg-[#05190e] text-white font-black">
-                                    {p}
-                                  </span>
-                                ))}
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </button>
                     );
                   })}
                 </div>
 
-                {/* Active Persona Tag Chips (Clean Right Margin & No Overflow) */}
+                {/* Active Persona Tag Chips */}
                 {(() => {
                   const activeDemo = TARGET_DEMOGRAPHICS.find((d) => d.value === (hoveredDemo || targetDemo)) || TARGET_DEMOGRAPHICS[0];
                   return (
-                    <div className="hidden xl:flex items-center gap-1.5 shrink-0 pr-1">
+                    <div className="hidden lg:flex items-center gap-1.5 shrink-0 pr-2">
                       {activeDemo.personas.slice(0, 2).map((p) => (
                         <span
                           key={p}
-                          className="text-[10px] font-mono px-3 py-1 rounded-lg bg-emerald-950 text-emerald-300 border border-emerald-400/50 font-black shadow shrink-0"
+                          className="text-[9px] font-mono px-2.5 py-0.5 rounded-md bg-emerald-950 text-emerald-300 border border-emerald-400/50 font-black shadow shrink-0"
                         >
                           {p}
                         </span>
