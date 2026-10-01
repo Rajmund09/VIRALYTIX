@@ -46,26 +46,17 @@ export const Hero: React.FC<HeroProps> = ({ onLaunchApp }) => {
   return (
     <section
       ref={sectionRef}
-      className="hero relative min-h-screen pt-28 pb-16 px-4 sm:px-6 lg:px-8 max-w-[92rem] mx-auto flex flex-col justify-between bg-[#0B0C10] text-[#F5F1E6] rounded-b-[3.5rem] border-b border-x border-[#F5F1E6]/15 shadow-[0_30px_70px_rgba(0,0,0,0.9)] overflow-hidden select-none z-10"
+      className="hero relative min-h-screen pt-28 pb-12 px-3 sm:px-6 lg:px-8 max-w-[92rem] mx-auto flex flex-col justify-between bg-[#0B0B0A] text-[#F5F1E6] overflow-hidden select-none"
     >
-      {/* 1. Deep Midnight Silk Background Canvas */}
-      <div className="absolute inset-0 z-0 opacity-80 pointer-events-none">
+      {/* Pure Silk Background Canvas */}
+      <div className="absolute inset-0 z-0 opacity-70 pointer-events-none">
         <Silk
-          speed={6}
-          scale={1.3}
+          speed={12}
+          scale={1.25}
           color="#1E1B4B"
-          noiseIntensity={1.5}
+          noiseIntensity={1.8}
           rotation={0}
         />
-      </div>
-
-      {/* 2. High-Tech Dot Matrix Grid Overlay */}
-      <div className="absolute inset-0 z-[1] bg-[radial-gradient(rgba(245,241,230,0.12)_1px,transparent_1px)] [background-size:28px_28px] opacity-25 pointer-events-none" />
-
-      {/* 3. Rich Ambient Glow Accents */}
-      <div className="absolute inset-0 z-[2] pointer-events-none">
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[50rem] h-[28rem] bg-gradient-to-br from-[#00E83F]/15 via-[#1E1B4B]/35 to-transparent rounded-full blur-[130px]" />
-        <div className="absolute bottom-6 right-8 w-[35rem] h-[20rem] bg-gradient-to-t from-[#F5A7E8]/15 via-[#1E1B4B]/20 to-transparent rounded-full blur-[110px]" />
       </div>
 
       {/* Navigation Bar */}
