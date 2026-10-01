@@ -264,7 +264,7 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
         transformOrigin: "50% 50%",
       });
 
-      // 14. Emerald Clover Badge for 'a' (Completely hidden offscreen top)
+      // 14. Smooth Purple-Pink Element for 'a' in virality (Hidden offscreen right)
       const aBadge = aBadgeRef.current;
       if (aBadge && a2) {
         const aLeft = a2.offsetLeft;
@@ -277,11 +277,11 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
           top: aTop + aHeight / 2,
           xPercent: -50,
           yPercent: -50,
-          x: 0,
-          y: -400, // Offscreen top!
+          x: 450, // Offscreen right side!
+          y: 0,
           opacity: 0,
           scale: 0.85,
-          rotation: -180,
+          rotation: 180,
         });
       }
 
@@ -568,27 +568,41 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
             </svg>
           </div>
 
-          {/* Temporary Emerald Clover Gem for 'a' in virality */}
+          {/* Smooth Purple & Pink Organic Element for 'a' in virality */}
           <div
             ref={aBadgeRef}
             className="absolute z-30 pointer-events-none opacity-0"
           >
-            <svg viewBox="0 0 100 100" className="w-[0.54em] h-[0.54em] overflow-visible">
+            <svg viewBox="0 0 100 100" className="w-[0.58em] h-[0.58em] overflow-visible">
               <defs>
-                <linearGradient id="emeraldCloverGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <linearGradient id="purplePinkSmoothGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#FFFFFF" />
-                  <stop offset="25%" stopColor="#A7F3D0" />
-                  <stop offset="60%" stopColor="#10B981" />
-                  <stop offset="85%" stopColor="#059669" />
-                  <stop offset="100%" stopColor="#047857" />
+                  <stop offset="25%" stopColor="#F5A7E8" />
+                  <stop offset="55%" stopColor="#EC4899" />
+                  <stop offset="80%" stopColor="#C084FC" />
+                  <stop offset="100%" stopColor="#7E22CE" />
                 </linearGradient>
+                <radialGradient id="pinkCoreGlow" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" stopColor="#FFFFFF" />
+                  <stop offset="50%" stopColor="#F5A7E8" />
+                  <stop offset="100%" stopColor="#EC4899" />
+                </radialGradient>
               </defs>
               <g filter="url(#badgeTexture)">
-                <path d="M 50 50 L 5 50 L 5 5 A 45 45 0 0 1 50 50 Z" fill="url(#emeraldCloverGrad)" />
-                <path d="M 50 50 L 50 5 L 95 5 A 45 45 0 0 1 50 50 Z" fill="url(#emeraldCloverGrad)" />
-                <path d="M 50 50 L 95 50 L 95 95 A 45 45 0 0 1 50 50 Z" fill="url(#emeraldCloverGrad)" />
-                <path d="M 50 50 L 50 95 L 5 95 A 45 45 0 0 1 50 50 Z" fill="url(#emeraldCloverGrad)" />
-                <circle cx="50" cy="50" r="11" fill="#FFFFFF" opacity="0.9" />
+                {/* Ultra-Smooth 4-Petal Organic Rounded Bloom */}
+                <path
+                  d="M 50 50 C 35 25, 20 10, 50 5 C 80 10, 65 25, 50 50 C 75 35, 90 20, 95 50 C 90 80, 75 65, 50 50 C 65 75, 80 90, 50 95 C 20 90, 35 75, 50 50 C 25 65, 10 80, 5 50 C 10 20, 25 35, 50 50 Z"
+                  fill="url(#purplePinkSmoothGrad)"
+                />
+                {/* Smooth Inner Accent Petals */}
+                <path
+                  d="M 50 50 C 40 32, 30 20, 50 16 C 70 20, 60 32, 50 50 C 68 40, 80 30, 84 50 C 80 70, 68 60, 50 50 C 60 68, 70 80, 50 84 C 30 80, 40 68, 50 50 C 32 60, 20 70, 16 50 C 20 30, 32 40, 50 50 Z"
+                  fill="#FFFFFF"
+                  opacity="0.45"
+                />
+                {/* Smooth Glowing Core Nucleus */}
+                <circle cx="50" cy="50" r="11" fill="url(#pinkCoreGlow)" />
+                <circle cx="50" cy="50" r="5" fill="#FFFFFF" opacity="0.95" />
               </g>
             </svg>
           </div>
