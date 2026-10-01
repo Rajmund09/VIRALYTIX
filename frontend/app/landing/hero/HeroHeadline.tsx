@@ -36,17 +36,8 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
         }
       }
 
-      // 2. Bottom Helical Coil Ribbon: Smooth float & subtle cursor interaction
+      // 2. Bottom Helical Coil Ribbon: Subtle cursor interaction (Entrance handled in master timeline)
       if (ribbonRef.current) {
-        gsap.to(ribbonRef.current, {
-          y: 10,
-          scaleY: 1.06,
-          duration: 2.5,
-          repeat: -1,
-          yoyo: true,
-          ease: "sine.inOut",
-        });
-
         const xTo = gsap.quickTo(ribbonRef.current, "x", { duration: 0.6, ease: "power2.out" });
         const rotTo = gsap.quickTo(ribbonRef.current, "rotation", { duration: 0.7, ease: "power2.out" });
 
@@ -138,6 +129,19 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
 
       const flower = flowerRef.current;  // Green Pinwheel Badge for Line 1 'r'
       const cBadge = cBadgeRef.current;  // Purple 8-Point Star Badge for Line 1 'c'
+      const ribbon = ribbonRef.current;  // 3D Helical Coil Ribbon Element
+
+      // 0. Bottom Helical Ribbon (Initial hidden 3D state)
+      if (ribbon) {
+        gsap.set(ribbon, {
+          y: 75,
+          opacity: 0,
+          rotationY: 180,
+          scale: 0.6,
+          transformPerspective: 800,
+          transformOrigin: "50% 50%",
+        });
+      }
 
       // --- INITIAL STATES: LINE 1 ("Predict") ---
       // 1. 'P' (3D Frontflip)
@@ -366,6 +370,13 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
       }
 
 
+      // T = 0.85s: Helical Coil Ribbon 3D Flip & Rise Entrance (placed lower)
+      if (ribbon) {
+        masterTl.to(ribbon, { y: 0, opacity: 1, rotationY: 0, scale: 1, duration: 0.9, ease: "back.out(1.5)" }, 0.85);
+        masterTl.to(ribbon, { x: "+=5", rotationZ: 7, duration: 0.05, yoyo: true, repeat: 5, ease: "sine.inOut" }, 1.75);
+        masterTl.to(ribbon, { x: 0, rotationZ: 0, duration: 0.12, ease: "power2.out" }, 2.05);
+      }
+
       // T = 0.92s: Line 1 'd', 'i', 't' ALL 3 ARRIVE
       masterTl.to(d1, { y: 0, opacity: 1, scale: 1, duration: 0.85, ease: "power2.out" }, 0.92);
       masterTl.to(i1, { y: 0, opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }, 0.92);
@@ -530,10 +541,10 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
       {/* LINE 2: "virality" */}
       <div className="relative flex items-center justify-end w-full pr-6 sm:pr-10 lg:pr-16">
         <div ref={line2Ref} className="relative inline-block will-change-transform">
-          {/* Animated 3D Helical Coil Ribbon (Placed elegantly below text z-0) */}
+          {/* Animated 3D Helical Coil Ribbon (Placed lower below text z-0) */}
           <div
             ref={ribbonRef}
-            className="absolute -bottom-[42%] left-[38%] pointer-events-none z-0"
+            className="absolute -bottom-[68%] left-[38%] pointer-events-none z-0 opacity-0"
           >
             <svg viewBox="-16 -10 102 140" className="w-14 h-22 sm:w-18 sm:h-30 md:w-24 md:h-40 overflow-visible">
               <defs>
