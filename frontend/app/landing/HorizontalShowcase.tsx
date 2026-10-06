@@ -26,6 +26,18 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
   const line2aRef = useRef<SVGLineElement>(null);
   const line2bRef = useRef<SVGLineElement>(null);
 
+  // References for Panel 1 Intro Animated Elements
+  const domeRef = useRef<HTMLDivElement>(null);
+  const flowerRef = useRef<HTMLDivElement>(null);
+  const torusRef = useRef<HTMLDivElement>(null);
+  const hourglassRef = useRef<HTMLDivElement>(null);
+  const diamondRef = useRef<HTMLDivElement>(null);
+  const pillContainerRef = useRef<HTMLDivElement>(null);
+  const pinkPillRef = useRef<HTMLDivElement>(null);
+  const orangePillRef = useRef<HTMLDivElement>(null);
+  const subtitleRef = useRef<HTMLParagraphElement>(null);
+  const phrase1Ref = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (typeof window !== "undefined") {
       gsap.registerPlugin(ScrollTrigger);
@@ -55,54 +67,237 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
           },
         });
 
-        // 2. CHOREOGRAPHED PHYSICAL STICKER POP ENTRANCES
-        const stickers = track.querySelectorAll(".sticker-pop");
+        // 2. PANEL 1 HERO ENTRANCE: UNIQUE INDIVIDUAL ANIMATIONS FOR ALL ELEMENTS
+        const introTl = gsap.timeline({
+          scrollTrigger: {
+            trigger: container,
+            start: "top 75%",
+            toggleActions: "play none none reverse",
+          },
+        });
+
+        // a) Background Green Glowing Dome: Scales out & rises with 3D rotation
+        if (domeRef.current) {
+          introTl.fromTo(
+            domeRef.current,
+            { scale: 0.15, rotation: -15, y: 160, opacity: 0, transformOrigin: "bottom right" },
+            { scale: 1, rotation: 0, y: 0, opacity: 1, duration: 1.25, ease: "power3.out" },
+            0
+          );
+        }
+
+        // b) 3D Pink Bloom Flower: Unfolds & spins into place sitting on top of dome
+        if (flowerRef.current) {
+          introTl.fromTo(
+            flowerRef.current,
+            { scale: 0, rotation: -210, opacity: 0, y: 70, transformOrigin: "center center" },
+            { scale: 1, rotation: 0, opacity: 1, y: 0, duration: 1.1, ease: "back.out(2.2)" },
+            0.15
+          );
+        }
+
+        // c) 3D Cyan Torus Ring: Floats down with 3D spin & ring scale-out
+        if (torusRef.current) {
+          introTl.fromTo(
+            torusRef.current,
+            { scale: 0.2, rotation: 140, y: -90, opacity: 0, transformOrigin: "center center" },
+            { scale: 1, rotation: 0, y: 0, opacity: 1, duration: 1.05, ease: "back.out(1.8)" },
+            0.22
+          );
+        }
+
+        // d) 3D Hourglass Prism: 3D Flip-in from left
+        if (hourglassRef.current) {
+          introTl.fromTo(
+            hourglassRef.current,
+            { scale: 0.25, rotationY: 180, x: -70, opacity: 0, transformOrigin: "center center" },
+            { scale: 1, rotationY: 0, x: 0, opacity: 1, duration: 0.95, ease: "power2.out" },
+            0.32
+          );
+        }
+
+        // e) 3D Diamond Crystal Gem: Elastic pop-in & pulse rotate from top right
+        if (diamondRef.current) {
+          introTl.fromTo(
+            diamondRef.current,
+            { scale: 0, rotation: 90, y: -45, opacity: 0, transformOrigin: "center center" },
+            { scale: 1, rotation: 0, y: 0, opacity: 1, duration: 0.9, ease: "elastic.out(1.1, 0.45)" },
+            0.38
+          );
+        }
+
+        // f) Top Pink Pill Bar ("Predict Virality"): COMPLETELY STATIC & STRAIGHT
+        if (pinkPillRef.current) {
+          gsap.set(pinkPillRef.current, { opacity: 1, y: 0, rotateX: 0, rotateZ: 0 });
+        }
+
+        // g) Bottom Orange Pill Bar ("That's right, Multimodal AI"): MULTI-CYCLE SMOOTH 3D PENDULUM SWING
+        if (orangePillRef.current) {
+          introTl.fromTo(
+            orangePillRef.current,
+            { rotateX: -60, rotateZ: 0, opacity: 0, transformOrigin: "center top" },
+            {
+              rotateX: 0,
+              opacity: 1,
+              duration: 2.6,
+              ease: "elastic.out(1.8, 0.28)",
+            },
+            0.05
+          );
+        }
+
+        // h) Editorial Subtitle Paragraph
+        if (subtitleRef.current) {
+          introTl.fromTo(
+            subtitleRef.current,
+            { y: 35, opacity: 0 },
+            { y: 0, opacity: 1, duration: 0.85, ease: "power2.out" },
+            0.45
+          );
+        }
+
+        // 3. CHOREOGRAPHED PHYSICAL STICKER POP ENTRANCES (Track items with scroll scrubbing)
+        const stickers = track.querySelectorAll(".sticker-pop:not(.intro-pill)");
         stickers.forEach((sticker) => {
           const targetRot = parseFloat(sticker.getAttribute("data-rotation") || "0");
           gsap.fromTo(
             sticker,
-            { scale: 0.6, opacity: 0, rotation: targetRot - 12, y: 35 },
+            { scale: 0.5, opacity: 0, rotation: targetRot - 15, y: 40 },
             {
               scale: 1,
               opacity: 1,
               rotation: targetRot,
               y: 0,
-              duration: 0.85,
-              ease: "back.out(1.8)",
+              ease: "power2.out",
               scrollTrigger: {
                 trigger: sticker,
                 containerAnimation: horizontalTween,
                 start: "left 90%",
-                toggleActions: "play none none reverse",
+                end: "left 50%",
+                scrub: 0.8,
               },
             }
           );
         });
 
-        // 3. HIGH-QUALITY GRAPHICS APPEARANCE ANIMATIONS (Torus, Hourglass, Flower, Star)
-        const graphics = track.querySelectorAll(".graphic-pop");
-        graphics.forEach((graphic) => {
-          gsap.fromTo(
-            graphic,
-            { scale: 0.45, opacity: 0, rotation: -30, y: 20 },
-            {
-              scale: 1,
-              opacity: 1,
-              rotation: 0,
-              y: 0,
-              duration: 0.95,
-              ease: "back.out(1.6)",
-              scrollTrigger: {
-                trigger: graphic,
-                containerAnimation: horizontalTween,
-                start: "left 85%",
-                toggleActions: "play none none reverse",
-              },
-            }
-          );
-        });
+        // 3.5. DECONSTRUCTED SENTENCE ANIMATION WITH SILKY SCROLL SCRUBBING & CAMERA VIBRATION
+        if (phrase1Ref.current) {
+          const letters = phrase1Ref.current.querySelectorAll(".deconstruct-letter");
+          const yourWord = phrase1Ref.current.querySelector(".your-word");
+          const videoWord = phrase1Ref.current.querySelector(".video-word");
+          const cameraSticker = phrase1Ref.current.querySelector(".camera-sticker");
+          const withWord = phrase1Ref.current.querySelector(".with-word");
 
-        // 4. ANIMATED SVG BEZIER EASING CURVE 1 CONTROL POINTS MORPH
+          const phraseTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: phrase1Ref.current,
+              containerAnimation: horizontalTween,
+              start: "left 95%",
+              end: "left -40%",
+              scrub: 1.2,
+            },
+          });
+
+          // a) Each letter of "Deconstruct" appears alternating from TOP (up) and BOTTOM (down) at a slow scroll pace
+          if (letters.length) {
+            letters.forEach((letterEl, idx) => {
+              const isEven = idx % 2 === 0;
+              const startY = isEven ? -50 : 50;
+              const startRot = isEven ? -25 : 25;
+
+              phraseTl.fromTo(
+                letterEl,
+                { opacity: 0, scale: 0.15, y: startY, rotation: startRot },
+                {
+                  opacity: 1,
+                  scale: 1,
+                  y: 0,
+                  rotation: 0,
+                  duration: 0.8,
+                  ease: "power1.out",
+                },
+                idx * 0.14
+              );
+            });
+          }
+
+          // b) Word "your" appears with a smooth 3D flip-up transition
+          if (yourWord) {
+            phraseTl.fromTo(
+              yourWord,
+              { opacity: 0, scale: 0.3, rotationX: -85, y: 40, transformOrigin: "center bottom" },
+              { opacity: 1, scale: 1, rotationX: 0, y: 0, duration: 1.0, ease: "power2.out" },
+              "+=0.1"
+            );
+          }
+
+          // c) Word "video" & Camera Sticker PNG appear with 3D Y-rotation & unique camera snap animation
+          if (videoWord && cameraSticker) {
+            phraseTl.fromTo(
+              videoWord,
+              { opacity: 0, scale: 0.3, rotationY: -70, y: -30, transformOrigin: "center center" },
+              { opacity: 1, scale: 1, rotationY: 0, y: 0, duration: 1.0, ease: "power2.out" },
+              "+=0.1"
+            );
+            phraseTl.fromTo(
+              cameraSticker,
+              {
+                opacity: 0,
+                scale: 0.1,
+                rotationY: -135,
+                rotationX: 50,
+                y: -60,
+                transformOrigin: "center center",
+              },
+              {
+                opacity: 1,
+                scale: 1,
+                rotationY: 0,
+                rotationX: 0,
+                y: 0,
+                duration: 1.2,
+                ease: "back.out(2.5)",
+              },
+              "-=0.6"
+            );
+          }
+
+          // d) Word "with" appears with elastic twist & scale transition
+          if (withWord) {
+            phraseTl.fromTo(
+              withWord,
+              { opacity: 0, scale: 0.35, rotation: 22, y: 40 },
+              { opacity: 1, scale: 1, rotation: 0, y: 0, duration: 0.9, ease: "power2.out" },
+              "+=0.1"
+            );
+          }
+
+          // e) UNIQUE HANDHELD 3D FLOATING ORBIT & PITCH SWAY IDLE ANIMATION
+          if (cameraSticker) {
+            const cameraIdleTl = gsap.timeline({ repeat: -1, yoyo: true });
+            cameraIdleTl
+              .to(cameraSticker, {
+                y: -14,
+                rotationZ: -5,
+                rotationY: 15,
+                rotationX: -10,
+                scale: 1.08,
+                duration: 2.2,
+                ease: "sine.inOut",
+              })
+              .to(cameraSticker, {
+                y: 8,
+                rotationZ: 6,
+                rotationY: -12,
+                rotationX: 12,
+                scale: 0.94,
+                duration: 2.5,
+                ease: "sine.inOut",
+              });
+          }
+        }
+
+        // 5. ANIMATED SVG BEZIER EASING CURVE 1 MORPH
         if (
           easingCurve1Ref.current &&
           handle1aRef.current &&
@@ -121,7 +316,7 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
                 end: "right 20%",
                 scrub: 1,
                 onUpdate: (self) => {
-                  const p = self.progress; // 0 -> 1
+                  const p = self.progress;
                   const c1y = 20 + p * 80;
                   const c2y = 120 - p * 80;
 
@@ -141,7 +336,7 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
           );
         }
 
-        // 5. ANIMATED SVG BEZIER EASING CURVE 2 CONTROL POINTS MORPH (Arch curve from photo)
+        // 6. ANIMATED SVG BEZIER EASING CURVE 2 MORPH
         if (
           easingCurve2Ref.current &&
           handle2aRef.current &&
@@ -160,7 +355,7 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
                 end: "right 15%",
                 scrub: 1,
                 onUpdate: (self) => {
-                  const p = self.progress; // 0 -> 1
+                  const p = self.progress;
                   const cy = 20 + p * 90;
 
                   if (easingCurve2Ref.current) {
@@ -201,36 +396,42 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
         ref={trackRef}
         className="flex h-full items-center whitespace-nowrap will-change-transform relative z-10"
       >
-        {/* ━━ PANEL 1: EDITORIAL COVER & 3D ART COMPOSITION (Reference Photo 2 Style) ━━ */}
+        {/* ━━ PANEL 1: EDITORIAL COVER & 3D ART COMPOSITION ━━ */}
         <div className="w-[100vw] shrink-0 h-full flex items-center justify-between px-8 sm:px-16 md:px-24 relative overflow-hidden">
           {/* LEFT COLUMN: STACKED STICKERS & EDITORIAL SUBTITLE */}
-          <div className="flex flex-col items-start gap-8 max-w-2xl z-20">
-            {/* STACKED PILL STICKERS (Exact visual match to Reference Photo 2) */}
-            <div className="relative inline-flex flex-col items-start gap-2 pt-4">
-              {/* Pink Pill: "Animate Anything" style */}
-              <span
-                className="sticker-pop inline-block px-6 py-2.5 sm:px-8 sm:py-3 rounded-2xl bg-[#F5A7E8] text-black font-extrabold text-2xl sm:text-4xl lg:text-5xl shadow-2xl border-2 border-black -rotate-2 transform-gpu"
-                data-rotation="-2"
+          <div className="flex flex-col items-start gap-8 max-w-xl z-20">
+            {/* STACKED STICKER BANNER CONTAINER WITH 3D PERSPECTIVE */}
+            <div
+              className="relative inline-flex flex-col items-start pt-2 pb-4 select-none [perspective:1000px]"
+            >
+              {/* TOP PINK PILL (COMPLETELY STATIC & STRAIGHT, 12PX TRANSPARENT BLACK BORDER) */}
+              <div
+                ref={pinkPillRef}
+                className="intro-pill relative z-20 px-5 py-2 sm:px-6 sm:py-2.5 rounded-2xl bg-[#F7A8E5] bg-clip-padding text-black font-bold text-lg sm:text-2xl lg:text-3xl tracking-tight border-[12px] border-black/35 transform-gpu"
               >
                 Predict Virality
-              </span>
-              {/* Orange Pill: "That's right, Anything" style offset */}
-              <span
-                className="sticker-pop inline-block px-7 py-3 sm:px-9 sm:py-3.5 rounded-2xl bg-[#FF7A00] text-black font-extrabold text-2xl sm:text-4xl lg:text-5xl shadow-2xl border-2 border-black rotate-2 -mt-4 ml-8 z-10 transform-gpu"
-                data-rotation="2"
+              </div>
+
+              {/* BOTTOM ORANGE PILL (3D FRONT & BACK HINGED SWING, STRAIGHT) */}
+              <div
+                ref={orangePillRef}
+                className="intro-pill relative z-10 -mt-3.5 ml-7 sm:ml-9 px-6 py-2 sm:px-7 sm:py-2.5 rounded-xl bg-[#FF7A00] text-black font-bold text-lg sm:text-2xl lg:text-3xl tracking-tight border-[3px] border-black transform-gpu origin-top [transform-style:preserve-3d] [backface-visibility:hidden] will-change-transform"
               >
-                That's right, Multimodal AI
-              </span>
+                <span>That&apos;s right, Multimodal AI</span>
+              </div>
             </div>
 
             {/* EDITORIAL SUBTITLE PARAGRAPH */}
-            <p className="text-xl sm:text-2xl lg:text-3xl text-[#F4F1EA]/85 font-normal leading-relaxed tracking-tight max-w-xl whitespace-normal">
+            <p
+              ref={subtitleRef}
+              className="text-lg sm:text-xl lg:text-2xl text-[#F4F1EA]/85 font-normal leading-relaxed tracking-tight max-w-lg whitespace-normal"
+            >
               Whether you&apos;re analyzing optical motion, audio cadence, or predicting high-impact viral moments, VIRALYTIX has your back.
             </p>
 
             {/* INTRO BADGE & SCROLL HINT */}
             <div className="flex items-center gap-4">
-              <div className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#00E83F]/10 border border-[#00E83F]/30 backdrop-blur-md">
+              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#00E83F]/10 border border-[#00E83F]/30 backdrop-blur-md">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#00E83F] animate-ping" />
                 <span className="text-xs sm:text-sm font-mono text-[#00E83F] font-extrabold uppercase tracking-widest">
                   03-05 // KINETIC REEL
@@ -242,11 +443,11 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: 3D ARTWORKS COMPOSITION (Reference Photo 2 Visuals) */}
-          <div className="relative w-[340px] sm:w-[440px] md:w-[540px] lg:w-[600px] h-[400px] sm:h-[480px] md:h-[540px] flex items-center justify-center shrink-0 mr-4 sm:mr-12 lg:mr-20">
+          {/* RIGHT COLUMN: 3D ARTWORKS COMPOSITION (Refined Proportions & Individual Animations) */}
+          <div className="relative w-[320px] sm:w-[420px] md:w-[500px] lg:w-[560px] h-[380px] sm:h-[460px] md:h-[500px] flex items-center justify-center shrink-0 mr-4 sm:mr-10 lg:mr-16">
             {/* 1. 3D CYAN TORUS RING (Top Left) */}
-            <div className="graphic-pop absolute top-2 left-6 z-20">
-              <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-28 sm:h-28 lg:w-36 lg:h-36 overflow-visible">
+            <div ref={torusRef} className="intro-graphic absolute top-2 left-6 z-20">
+              <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-26 sm:h-26 lg:w-32 lg:h-32 overflow-visible">
                 <defs>
                   <linearGradient id="introTorusGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#00F0FF" />
@@ -261,8 +462,8 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
             </div>
 
             {/* 2. 3D HOURGLASS PRISM (Mid Left) */}
-            <div className="graphic-pop absolute bottom-28 left-12 sm:left-16 z-20">
-              <svg viewBox="0 0 80 100" className="w-14 h-14 sm:w-20 sm:h-20 lg:w-24 lg:h-24 overflow-visible">
+            <div ref={hourglassRef} className="intro-graphic absolute bottom-24 left-10 sm:left-14 z-20">
+              <svg viewBox="0 0 80 100" className="w-14 h-14 sm:w-18 sm:h-18 lg:w-22 lg:h-22 overflow-visible">
                 <defs>
                   <linearGradient id="hourglassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#E9D5FF" />
@@ -277,8 +478,8 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
             </div>
 
             {/* 3. 3D GLOWING DIAMOND GEM (Top Right) */}
-            <div className="graphic-pop absolute top-12 right-6 sm:right-12 z-20">
-              <svg viewBox="0 0 60 60" className="w-10 h-10 sm:w-16 sm:h-16 lg:w-20 lg:h-20 overflow-visible">
+            <div ref={diamondRef} className="intro-graphic absolute top-10 right-6 sm:right-10 z-20">
+              <svg viewBox="0 0 60 60" className="w-10 h-10 sm:w-14 sm:h-14 lg:w-18 lg:h-18 overflow-visible">
                 <defs>
                   <linearGradient id="diamondGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#FED7AA" />
@@ -293,8 +494,8 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
             </div>
 
             {/* 4. 3D PINK 4-PETAL FLOWER BLOOM (Center resting on Dome) */}
-            <div className="graphic-pop absolute bottom-28 sm:bottom-36 right-16 sm:right-24 z-30">
-              <svg viewBox="0 0 120 120" className="w-32 h-32 sm:w-48 sm:h-48 lg:w-56 lg:h-56 overflow-visible">
+            <div ref={flowerRef} className="intro-graphic absolute bottom-24 sm:bottom-32 right-14 sm:right-20 z-30">
+              <svg viewBox="0 0 120 120" className="w-28 h-28 sm:w-44 sm:h-44 lg:w-52 lg:h-52 overflow-visible">
                 <defs>
                   <linearGradient id="flowerGradIntro" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#FFF0FA" />
@@ -313,16 +514,51 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
             </div>
 
             {/* 5. GIANT VIBRANT GREEN GLOWING DOME BASE (Bottom Right) */}
-            <div className="absolute bottom-0 right-0 w-[240px] sm:w-[340px] md:w-[420px] lg:w-[480px] h-[150px] sm:h-[210px] md:h-[260px] lg:h-[290px] z-10 overflow-hidden rounded-t-full">
+            <div ref={domeRef} className="absolute bottom-0 right-0 w-[220px] sm:w-[320px] md:w-[390px] lg:w-[440px] h-[140px] sm:h-[195px] md:h-[240px] lg:h-[270px] z-10 overflow-hidden rounded-t-full">
               <div className="w-full h-full bg-gradient-to-t from-[#00E83F] via-[#10B981] to-[#00E555] shadow-[0_0_100px_rgba(0,232,63,0.7)]" />
             </div>
           </div>
         </div>
 
         {/* ━━ PANEL 2: CONTINUOUS KINETIC TYPOGRAPHY SENTENCE ━━ */}
-        <div className="flex items-center gap-6 md:gap-10 text-5xl sm:text-7xl lg:text-[7rem] font-medium tracking-tight leading-none text-[#F4F1EA] pl-12 pr-24">
-          {/* PHRASE 1 */}
-          <span className="inline-block">Deconstruct your video with</span>
+        <div className="flex items-center gap-6 md:gap-10 text-5xl sm:text-7xl lg:text-[7rem] font-medium tracking-tight leading-none text-[#F4F1EA] pl-2 sm:pl-4 pr-24">
+          {/* PHRASE 1 WITH LETTER DECONSTRUCTION & CAMERA STICKER PNG */}
+          <div ref={phrase1Ref} className="inline-flex items-center gap-[0.48em] shrink-0">
+            {/* DECONSTRUCT: LETTER BY LETTER SPANS */}
+            <span className="inline-flex overflow-hidden">
+              {"Deconstruct".split("").map((letter, idx) => (
+                <span
+                  key={idx}
+                  className="deconstruct-letter inline-block transform-gpu origin-bottom opacity-0"
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
+
+            {/* YOUR: APPEARS ALL AT ONCE */}
+            <span className="your-word inline-block transform-gpu opacity-0">
+              your
+            </span>
+
+            {/* VIDEO: APPEARS WITH USER'S EXACT CAMERA STICKER PNG FLOATING ABOVE */}
+            <span className="relative inline-block my-auto">
+              {/* USER'S EXACT CAMERA STICKER PNG FLOATING DIRECTLY ABOVE THE WORD "video" */}
+              <img
+                src="/image.png"
+                alt="Camera Sticker"
+                className="camera-sticker absolute -top-16 sm:-top-24 lg:-top-28 left-1/2 -translate-x-1/2 w-20 h-20 sm:w-28 sm:h-28 lg:w-32 lg:h-32 object-contain z-20 pointer-events-none opacity-0 transform-gpu drop-shadow-[0_12px_24px_rgba(0,0,0,0.6)]"
+              />
+              <span className="video-word inline-block transform-gpu opacity-0">
+                video
+              </span>
+            </span>
+
+            {/* WITH: APPEARS LAST */}
+            <span className="with-word inline-block transform-gpu opacity-0">
+              with
+            </span>
+          </div>
 
           {/* STICKER 1: "32 Signals" */}
           <span
