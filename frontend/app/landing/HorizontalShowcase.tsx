@@ -1207,14 +1207,14 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
           </span>
 
           {/* PHRASE 3: AUDIO RMS (STRAIGHT PILL) + '&' (STATIC BIG) + ROTATING DIAMOND + SMOOTH SYNCHRONIZED WHISPER CADENCE */}
-          <div ref={phrase3Ref} className="phrase-audio-group relative inline-flex items-center shrink-0 [perspective:1000px] align-middle select-none mx-3 sm:mx-6">
+          <div ref={phrase3Ref} className="phrase-audio-group relative inline-flex items-center shrink-0 [perspective:1000px] align-middle select-none ml-2 sm:ml-4 mr-2 sm:mr-3">
             {/* 1. AUDIO RMS: Straight Pill with Less Border Radius */}
-            <span className="audio-rms-pill inline-block px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-md sm:rounded-lg bg-[#FF7A00] text-black font-extrabold text-3xl sm:text-5xl lg:text-6xl shadow-[0_12px_28px_rgba(255,122,0,0.45)] border-2 border-black transform-gpu opacity-0 z-10 select-none mr-4 sm:mr-6 will-change-transform">
+            <span className="audio-rms-pill inline-block px-6 py-2.5 sm:px-8 sm:py-3.5 rounded-md sm:rounded-lg bg-[#FF7A00] text-black font-extrabold text-3xl sm:text-5xl lg:text-6xl shadow-[0_12px_28px_rgba(255,122,0,0.45)] border-2 border-black transform-gpu opacity-0 z-10 select-none mr-3 sm:mr-4 will-change-transform">
               Audio RMS
             </span>
 
             {/* 2. DIAMOND ROTOR HUB WITH STATIC BIG '&' */}
-            <div className="diamond-rotor-hub relative inline-flex items-center justify-center z-20 opacity-0 transform-gpu mr-3 sm:mr-5">
+            <div className="diamond-rotor-hub relative inline-flex items-center justify-center z-20 opacity-0 transform-gpu mr-2 sm:mr-3">
               {/* STATIC SEPARATE BIG '&' (Does NOT rotate with card) */}
               <div className="ampersand-static-badge absolute inset-0 z-30 flex items-center justify-center pointer-events-none select-none">
                 <span className="text-black font-black text-2xl sm:text-3xl lg:text-4xl drop-shadow-[0_1px_3px_rgba(255,255,255,0.7)] font-sans">
@@ -1226,22 +1226,22 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
               <div className="diamond-plate w-11 h-11 sm:w-14 sm:h-14 lg:w-16 lg:h-16 rounded-sm sm:rounded-[4px] bg-gradient-to-br from-[#F3E8FF] via-[#C084FC] to-[#4338CA] rotate-45 shadow-[0_8px_26px_rgba(168,85,247,0.55)] border border-white/40 shrink-0 transform-gpu will-change-transform" />
             </div>
 
-            {/* 3. WHISPER CADENCE: Edge-Attached Rotating Sticks (Rotates in sync with diamond) */}
-            <div className="whisper-rotor-assembly relative inline-block w-[8.4em] sm:w-[8.8em] h-[1.3em] align-middle opacity-0 transform-gpu [perspective:800px]">
-              {/* STICK 1 */}
-              <div className="whisper-stick-1 absolute left-0 top-1/2 -translate-y-1/2 font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#FFFDE7] tracking-tight whitespace-nowrap transform-gpu origin-left will-change-transform">
+            {/* 3. WHISPER CADENCE: Edge-Attached Rotating Sticks (Natural Intrinsic Content Width) */}
+            <div className="whisper-rotor-assembly relative inline-block align-middle opacity-0 transform-gpu [perspective:800px]">
+              {/* STICK 1 (Intrinsic width driver) */}
+              <div className="whisper-stick-1 relative inline-block font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#FFFDE7] tracking-tight whitespace-nowrap transform-gpu origin-left will-change-transform">
                 Whisper Cadence
               </div>
 
-              {/* STICK 2 */}
-              <div className="whisper-stick-2 absolute left-0 top-1/2 -translate-y-1/2 font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#FFFDE7] tracking-tight whitespace-nowrap transform-gpu origin-left opacity-0 will-change-transform">
+              {/* STICK 2 (Overlay stick) */}
+              <div className="whisper-stick-2 absolute left-0 top-0 font-extrabold text-3xl sm:text-5xl lg:text-6xl text-[#FFFDE7] tracking-tight whitespace-nowrap transform-gpu origin-left opacity-0 will-change-transform pointer-events-none">
                 Whisper Cadence
               </div>
             </div>
           </div>
 
           {/* PHRASE 4: "NICE AND" + OVERLAPPING "EASY" & "EASING" BADGE COMPOSITION */}
-          <div ref={phrase4Ref} className="phrase-nice-easy relative inline-flex items-center shrink-0 ml-3 sm:ml-6 mr-32 sm:mr-44 lg:mr-56 select-none align-middle my-auto">
+          <div ref={phrase4Ref} className="phrase-nice-easy relative inline-flex items-center shrink-0 ml-2 sm:ml-4 mr-32 sm:mr-44 lg:mr-56 select-none align-middle my-auto">
             {/* 1. "NICE AND" MAIN PILL */}
             <div className="nice-and-pill relative z-10 px-6 py-2.5 sm:px-10 sm:py-4 lg:px-12 lg:py-5 rounded-md sm:rounded-lg lg:rounded-xl bg-gradient-to-r from-[#00DF3D] via-[#4ADE80] to-[#98F87C] text-black font-bold text-4xl sm:text-6xl lg:text-7xl shadow-[0_16px_36px_rgba(0,0,0,0.95)] transform-gpu opacity-0 select-none tracking-normal">
               Nice and
