@@ -205,23 +205,97 @@ This playbook preserves **100% of the creative ideas, refined prompts, layout sp
 
 ---
 
-## 6. Design System Tokens: Colors, Typography & Micro-Interactions
+## 6. Phrase 6: Interactive 3-Bar Stacked Composition ("100 AI Agents" → "Synthetic Swarm" → "in a snap")
+
+### 6.1 Design Intent & Connected Border Geometry
+- **Creative Idea**: Three straight (`rotate-0`) headline sticker cards arranged in a stepped kinetic cascade where their 2px black borders seamlessly merge with **zero overlap and zero gap**.
+- **Connected Border Math**:
+  $$\text{topOfSwarm} = \text{bar100.offsetHeight} - 2\text{px}$$
+- **Letter-Anchored Alignment Mechanics**:
+  - `100 AI Agents`: Green card (`#00E83F`) slides into anchor position.
+  - `Synthetic Swarm`: Orange card (`#FF7A00`) drops straight down from behind `100 AI Agents`, then slides right to align its left edge with the letter **`"g"`** of `Agents` (`letterGRef.current.offsetLeft`).
+  - `in a snap`: Yellow card (`#FFE500`) emerges smoothly from behind `100 AI Agents` using `ease: "power2.inOut"` and stops at the letter **`"S"`** of `Swarm` (`letterSwarmSRef.current.offsetLeft`).
+
+### 6.2 Refined Reusable Prompt
+> *"Create a 3-bar kinetic sticker composition in GSAP:
+> 1. Bar 1 ('100 AI Agents') enters into primary anchor position.
+> 2. Bar 2 ('Synthetic Swarm') drops down from behind Bar 1 with connected borders (y: bar100.offsetHeight - 2px), then translates right so its left border aligns exactly with the letter 'g' of Agents.
+> 3. Bar 3 ('in a snap') emerges from behind Bar 1 with smooth power2.inOut easing and stops when its left edge aligns with the letter 'S' of Swarm."*
+
+---
+
+## 7. Agent Keyhole Bridge Element & Metallic Pink Chrome Shader
+
+### 7.1 Keyhole Silhouette & Spatial Notch Placement
+- **Creative Idea**: A pawn/keyhole silhouette element sitting directly inside the notch between `100 AI Agents` and `in a snap`, elevated slightly (`y = topOfSwarm - elHeight - liftUp`) so it floats cleanly above the orange `Synthetic Swarm` bar.
+- **Horizontal Center Formula**:
+  $$\text{KeyholeX} = \frac{\text{bar100Right} + \text{snapLeft}}{2} - \frac{\text{elementWidth}}{2}$$
+
+### 7.2 Textured Metallic Pink Chrome Shader Formula
+- **Gradient Staging**:
+  `#FFFFFF` (0%) ➔ `#FCE7F3` (12%) ➔ `#F472B6` (28%) ➔ `#FFFFFF` (42%) ➔ `#EC4899` (55%) ➔ `#BE185D` (70%) ➔ `#F472B6` (85%) ➔ `#831843` (95%) ➔ `#FFFFFF` (100%)
+- **Specular Radial Hotspot**: Radial gradient centered at 50% 30% with 85% opacity white core fading to rose pink.
+- **Inner Ridge**: Dashed specular seam (`strokeDasharray: "4 2"`) with 75% opacity white stroke and metallic core pin.
+
+### 7.3 Infinite 2s Micro-Vibration / Haptic Jitter
+- **GSAP Timeline Formula**:
+```typescript
+const vibrateTl = gsap.timeline({ repeat: -1, repeatDelay: 2, delay: 2.7 });
+vibrateTl
+  .to(spinner, { x: -3, y: -1, rotate: -2.5, duration: 0.03, ease: "power1.inOut" })
+  .to(spinner, { x: 3, y: 1, rotate: 2.5, duration: 0.03, ease: "power1.inOut" })
+  .to(spinner, { x: -2.5, y: -0.5, rotate: -2, duration: 0.03, ease: "power1.inOut" })
+  .to(spinner, { x: 2.5, y: 0.5, rotate: 2, duration: 0.03, ease: "power1.inOut" })
+  .to(spinner, { x: -1.5, y: 0, rotate: -1, duration: 0.03, ease: "power1.inOut" })
+  .to(spinner, { x: 0, y: 0, rotate: 0, duration: 0.04, ease: "power1.out" });
+```
+
+---
+
+## 8. Panel 1: 3D Artworks Spatial Emergence & Ambient Physics
+
+### 8.1 3D Entrance Choreography
+- **Giant Green Glowing Dome**: Emerges from bottom-right with dynamic rotational torque (`scale: 0 -> 1`, `rotateX: 50°`, `rotateZ: -35°`, `y: 220 -> 0`, `x: 70 -> 0`, `duration: 1.5s`, `ease: "power4.out"`).
+- **3D Pink Bloom Flower**: Multi-turn blossom spin (`scale: 0 -> 1`, `rotateZ: -420°`, `rotateX: 55°`, `duration: 1.35s`, `ease: "back.out(2.6)"`) over the dome.
+- **3D Cyan Torus Ring**: Gyro orbital dive (`scale: 0 -> 1`, `rotateX: 75°`, `rotateZ: -180°`, `y: -130 -> 0`, `duration: 1.25s`, `ease: "back.out(2.0)"`).
+- **3D Hourglass Prism**: Multi-axis gyro-flip (`rotateY: 270°`, `rotateX: -70°`, `rotateZ: -60°`, `duration: 1.2s`, `ease: "back.out(2.2)"`) onto the dome shoulder.
+- **3D Diamond Crystal Gem**: High-speed facet spin pop (`rotateZ: 270°`, `rotateY: 90°`, `duration: 1.15s`, `ease: "elastic.out(1.25, 0.4)"`).
+
+### 8.2 Ambient Levitation & Breathing Loops
+Each 3D object maintains infinite, gentle ambient micro-physics (`yoyo: true, repeat: -1, ease: "sine.inOut"`) so the scene feels organically alive.
+
+---
+
+## 9. Phrase 7: Editorial Typography & Kinetic 3D Wave Reveal ("before you publish.")
+
+- **Typography**: Normal editorial headline text (`text-[#F4F1EA]`), removing green monospace styling to create an elegant closing cadence.
+- **Kinetic 3D Wave Reveal**:
+  - `before`: Smooth 3D rise (`y: 45 -> 0, opacity: 0 -> 1, rotateX: -30 -> 0`).
+  - `you`: Ascends with secondary stagger.
+  - `publish.`: Letter-by-letter kinetic cascade with `back.out(1.6)` easing.
+- **Clearance Spacing**: Generous left margin (`ml-20 sm:ml-32 lg:ml-44`) ensuring zero collision with `in a snap`.
+
+---
+
+## 10. Design System Tokens: Colors, Typography & Micro-Interactions
 
 ### 🎨 Curated Color Matrix
 | Token | Hex / Gradient | Purpose |
 | :--- | :--- | :--- |
-| **Neon Lime** | `#00DF3D` → `#4ADE80` → `#98F87C` | "Nice and", Success Badges, Anchor Nodes |
-| **Electric Purple** | `#E9D5FF` → `#C084FC` → `#4F46E5` | "Easy", Diamond Plate, 3D Mesh |
-| **Sunrise Orange** | `#FF7A00` → `#FB923C` → `#FFB8EB` | "Easing", "Audio RMS", Warning Gauges |
-| **Cyber Cyan** | `#38BDF8` → `#0EA5E9` → `#67E8F9` | "optical", Tile Grid SVGs, Data Streams |
-| **Canary Yellow** | `#FFE500` | "Vector Topology" Sticker |
-| **Bubblegum Pink** | `#F5A7E8` | "Plug-and-play" Sticker |
+| **Metallic Pink Chrome** | `#FFFFFF` ➔ `#FCE7F3` ➔ `#F472B6` ➔ `#EC4899` ➔ `#BE185D` ➔ `#831843` | Agent Keyhole Element, Specular Reflective Pins |
+| **Neon Lime** | `#00DF3D` → `#4ADE80` → `#98F87C` | "Nice and", "100 AI Agents", Success Badges |
+| **Electric Purple** | `#E9D5FF` → `#C084FC` → `#4F46E5` | "Easy", Diamond Plate, 3D Hourglass |
+| **Sunrise Orange** | `#FF7A00` → `#FB923C` → `#FFB8EB` | "Easing", "Audio RMS", "Synthetic Swarm" |
+| **Cyber Cyan** | `#38BDF8` → `#0EA5E9` → `#67E8F9` | "optical", 3D Torus Ring, Data Streams |
+| **Canary Yellow** | `#FFE500` | "in a snap", "Vector Topology" Sticker |
+| **Bubblegum Pink** | `#F5A7E8` | "Plug-and-play" Sticker, 3D Bloom Flower |
+| **Emerald Dome** | `#00A832` ➔ `#00E83F` ➔ `#34D399` ➔ `#ECFDF5` | Giant Glowing Dome Base |
 | **Dark Glass** | `rgba(20, 20, 22, 0.90)` + `backdrop-blur-xl` | Diagram Cards, Dropzones, HUD Panels |
 | **Frosted Rim** | `rgba(0, 0, 0, 0.45)` | Transparent Outer Border Frames |
 
 ---
 
-## 7. Master Copy-Paste Prompt Catalog
+## 11. Master Copy-Paste Prompt Catalog
 
 Copy and paste these exact master prompts into any AI coding assistant or design workflow to reproduce these signature systems:
 
@@ -250,6 +324,30 @@ Design a 3-badge composition with sequential staggered drops in GSAP:
 ### 🚀 Prompt D: Pinned Horizontal Showcase & Animated SVG Curves
 ```markdown
 Build a pinned horizontal scroll section using GSAP ScrollTrigger (300vw track). On vertical scroll, pin the container and translate the track horizontally. Embed living SVG diagrams featuring animated cubic Bezier paths, dashed tangent guidelines, and diamond anchor pins. Include stacked streetwear-style sticker badges with -6deg to +3deg alternating rotations, thick black borders, and heavy 3D drop shadows.
+```
+
+### 🚀 Prompt E: 3-Bar Connected Border Cascade & Letter Anchoring
+```markdown
+Implement a 3-bar headline sticker cascade with connected black borders (zero overlap, zero gap):
+1. Bar 1 enters anchor position.
+2. Bar 2 drops down to y = bar1.offsetHeight - 2px, then slides right until its left edge aligns dynamically with letter 'g' of Bar 1.
+3. Bar 3 emerges from behind Bar 1 with smooth power2.inOut easing until its left edge aligns with letter 'S' of Bar 2.
+```
+
+### 🚀 Prompt F: Textured Metallic Pink Chrome Keyhole with Haptic Jitter
+```markdown
+Create an SVG pawn/keyhole icon styled with a multi-stop metallic pink chrome gradient (#FFFFFF -> #FCE7F3 -> #F472B6 -> #EC4899 -> #BE185D -> #831843 -> #FFFFFF), radial specular highlight, and inner beveled dashed ridge. Center it between Bar 1 and Bar 3 elevated slightly above Bar 2. Add an infinite GSAP micro-vibration timeline that triggers a rapid 6-step jitter every 2 seconds (repeat: -1, repeatDelay: 2).
+```
+
+### 🚀 Prompt G: 3D Artworks Spatial Emergence & Ambient Levitation
+```markdown
+Stage a 3D geometric scene with GSAP:
+1. Base emerald dome scales out from bottom-right with 3D rotational torque (rotateX: 50deg, rotateZ: -35deg, scale: 0 -> 1, power4.out).
+2. 4-petal flower bloom unwinds with multi-turn spin (rotateZ: -420deg, back.out(2.6)) onto the dome.
+3. Cyan torus ring executes a gyro orbital dive (rotateX: 75deg, rotateZ: -180deg, back.out(2.0)).
+4. Hourglass prism performs a multi-axis gyro-flip (rotateY: 270deg, back.out(2.2)) onto the dome shoulder.
+5. Diamond crystal pops with high-speed facet spin (elastic.out(1.25, 0.4)).
+6. Attach subtle continuous sine floating loops to each floating shape.
 ```
 
 ---
