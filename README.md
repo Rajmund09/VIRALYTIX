@@ -24,6 +24,7 @@
 - [Overview](#-overview)
 - [Key Features](#-key-features)
 - [GSAP Kinetic Hero & Horizontal Showcase](#-gsap-kinetic-hero--horizontal-showcase)
+- [🎨 Creative Prompts & Design Playbook](PROMPTS_AND_DESIGN_PLAYBOOK.md)
 - [System Architecture](#-system-architecture)
 - [Multimodal Signal Processing](#-multimodal-signal-processing)
 - [Persona Engagement Swarm Engine](#-persona-engagement-swarm-engine)
@@ -67,8 +68,17 @@
 - **Elastic Shake**: Letter `t` executes a 5-cycle elastic vibration shake (`rotationZ: ±6°`, `x: ±5px`).
 
 ### 2. Sideways Horizontal GSAP Scroll (`HorizontalShowcase.tsx`)
-- **Pinned Viewport Scroll**: Pins the container during vertical scroll while transforming horizontal track across 3 panels (`300vw`).
-- **Floating Tilted Sticker Badges**: Styled with micro-floating tilt animations (-6° to +6°) for badge tags (`EXTRACTOR`, `FEATURE SPACE`, `ONE PERSON`, `MOTION DENSITY`, `HOOK INTENSITY`, `AUDIO PACING`, `CUT RATE`, `PITCH VARIATION`, `SENTIMENT`).
+- **Pinned Viewport Scroll**: Pins the container during vertical scroll while transforming horizontal track smoothly across 3 panels (`300vw`).
+- **Interactive SVG Bezier Easing Diagrams**: Real-time animated cubic Bezier curves and arch paths with interactive control lines, diamond anchors, and floating handle nodes.
+- **Phrase 3 Mechanical Rotor Assembly**:
+  - **Straight Audio RMS Pill**: Crisp, high-contrast amber pill with reduced corner radius.
+  - **Diamond Rotor Hub with Static Ampersand**: Rotating lilac-to-indigo diamond plate with an independent, non-rotating central `&` bearing badge.
+  - **Edge-Attached Dual-Stick Rotor**: "Whisper Cadence" text anchored to the diamond edge (`origin-left`) that swings along the rotating facet with 3D perspective (`transformPerspective: 800`, `rotateX: 8deg`) and synchronized `power2.inOut` easing.
+- **Phrase 4 Sequential Stagger Composition**:
+  - **"Nice and"**: Vibrant lime-to-pastel green pill dropping from the top.
+  - **"Easy"**: Lilac-to-indigo pill nestled in a frosted dark glass frame (`bg-black/45`) dropping in second.
+  - **"Easing"**: Warm sunrise orange badge peeking at a $16^\circ$ angle with half-rotation and subtle spring bounce.
+- **Kinetic Letter Mechanics & Stacked Stickers**: Letter-by-letter wave reveals (`parsing`), 3D flip-ups (`optical`), gradient star asterisks, and stacked diagonal sticker tags (`Super`, `Plug-and-play`, `Vector Topology`).
 
 ---
 
