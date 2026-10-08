@@ -468,10 +468,11 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
             <svg viewBox="0 0 100 100" className="w-16 h-16 sm:w-22 sm:h-22 md:w-28 md:h-28 overflow-visible">
               <defs>
                 <linearGradient id="gsapPinwheelGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#00E555" />
-                  <stop offset="40%" stopColor="#10B981" />
-                  <stop offset="75%" stopColor="#A7F3D0" />
-                  <stop offset="100%" stopColor="#FFFFFF" />
+                  <stop offset="0%" stopColor="#FFFFFF" />
+                  <stop offset="25%" stopColor="#D1FAE5" />
+                  <stop offset="55%" stopColor="#00E83F" />
+                  <stop offset="85%" stopColor="#059669" />
+                  <stop offset="100%" stopColor="#064E3B" />
                 </linearGradient>
 
                 {/* Subtle Grain Noise Texture Filter */}
@@ -485,13 +486,13 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
 
               <g filter="url(#badgeTexture)">
                 {/* Petal 1: Top-Left Blade */}
-                <path d="M 50 50 L 5 50 L 5 5 A 45 45 0 0 1 50 50 Z" fill="url(#gsapPinwheelGrad)" />
+                <path d="M 50 50 L 5 50 L 5 5 A 45 45 0 0 1 50 50 Z" fill="url(#gsapPinwheelGrad)" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
                 {/* Petal 2: Top-Right Blade */}
-                <path d="M 50 50 L 50 5 L 95 5 A 45 45 0 0 1 50 50 Z" fill="url(#gsapPinwheelGrad)" />
+                <path d="M 50 50 L 50 5 L 95 5 A 45 45 0 0 1 50 50 Z" fill="url(#gsapPinwheelGrad)" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
                 {/* Petal 3: Bottom-Right Blade */}
-                <path d="M 50 50 L 95 50 L 95 95 A 45 45 0 0 1 50 50 Z" fill="url(#gsapPinwheelGrad)" />
+                <path d="M 50 50 L 95 50 L 95 95 A 45 45 0 0 1 50 50 Z" fill="url(#gsapPinwheelGrad)" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
                 {/* Petal 4: Bottom-Left Blade */}
-                <path d="M 50 50 L 50 95 L 5 95 A 45 45 0 0 1 50 50 Z" fill="url(#gsapPinwheelGrad)" />
+                <path d="M 50 50 L 50 95 L 5 95 A 45 45 0 0 1 50 50 Z" fill="url(#gsapPinwheelGrad)" stroke="rgba(255,255,255,0.4)" strokeWidth="1" />
               </g>
             </svg>
           </div>
@@ -548,13 +549,14 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
           >
             <svg viewBox="-16 -10 102 140" className="w-14 h-22 sm:w-18 sm:h-30 md:w-24 md:h-40 overflow-visible">
               <defs>
-                {/* Centric/Radial Purple to White Gradient */}
-                <radialGradient id="purpleWhiteGrad" cx="50%" cy="50%" r="55%" fx="50%" fy="50%">
+                {/* Metallic Specular Purple to Deep Indigo Gradient */}
+                <linearGradient id="purpleWhiteGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                   <stop offset="0%" stopColor="#FFFFFF" />
-                  <stop offset="35%" stopColor="#F3E8FF" />
-                  <stop offset="70%" stopColor="#A855F7" />
-                  <stop offset="100%" stopColor="#6B21A8" />
-                </radialGradient>
+                  <stop offset="25%" stopColor="#F3E8FF" />
+                  <stop offset="55%" stopColor="#C084FC" />
+                  <stop offset="85%" stopColor="#9333EA" />
+                  <stop offset="100%" stopColor="#581C87" />
+                </linearGradient>
 
                 {/* Grain Noise Texture Filter */}
                 <filter id="ribbonTexture">
@@ -566,7 +568,7 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
               </defs>
 
               <g filter="url(#ribbonTexture)">
-                {/* Bold Compact 3D Helical Coil Spring Path */}
+                {/* Bold Compact 3D Helical Coil Spring Path with Metallic Sheen */}
                 <path
                   d="M 35 6 C 68 18, 68 34, 35 40 C 2 46, 2 62, 35 68 C 68 74, 68 90, 35 96 C 2 102, 2 114, 35 118"
                   fill="none"

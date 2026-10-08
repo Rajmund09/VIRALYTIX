@@ -49,9 +49,11 @@ export const HeroVisual = forwardRef<HeroVisualRef, {}>((_, ref) => {
           <svg viewBox="0 0 280 120" className="w-full h-auto overflow-visible">
             <defs>
               <linearGradient id="heroSignalGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#00E83F" />
+                <stop offset="0%" stopColor="#FFFFFF" />
+                <stop offset="20%" stopColor="#00E83F" />
                 <stop offset="50%" stopColor="#FF1493" />
-                <stop offset="100%" stopColor="#8A2BE2" />
+                <stop offset="80%" stopColor="#8A2BE2" />
+                <stop offset="100%" stopColor="#4C1D95" />
               </linearGradient>
             </defs>
             <path
