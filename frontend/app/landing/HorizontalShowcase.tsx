@@ -12,21 +12,6 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const trackRef = useRef<HTMLDivElement>(null);
 
-  // References for SVG curve 1 (bezier S-curve)
-  const easingCurve1Ref = useRef<SVGPathElement>(null);
-  const handle1aRef = useRef<SVGCircleElement>(null);
-  const handle1bRef = useRef<SVGCircleElement>(null);
-  const line1aRef = useRef<SVGLineElement>(null);
-  const line1bRef = useRef<SVGLineElement>(null);
-
-  // References for SVG curve 2 (bezier inverted arch)
-  const easingCurve2Ref = useRef<SVGPathElement>(null);
-  const handle2aRef = useRef<SVGCircleElement>(null);
-  const handle2bRef = useRef<SVGCircleElement>(null);
-  const line2aRef = useRef<SVGLineElement>(null);
-  const line2bRef = useRef<SVGLineElement>(null);
-
-  // References for Panel 1 Intro Animated Elements
   const domeRef = useRef<HTMLDivElement>(null);
   const flowerRef = useRef<HTMLDivElement>(null);
   const torusRef = useRef<HTMLDivElement>(null);
@@ -41,6 +26,32 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
   const phrase3Ref = useRef<HTMLDivElement>(null);
   const phrase4Ref = useRef<HTMLDivElement>(null);
   const phrase5Ref = useRef<HTMLSpanElement>(null);
+  const vectorTopologyRef = useRef<HTMLSpanElement>(null);
+  const topGliderRef = useRef<HTMLDivElement>(null);
+  const topGliderSpinnerRef = useRef<HTMLDivElement>(null);
+  const superPlugRef = useRef<HTMLSpanElement>(null);
+  const superStickerRef = useRef<HTMLSpanElement>(null);
+  const plugBarRef = useRef<HTMLDivElement>(null);
+  const phrase6Ref = useRef<HTMLSpanElement>(null);
+  const phrase7Ref = useRef<HTMLSpanElement>(null);
+  const starGliderRef = useRef<HTMLDivElement>(null);
+  const starGliderSpinnerRef = useRef<HTMLDivElement>(null);
+  const customCurveRef = useRef<HTMLDivElement>(null);
+  const customPathRef = useRef<SVGPathElement>(null);
+  const customAnchor1Ref = useRef<SVGRectElement>(null);
+  const customAnchor2Ref = useRef<SVGRectElement>(null);
+  const customHandle1Ref = useRef<SVGCircleElement>(null);
+  const customHandle2Ref = useRef<SVGCircleElement>(null);
+  const customLine1Ref = useRef<SVGLineElement>(null);
+  const customLine2Ref = useRef<SVGLineElement>(null);
+  const agentSwarmGroupRef = useRef<HTMLDivElement>(null);
+  const sticker100AgentsRef = useRef<HTMLDivElement>(null);
+  const letterGRef = useRef<HTMLSpanElement>(null);
+  const letterSwarmSRef = useRef<HTMLSpanElement>(null);
+  const stickerSyntheticSwarmRef = useRef<HTMLDivElement>(null);
+  const stickerInASnapRef = useRef<HTMLDivElement>(null);
+  const swarmBridgeElementRef = useRef<HTMLDivElement>(null);
+  const swarmBridgeSpinnerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -80,54 +91,98 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
           },
         });
 
-        // a) Background Green Glowing Dome: Scales out & rises with 3D rotation
+        // a) Background Green Glowing Dome: Scales out dynamically with rotational torque & 3D tilt
         if (domeRef.current) {
           introTl.fromTo(
             domeRef.current,
-            { scale: 0.15, rotation: -15, y: 160, opacity: 0, transformOrigin: "bottom right" },
-            { scale: 1, rotation: 0, y: 0, opacity: 1, duration: 1.25, ease: "power3.out" },
+            { scale: 0, rotateZ: -35, rotateX: 50, y: 220, x: 70, opacity: 0, transformOrigin: "bottom right" },
+            { scale: 1, rotateZ: 0, rotateX: 0, y: 0, x: 0, opacity: 1, duration: 1.5, ease: "power4.out" },
             0
           );
         }
 
-        // b) 3D Pink Bloom Flower: Unfolds & spins into place sitting on top of dome
+        // b) 3D Pink Bloom Flower: Dynamic multi-turn spin & blossoming scale-out over the dome
         if (flowerRef.current) {
           introTl.fromTo(
             flowerRef.current,
-            { scale: 0, rotation: -210, opacity: 0, y: 70, transformOrigin: "center center" },
-            { scale: 1, rotation: 0, opacity: 1, y: 0, duration: 1.1, ease: "back.out(2.2)" },
+            { scale: 0, rotateZ: -420, rotateX: 55, y: 100, opacity: 0, transformOrigin: "50% 50%" },
+            { scale: 1, rotateZ: 0, rotateX: 0, y: 0, opacity: 1, duration: 1.35, ease: "back.out(2.6)" },
             0.15
           );
+
+          // Subtle ambient breathing float
+          gsap.to(flowerRef.current, {
+            rotation: 6,
+            y: -5,
+            duration: 3.8,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: 1.6,
+          });
         }
 
-        // c) 3D Cyan Torus Ring: Floats down with 3D spin & ring scale-out
+        // c) 3D Cyan Torus Ring: 3D Gyro orbital dive with ring scale-out & resonance
         if (torusRef.current) {
           introTl.fromTo(
             torusRef.current,
-            { scale: 0.2, rotation: 140, y: -90, opacity: 0, transformOrigin: "center center" },
-            { scale: 1, rotation: 0, y: 0, opacity: 1, duration: 1.05, ease: "back.out(1.8)" },
+            { scale: 0, rotateX: 75, rotateY: -60, rotateZ: -180, y: -130, x: -50, opacity: 0, transformOrigin: "50% 50%" },
+            { scale: 1, rotateX: 0, rotateY: 0, rotateZ: 0, y: 0, x: 0, opacity: 1, duration: 1.25, ease: "back.out(2.0)" },
             0.22
           );
+
+          // Ambient hovering levitation
+          gsap.to(torusRef.current, {
+            y: -7,
+            rotateZ: 5,
+            duration: 4.2,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: 1.7,
+          });
         }
 
-        // d) 3D Hourglass Prism: 3D Flip-in from left
+        // d) 3D Hourglass Prism: Geometric tumbling gyro-flip onto dome shoulder
         if (hourglassRef.current) {
           introTl.fromTo(
             hourglassRef.current,
-            { scale: 0.25, rotationY: 180, x: -70, opacity: 0, transformOrigin: "center center" },
-            { scale: 1, rotationY: 0, x: 0, opacity: 1, duration: 0.95, ease: "power2.out" },
-            0.32
+            { scale: 0, rotateY: 270, rotateX: -70, rotateZ: -60, x: -90, y: 40, opacity: 0, transformOrigin: "center center" },
+            { scale: 1, rotateY: 0, rotateX: 0, rotateZ: 0, x: 0, y: 0, opacity: 1, duration: 1.2, ease: "back.out(2.2)" },
+            0.30
           );
+
+          // Ambient subtle balance tilt
+          gsap.to(hourglassRef.current, {
+            rotateZ: -5,
+            y: -4,
+            duration: 3.4,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: 1.8,
+          });
         }
 
-        // e) 3D Diamond Crystal Gem: Elastic pop-in & pulse rotate from top right
+        // e) 3D Diamond Crystal Gem: Faceted sparkle & spring pop
         if (diamondRef.current) {
           introTl.fromTo(
             diamondRef.current,
-            { scale: 0, rotation: 90, y: -45, opacity: 0, transformOrigin: "center center" },
-            { scale: 1, rotation: 0, y: 0, opacity: 1, duration: 0.9, ease: "elastic.out(1.1, 0.45)" },
-            0.38
+            { scale: 0, rotateZ: 270, rotateY: 90, y: -70, x: 35, opacity: 0, transformOrigin: "center center" },
+            { scale: 1, rotateZ: 0, rotateY: 0, y: 0, x: 0, opacity: 1, duration: 1.15, ease: "elastic.out(1.25, 0.4)" },
+            0.36
           );
+
+          // Ambient crystal shimmer float
+          gsap.to(diamondRef.current, {
+            y: -6,
+            rotateZ: 8,
+            duration: 3,
+            repeat: -1,
+            yoyo: true,
+            ease: "sine.inOut",
+            delay: 1.9,
+          });
         }
 
         // f) Top Pink Pill Bar ("Predict Virality"): COMPLETELY STATIC & STRAIGHT
@@ -882,81 +937,741 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
           }
         }
 
-        // 5. ANIMATED SVG BEZIER EASING CURVE 1 MORPH
-        if (
-          easingCurve1Ref.current &&
-          handle1aRef.current &&
-          handle1bRef.current &&
-          line1aRef.current &&
-          line1bRef.current
-        ) {
-          gsap.to(
-            {},
-            {
-              duration: 1,
-              scrollTrigger: {
-                trigger: easingCurve1Ref.current,
-                containerAnimation: horizontalTween,
-                start: "left 80%",
-                end: "right 20%",
-                scrub: 1,
-                onUpdate: (self) => {
-                  const p = self.progress;
-                  const c1y = 20 + p * 80;
-                  const c2y = 120 - p * 80;
+        // 3.10. "Vector Topology" - STROBE / ELECTRIC FLASH APPEARING ANIMATION
+        if (vectorTopologyRef.current) {
+          const strobeTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: vectorTopologyRef.current,
+              containerAnimation: horizontalTween,
+              start: "left 85%",
+              end: "left 35%",
+              scrub: 1.2,
+            },
+          });
 
-                  if (easingCurve1Ref.current) {
-                    easingCurve1Ref.current.setAttribute(
-                      "d",
-                      `M 20 120 C 60 ${c1y.toFixed(1)}, 180 ${c2y.toFixed(1)}, 220 20`
-                    );
-                  }
-                  if (handle1aRef.current) handle1aRef.current.setAttribute("cy", c1y.toFixed(1));
-                  if (handle1bRef.current) handle1bRef.current.setAttribute("cy", c2y.toFixed(1));
-                  if (line1aRef.current) line1aRef.current.setAttribute("y2", c1y.toFixed(1));
-                  if (line1bRef.current) line1bRef.current.setAttribute("y2", c2y.toFixed(1));
-                },
-              },
+          strobeTl.fromTo(
+            vectorTopologyRef.current,
+            {
+              opacity: 0,
+              scale: 0.85,
+            },
+            {
+              keyframes: [
+                { opacity: 0, scale: 0.85, duration: 0.05 },
+                { opacity: 1, scale: 1.08, duration: 0.08 },
+                { opacity: 0, scale: 0.95, duration: 0.06 },
+                { opacity: 1, scale: 1.05, duration: 0.1 },
+                { opacity: 0.2, scale: 0.98, duration: 0.06 },
+                { opacity: 1, scale: 1.02, duration: 0.1 },
+                { opacity: 0.6, scale: 0.99, duration: 0.06 },
+                { opacity: 1, scale: 1, duration: 0.2 },
+              ],
+              ease: "power2.out",
             }
           );
         }
 
-        // 6. ANIMATED SVG BEZIER EASING CURVE 2 MORPH
-        if (
-          easingCurve2Ref.current &&
-          handle2aRef.current &&
-          handle2bRef.current &&
-          line2aRef.current &&
-          line2bRef.current
-        ) {
-          gsap.to(
-            {},
-            {
-              duration: 1,
-              scrollTrigger: {
-                trigger: easingCurve2Ref.current,
-                containerAnimation: horizontalTween,
-                start: "left 85%",
-                end: "right 15%",
-                scrub: 1,
-                onUpdate: (self) => {
-                  const p = self.progress;
-                  const cy = 20 + p * 90;
+        // 3.11. Metallic Diamond Cluster (Middle Element): Clean Top Stomp Drop (same as "Signals", no extra bounce) & In-Out Rotation
+        if (topGliderRef.current) {
+          const topGliderTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: topGliderRef.current,
+              containerAnimation: horizontalTween,
+              start: "left 85%",
+              end: "left 30%",
+              scrub: 1.2,
+            },
+          });
 
-                  if (easingCurve2Ref.current) {
-                    easingCurve2Ref.current.setAttribute(
-                      "d",
-                      `M 20 20 Q 120 ${cy.toFixed(1)}, 220 20`
-                    );
-                  }
-                  if (handle2aRef.current) handle2aRef.current.setAttribute("cy", cy.toFixed(1));
-                  if (handle2bRef.current) handle2bRef.current.setAttribute("cy", cy.toFixed(1));
-                  if (line2aRef.current) line2aRef.current.setAttribute("y2", cy.toFixed(1));
-                  if (line2bRef.current) line2bRef.current.setAttribute("y2", cy.toFixed(1));
-                },
-              },
+          topGliderTl.fromTo(
+            topGliderRef.current,
+            {
+              opacity: 0,
+              y: -100,
+              scale: 1.8,
+              rotateX: 30,
+              transformOrigin: "50% 100%",
+            },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              rotateX: 0,
+              duration: 0.85,
+              ease: "power3.out",
             }
           );
+        }
+
+        if (topGliderSpinnerRef.current) {
+          gsap.to(topGliderSpinnerRef.current, {
+            rotation: 360,
+            duration: 1.5,
+            repeat: -1,
+            ease: "power2.inOut",
+          });
+        }
+
+        // 3.12. "Super" (Backflip from Top) & "Plug-and-play" (Smooth Bar Expansion with Sequential Text Parts from Left)
+        if (superPlugRef.current) {
+          const superSticker = superStickerRef.current;
+          const plugBar = plugBarRef.current;
+          const plugPart = plugBar?.querySelector(".plug-part-plug");
+          const hyphen1Part = plugBar?.querySelector(".plug-part-hyphen1");
+          const andPart = plugBar?.querySelector(".plug-part-and");
+          const hyphen2Part = plugBar?.querySelector(".plug-part-hyphen2");
+          const playPart = plugBar?.querySelector(".plug-part-play");
+
+          const superPlugTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: superPlugRef.current,
+              containerAnimation: horizontalTween,
+              start: "left 85%",
+              end: "left 20%",
+              scrub: 1.2,
+            },
+          });
+
+          // 1. "Super": Appears from top with slight 3D backflip
+          if (superSticker) {
+            superPlugTl.fromTo(
+              superSticker,
+              {
+                opacity: 0,
+                y: -90,
+                rotationX: -70,
+                rotationZ: -16,
+                scale: 0.8,
+                transformOrigin: "center bottom",
+                transformPerspective: 800,
+              },
+              {
+                opacity: 1,
+                y: 0,
+                rotationX: 0,
+                rotationZ: -6,
+                scale: 1,
+                duration: 0.85,
+                ease: "back.out(1.4)",
+              },
+              0
+            );
+          }
+
+          // 2. "Plug-and-play": Stepped rhythmic expansion with micro-pauses & distinct ease-in-out effects
+          if (plugBar) {
+            // Initial state: hidden
+            gsap.set(plugBar, { clipPath: "inset(0% 100% 0% 0% round 12px)" });
+
+            // Stage 1: Bar expands to cover only "Plug" (~32% width)
+            superPlugTl.to(
+              plugBar,
+              {
+                clipPath: "inset(0% 68% 0% 0% round 12px)",
+                duration: 0.5,
+                ease: "power3.inOut",
+              },
+              0.3
+            );
+            if (plugPart) {
+              superPlugTl.fromTo(
+                plugPart,
+                { opacity: 0, x: -35, rotationX: -45 },
+                { opacity: 1, x: 0, rotationX: 0, duration: 0.5, ease: "back.out(1.4)" },
+                0.35
+              );
+            }
+
+            // [Micro-pause] Stage 2: Bar expands to cover first hyphen "-" (~42% width)
+            superPlugTl.to(
+              plugBar,
+              {
+                clipPath: "inset(0% 58% 0% 0% round 12px)",
+                duration: 0.35,
+                ease: "power3.inOut",
+              },
+              "+=0.16"
+            );
+            if (hyphen1Part) {
+              superPlugTl.fromTo(
+                hyphen1Part,
+                { opacity: 0, scale: 0.2, y: -10 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "back.out(1.8)" },
+                "<+=0.04"
+              );
+            }
+
+            // [Micro-pause] Stage 3: Bar expands to cover "and" (~65% width)
+            superPlugTl.to(
+              plugBar,
+              {
+                clipPath: "inset(0% 35% 0% 0% round 12px)",
+                duration: 0.5,
+                ease: "power3.inOut",
+              },
+              "+=0.16"
+            );
+            if (andPart) {
+              superPlugTl.fromTo(
+                andPart,
+                { opacity: 0, x: -30, rotationX: -45 },
+                { opacity: 1, x: 0, rotationX: 0, duration: 0.5, ease: "back.out(1.4)" },
+                "<+=0.06"
+              );
+            }
+
+            // [Micro-pause] Stage 4: Bar expands to cover second hyphen "-" (~75% width)
+            superPlugTl.to(
+              plugBar,
+              {
+                clipPath: "inset(0% 25% 0% 0% round 12px)",
+                duration: 0.35,
+                ease: "power3.inOut",
+              },
+              "+=0.16"
+            );
+            if (hyphen2Part) {
+              superPlugTl.fromTo(
+                hyphen2Part,
+                { opacity: 0, scale: 0.2, y: -10 },
+                { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "back.out(1.8)" },
+                "<+=0.04"
+              );
+            }
+
+            // [Micro-pause] Stage 5: Bar expands to full 100% width to reveal "play"
+            superPlugTl.to(
+              plugBar,
+              {
+                clipPath: "inset(0% 0% 0% 0% round 12px)",
+                duration: 0.55,
+                ease: "power3.inOut",
+              },
+              "+=0.16"
+            );
+            if (playPart) {
+              superPlugTl.fromTo(
+                playPart,
+                { opacity: 0, x: -35, rotationX: -45 },
+                { opacity: 1, x: 0, rotationX: 0, duration: 0.55, ease: "back.out(1.4)" },
+                "<+=0.08"
+              );
+            }
+          }
+        }
+
+        // 3.13. "eases, or build your own custom virality curves." WITH FLOATING TOP 8-POINT STAR GLIDER
+        if (phrase6Ref.current) {
+          const starGlider = starGliderRef.current;
+          const starSpinner = starGliderSpinnerRef.current;
+          const easesLetters = phrase6Ref.current.querySelectorAll(".eases-letter");
+          const orWord = phrase6Ref.current.querySelector(".or-word");
+          const buildLetters = phrase6Ref.current.querySelectorAll(".build-letter");
+          const yourOwnWord1 = phrase6Ref.current.querySelector(".your-own-word1");
+          const yourOwnWord2 = phrase6Ref.current.querySelector(".your-own-word2");
+          const customLetters = phrase6Ref.current.querySelectorAll(".custom-letter");
+          const viralityLetters = phrase6Ref.current.querySelectorAll(".virality-letter");
+          const curvesWord = phrase6Ref.current.querySelector(".curves-word");
+
+          const phrase6Tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: phrase6Ref.current,
+              containerAnimation: horizontalTween,
+              start: "left 80%",
+              end: "left 15%",
+              scrub: 1.2,
+            },
+          });
+
+          // 1. Floating Top Star Glider: Pops up and glides in sync with words to settle right on "own"
+          if (starGlider) {
+            phrase6Tl.fromTo(
+              starGlider,
+              { opacity: 0, scale: 0, y: -15 },
+              { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.8)" },
+              0.1
+            );
+
+            phrase6Tl.to(
+              starGlider,
+              {
+                x: () => {
+                  if (yourOwnWord2 instanceof HTMLElement) {
+                    return yourOwnWord2.offsetLeft + yourOwnWord2.offsetWidth * 0.15;
+                  }
+                  return 300;
+                },
+                duration: 1.4,
+                ease: "power2.inOut",
+              },
+              0.35
+            );
+          }
+
+          // Infinite rhythmic rotation on star spinner (just like parsing glider spinner)
+          if (starSpinner) {
+            gsap.to(starSpinner, {
+              rotation: 360,
+              duration: 2.0,
+              repeat: -1,
+              ease: "power2.inOut",
+            });
+          }
+
+          // 2. "eases,": Letter-by-letter wave reveal from bottom
+          if (easesLetters.length) {
+            easesLetters.forEach((letterEl, idx) => {
+              phrase6Tl.fromTo(
+                letterEl,
+                { opacity: 0, y: 35, rotateZ: 10, scale: 0.5 },
+                { opacity: 1, y: 0, rotateZ: 0, scale: 1, duration: 0.75, ease: "back.out(1.6)" },
+                idx * 0.06
+              );
+            });
+          }
+
+          // 3. "or": 3D Flip drop
+          if (orWord) {
+            phrase6Tl.fromTo(
+              orWord,
+              { opacity: 0, y: -30, rotateX: -60 },
+              { opacity: 1, y: 0, rotateX: 0, duration: 0.65, ease: "power2.out" },
+              0.35
+            );
+          }
+
+          // 4. "build": Letter-by-letter kinetic slide-up
+          if (buildLetters.length) {
+            buildLetters.forEach((letterEl, idx) => {
+              phrase6Tl.fromTo(
+                letterEl,
+                { opacity: 0, y: 40, scale: 0.5 },
+                { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" },
+                0.5 + idx * 0.05
+              );
+            });
+          }
+
+          // 5. "your" & "own": Dynamic Cross-Direction Swapping Entrance
+          if (yourOwnWord1) {
+            phrase6Tl.fromTo(
+              yourOwnWord1,
+              {
+                opacity: 0,
+                x: -45,
+                y: -60,
+                rotateZ: -18,
+                rotateX: -45,
+                scale: 0.65,
+                transformOrigin: "center center",
+              },
+              {
+                opacity: 1,
+                x: 0,
+                y: 0,
+                rotateZ: 0,
+                rotateX: 0,
+                scale: 1,
+                duration: 0.75,
+                ease: "back.out(1.7)",
+              },
+              0.78
+            );
+          }
+          if (yourOwnWord2) {
+            phrase6Tl.fromTo(
+              yourOwnWord2,
+              {
+                opacity: 0,
+                x: 45,
+                y: 60,
+                rotateZ: 18,
+                rotateX: 45,
+                scale: 0.65,
+                transformOrigin: "center center",
+              },
+              {
+                opacity: 1,
+                x: 0,
+                y: 0,
+                rotateZ: 0,
+                rotateX: 0,
+                scale: 1,
+                duration: 0.75,
+                ease: "back.out(1.7)",
+              },
+              0.88
+            );
+          }
+
+          // 6. "custom": Letter-by-letter 3D wave reveal
+          if (customLetters.length) {
+            customLetters.forEach((letterEl, idx) => {
+              phrase6Tl.fromTo(
+                letterEl,
+                { opacity: 0, y: 30, rotateX: -90 },
+                { opacity: 1, y: 0, rotateX: 0, duration: 0.75, ease: "power2.out" },
+                1.2 + idx * 0.06
+              );
+            });
+          }
+
+          // 8. "virality": Luminous emerald letter wave
+          if (viralityLetters.length) {
+            viralityLetters.forEach((letterEl, idx) => {
+              phrase6Tl.fromTo(
+                letterEl,
+                { opacity: 0, y: 40, rotateZ: -12, scale: 0.6 },
+                { opacity: 1, y: 0, rotateZ: 0, scale: 1, duration: 0.8, ease: "back.out(1.5)" },
+                1.55 + idx * 0.05
+              );
+            });
+          }
+
+          // 9. "curves.": Smooth stomp drop
+          if (curvesWord) {
+            phrase6Tl.fromTo(
+              curvesWord,
+              { opacity: 0, y: -45, scale: 0.8 },
+              { opacity: 1, y: 0, scale: 1, duration: 0.75, ease: "power3.out" },
+              2.0
+            );
+          }
+        }
+
+        // 3.13b. DEDICATED SCROLL-DRIVEN S-TO-U BEZIER GLIDER & MORPH (1:1 Tied to User Scroll with Ease In-Out)
+        if (customCurveRef.current && phrase6Ref.current) {
+          const customWord = phrase6Ref.current.querySelector(".custom-word");
+          const curvesWord = phrase6Ref.current.querySelector(".curves-word");
+
+          if (customWord && curvesWord) {
+            const bezierScrollTl = gsap.timeline({
+              scrollTrigger: {
+                trigger: customWord,
+                containerAnimation: horizontalTween,
+                start: "left 75%",
+                endTrigger: curvesWord,
+                end: "right 45%",
+                scrub: 1.5,
+              },
+            });
+
+            // 1. Initial fade & scale in as "custom" enters viewport
+            bezierScrollTl.fromTo(
+              customCurveRef.current,
+              { opacity: 0, scale: 0.6 },
+              { opacity: 1, scale: 1, duration: 0.15, ease: "power1.out" },
+              0
+            );
+
+            // 2. Pure Scroll-Driven Forward Translation from "c" of custom to "." of curves.
+            bezierScrollTl.fromTo(
+              customCurveRef.current,
+              {
+                x: () => (customWord instanceof HTMLElement ? customWord.offsetLeft - 15 : 440),
+              },
+              {
+                x: () => (curvesWord instanceof HTMLElement ? curvesWord.offsetLeft + curvesWord.offsetWidth - 65 : 880),
+                duration: 1.0,
+                ease: "power2.inOut",
+              },
+              0
+            );
+
+          // 3. Pure Scroll-Driven Geometry & Angle Morphing (S-Curve -> Asymmetric Bend -> Symmetrical U-Arc)
+          const morphObj = { progress: 0 };
+          bezierScrollTl.to(
+            morphObj,
+            {
+              progress: 1,
+              duration: 1.0,
+              ease: "power2.inOut",
+              onUpdate: () => {
+                const p = morphObj.progress;
+
+                // 1. Anchors
+                // Left Anchor (a1): starts at (25, 125) at p=0 -> rises vertically to (25, 25) at p=1
+                const a1_x = 25;
+                const a1_y = 125 - p * 100;
+
+                // Right Anchor (a2): sits at top-right (175, 25)
+                const a2_x = 175;
+                const a2_y = 25;
+
+                // 2. Control Handles (Rotates with true angular kinematics)
+                // Handle 1 (Control point for Anchor 1):
+                // Rotates from 0 rad (pointing right at 175, 125) down to PI/2 rad (pointing down at 25, 125)
+                const theta1 = p * (Math.PI / 2);
+                const r1 = 150 - p * 50;
+                const h1_x = a1_x + Math.cos(theta1) * r1;
+                const h1_y = a1_y + Math.sin(theta1) * r1;
+
+                // Handle 2 (Control point for Anchor 2):
+                // Rotates from PI rad (pointing left at 25, 25) down to PI/2 rad (pointing down at 175, 125)
+                const theta2 = Math.PI - p * (Math.PI / 2);
+                const r2 = 150 - p * 50;
+                const h2_x = a2_x + Math.cos(theta2) * r2;
+                const h2_y = a2_y + Math.sin(theta2) * r2;
+
+                // 3. Tangent Angles for Anchor Squares
+                const a1_deg = theta1 * (180 / Math.PI);
+                const a2_deg = (theta2 - Math.PI) * (180 / Math.PI);
+
+                // Update Curve Path
+                if (customPathRef.current) {
+                  customPathRef.current.setAttribute(
+                    "d",
+                    `M ${a1_x.toFixed(1)} ${a1_y.toFixed(1)} C ${h1_x.toFixed(1)} ${h1_y.toFixed(1)}, ${h2_x.toFixed(1)} ${h2_y.toFixed(1)}, ${a2_x.toFixed(1)} ${a2_y.toFixed(1)}`
+                  );
+                }
+
+                // Update Left Anchor Rect (centered at a1_x, a1_y, 18x18 size)
+                if (customAnchor1Ref.current) {
+                  customAnchor1Ref.current.setAttribute("x", (a1_x - 9).toFixed(1));
+                  customAnchor1Ref.current.setAttribute("y", (a1_y - 9).toFixed(1));
+                  customAnchor1Ref.current.setAttribute(
+                    "transform",
+                    `rotate(${a1_deg.toFixed(1)} ${a1_x.toFixed(1)} ${a1_y.toFixed(1)})`
+                  );
+                }
+
+                // Update Right Anchor Rect (centered at a2_x, a2_y, 18x18 size)
+                if (customAnchor2Ref.current) {
+                  customAnchor2Ref.current.setAttribute("x", (a2_x - 9).toFixed(1));
+                  customAnchor2Ref.current.setAttribute("y", (a2_y - 9).toFixed(1));
+                  customAnchor2Ref.current.setAttribute(
+                    "transform",
+                    `rotate(${a2_deg.toFixed(1)} ${a2_x.toFixed(1)} ${a2_y.toFixed(1)})`
+                  );
+                }
+
+                // Update Left Handle Circle
+                if (customHandle1Ref.current) {
+                  customHandle1Ref.current.setAttribute("cx", h1_x.toFixed(1));
+                  customHandle1Ref.current.setAttribute("cy", h1_y.toFixed(1));
+                }
+
+                // Update Right Handle Circle
+                if (customHandle2Ref.current) {
+                  customHandle2Ref.current.setAttribute("cx", h2_x.toFixed(1));
+                  customHandle2Ref.current.setAttribute("cy", h2_y.toFixed(1));
+                }
+
+                // Update Guideline 1 (Always strictly connected Anchor 1 to Handle 1)
+                if (customLine1Ref.current) {
+                  customLine1Ref.current.setAttribute("x1", a1_x.toFixed(1));
+                  customLine1Ref.current.setAttribute("y1", a1_y.toFixed(1));
+                  customLine1Ref.current.setAttribute("x2", h1_x.toFixed(1));
+                  customLine1Ref.current.setAttribute("y2", h1_y.toFixed(1));
+                }
+
+                // Update Guideline 2 (Always strictly connected Anchor 2 to Handle 2)
+                if (customLine2Ref.current) {
+                  customLine2Ref.current.setAttribute("x1", a2_x.toFixed(1));
+                  customLine2Ref.current.setAttribute("y1", a2_y.toFixed(1));
+                  customLine2Ref.current.setAttribute("x2", h2_x.toFixed(1));
+                  customLine2Ref.current.setAttribute("y2", h2_y.toFixed(1));
+                }
+              },
+            },
+            0
+          );
+        }
+      }
+
+        // 3.13c. SEQUENTIAL MULTI-BAR DROP & REVEAL FOR 100 AI AGENTS -> SYNTHETIC SWARM -> IN A SNAP
+        if (agentSwarmGroupRef.current) {
+          const bar100 = sticker100AgentsRef.current;
+          const barSwarm = stickerSyntheticSwarmRef.current;
+          const barSnap = stickerInASnapRef.current;
+
+          const swarmTl = gsap.timeline({
+            scrollTrigger: {
+              trigger: agentSwarmGroupRef.current,
+              containerAnimation: horizontalTween,
+              start: "left 80%",
+              end: "left 25%",
+              scrub: 1.2,
+            },
+          });
+
+          // 1. "100 AI Agents" appears smoothly from the RIGHT into position
+          if (bar100) {
+            swarmTl.fromTo(
+              bar100,
+              { opacity: 0, x: 120, y: 0, scale: 0.9 },
+              { opacity: 1, x: 0, y: 0, scale: 1, duration: 0.75, ease: "power3.out" },
+              0
+            );
+          }
+
+          // 2. "Synthetic Swarm" (Stage A: Slides straight down from behind 100 AI Agents to connected border)
+          if (barSwarm) {
+            swarmTl.fromTo(
+              barSwarm,
+              {
+                opacity: 0,
+                y: 0,
+                x: () => (bar100 ? Math.round(bar100.offsetWidth * 0.28) : 135),
+                scale: 0.96,
+              },
+              {
+                opacity: 1,
+                y: () => (bar100 ? bar100.offsetHeight - 2 : 110),
+                x: () => (bar100 ? Math.round(bar100.offsetWidth * 0.28) : 135),
+                scale: 1,
+                duration: 0.6,
+                ease: "power2.out",
+              },
+              0.28
+            );
+
+            // (Stage B: After sliding down, it slides smoothly further to the RIGHT aligning exactly at the letter 'g' of Agents)
+            swarmTl.to(
+              barSwarm,
+              {
+                x: () => (letterGRef.current ? letterGRef.current.offsetLeft : bar100 ? Math.round(bar100.offsetWidth * 0.65) : 310),
+                duration: 0.65,
+                ease: "power3.out",
+              },
+              0.9
+            );
+          }
+
+          // 3. "in a snap" appears from the first card (100 AI Agents) and smoothly glides from LEFT to RIGHT with ease-in-out, stopping at letter "S" of "Swarm"
+          if (barSnap) {
+            swarmTl.fromTo(
+              barSnap,
+              {
+                opacity: 0,
+                y: 0,
+                x: 0,
+                scale: 0.95,
+              },
+              {
+                opacity: 1,
+                y: 0,
+                x: () => {
+                  const swarmBaseX = letterGRef.current ? letterGRef.current.offsetLeft : bar100 ? Math.round(bar100.offsetWidth * 0.65) : 310;
+                  const sOffset = letterSwarmSRef.current ? letterSwarmSRef.current.offsetLeft : 200;
+                  return swarmBaseX + sOffset;
+                },
+                scale: 1,
+                duration: 1.05,
+                ease: "power2.inOut",
+              },
+              1.15
+            );
+          }
+
+          // 4. AGENT KEYHOLE ELEMENT: Perfectly centered between 1st & 3rd bar and resting flush on top border of Synthetic Swarm
+          const bridgeEl = swarmBridgeElementRef.current;
+          if (bridgeEl) {
+            const getBridgeX = () => {
+              const bar100Right = bar100 ? bar100.offsetWidth : 380;
+              const swarmBaseX = letterGRef.current ? letterGRef.current.offsetLeft : bar100 ? Math.round(bar100.offsetWidth * 0.65) : 310;
+              const sOffset = letterSwarmSRef.current ? letterSwarmSRef.current.offsetLeft : 200;
+              const snapLeft = swarmBaseX + sOffset;
+              const halfElWidth = bridgeEl ? bridgeEl.offsetWidth / 2 : 28;
+              return Math.round((bar100Right + snapLeft) / 2 - halfElWidth);
+            };
+
+            const getBridgeY = () => {
+              const topOfSwarm = bar100 ? bar100.offsetHeight - 2 : 110;
+              const elHeight = bridgeEl ? bridgeEl.offsetHeight : 70;
+              // Lift slightly up so it floats cleanly in the notch above the orange Swarm bar
+              const liftUp = typeof window !== "undefined" && window.innerWidth < 640 ? 8 : typeof window !== "undefined" && window.innerWidth < 1024 ? 12 : 14;
+              return topOfSwarm - elHeight - liftUp;
+            };
+
+            swarmTl.fromTo(
+              bridgeEl,
+              {
+                opacity: 0,
+                scale: 0,
+                rotation: 0,
+                x: getBridgeX,
+                y: getBridgeY,
+              },
+              {
+                opacity: 1,
+                scale: 1,
+                rotation: 0,
+                x: getBridgeX,
+                y: getBridgeY,
+                duration: 0.65,
+                ease: "back.out(1.8)",
+              },
+              2.1
+            );
+          }
+
+          // 5. Infinite Robotic Haptic Jitter / Micro-Vibration with 2s interval
+          if (swarmBridgeSpinnerRef.current) {
+            const vibrateTl = gsap.timeline({
+              repeat: -1,
+              repeatDelay: 2,
+              delay: 2.7,
+            });
+
+            vibrateTl
+              .to(swarmBridgeSpinnerRef.current, { x: -2.5, y: -1, rotate: -2, duration: 0.035, ease: "power1.inOut" })
+              .to(swarmBridgeSpinnerRef.current, { x: 2.5, y: 1, rotate: 2, duration: 0.035, ease: "power1.inOut" })
+              .to(swarmBridgeSpinnerRef.current, { x: -2, y: 0, rotate: -1.5, duration: 0.035, ease: "power1.inOut" })
+              .to(swarmBridgeSpinnerRef.current, { x: 2, y: -0.5, rotate: 1.5, duration: 0.035, ease: "power1.inOut" })
+              .to(swarmBridgeSpinnerRef.current, { x: -1, y: 0, rotate: -0.5, duration: 0.035, ease: "power1.inOut" })
+              .to(swarmBridgeSpinnerRef.current, { x: 0, y: 0, rotate: 0, duration: 0.04, ease: "power1.out" });
+          }
+        }
+
+        // 3.14. "before you publish." WITH KINETIC 3D WAVE REVEAL
+        if (phrase7Ref.current) {
+          const beforeWord = phrase7Ref.current.querySelector(".before-word");
+          const youWord = phrase7Ref.current.querySelector(".you-word");
+          const publishLetters = phrase7Ref.current.querySelectorAll(".publish-letter");
+
+          const phrase7Tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: phrase7Ref.current,
+              containerAnimation: horizontalTween,
+              start: "left 85%",
+              end: "left 30%",
+              scrub: 1.2,
+            },
+          });
+
+          // a) Word "before": Smooth 3D rise
+          if (beforeWord) {
+            phrase7Tl.fromTo(
+              beforeWord,
+              { opacity: 0, y: 40, rotationX: -45, scale: 0.85 },
+              { opacity: 1, y: 0, rotationX: 0, scale: 1, duration: 0.75, ease: "power3.out" },
+              0
+            );
+          }
+
+          // b) Word "you": 3D pop flip
+          if (youWord) {
+            phrase7Tl.fromTo(
+              youWord,
+              { opacity: 0, y: 35, rotationY: 45, scale: 0.85 },
+              { opacity: 1, y: 0, rotationY: 0, scale: 1, duration: 0.75, ease: "back.out(1.6)" },
+              0.15
+            );
+          }
+
+          // c) "publish.": Letter-by-letter kinetic 3D wave reveal
+          if (publishLetters.length) {
+            publishLetters.forEach((letterEl, idx) => {
+              const tilt = idx % 2 === 0 ? -10 : 10;
+              phrase7Tl.fromTo(
+                letterEl,
+                { opacity: 0, y: 45, rotateZ: tilt, scale: 0.6 },
+                { opacity: 1, y: 0, rotateZ: 0, scale: 1, duration: 0.8, ease: "back.out(1.8)" },
+                0.3 + idx * 0.05
+              );
+            });
+          }
         }
       }, container);
 
@@ -1028,79 +1743,87 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
             </div>
           </div>
 
-          {/* RIGHT COLUMN: 3D ARTWORKS COMPOSITION (Refined Proportions & Individual Animations) */}
-          <div className="relative w-[320px] sm:w-[420px] md:w-[500px] lg:w-[560px] h-[380px] sm:h-[460px] md:h-[500px] flex items-center justify-center shrink-0 mr-4 sm:mr-10 lg:mr-16">
-            {/* 1. 3D CYAN TORUS RING (Top Left) */}
-            <div ref={torusRef} className="intro-graphic absolute top-2 left-6 z-20">
+          {/* RIGHT COLUMN: 3D ARTWORKS COMPOSITION (Refined Proportions & 3D Spatial Staging) */}
+          <div className="relative w-[320px] sm:w-[420px] md:w-[500px] lg:w-[560px] h-[380px] sm:h-[460px] md:h-[500px] flex items-center justify-center shrink-0 mr-4 sm:mr-10 lg:mr-16 [perspective:1400px] [transform-style:preserve-3d]">
+            {/* 1. 3D CYAN TORUS RING (Top Left - Polished Metallic Cyan/Sky) */}
+            <div ref={torusRef} className="intro-graphic absolute top-2 left-6 z-20 transform-gpu will-change-transform">
               <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-26 sm:h-26 lg:w-32 lg:h-32 overflow-visible">
                 <defs>
                   <linearGradient id="introTorusGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#00F0FF" />
-                    <stop offset="50%" stopColor="#38BDF8" />
-                    <stop offset="100%" stopColor="#F5A7E8" />
+                    <stop offset="0%" stopColor="#FFFFFF" />
+                    <stop offset="25%" stopColor="#A5F3FC" />
+                    <stop offset="55%" stopColor="#00F0FF" />
+                    <stop offset="85%" stopColor="#38BDF8" />
+                    <stop offset="100%" stopColor="#0369A1" />
                   </linearGradient>
                 </defs>
                 <g filter="drop-shadow(0px 10px 24px rgba(0,240,255,0.45))">
                   <circle cx="50" cy="50" r="36" fill="none" stroke="url(#introTorusGrad)" strokeWidth="18" />
+                  <circle cx="50" cy="50" r="36" fill="none" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" />
                 </g>
               </svg>
             </div>
 
-            {/* 2. 3D HOURGLASS PRISM (Mid Left) */}
-            <div ref={hourglassRef} className="intro-graphic absolute bottom-24 left-10 sm:left-14 z-20">
+            {/* 2. 3D HOURGLASS PRISM (Mid Left - Metallic Lilac/Purple) */}
+            <div ref={hourglassRef} className="intro-graphic absolute bottom-24 left-10 sm:left-14 z-20 transform-gpu will-change-transform">
               <svg viewBox="0 0 80 100" className="w-14 h-14 sm:w-18 sm:h-18 lg:w-22 lg:h-22 overflow-visible">
                 <defs>
                   <linearGradient id="hourglassGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#E9D5FF" />
-                    <stop offset="50%" stopColor="#C084FC" />
-                    <stop offset="100%" stopColor="#8B5CF6" />
+                    <stop offset="0%" stopColor="#FFFFFF" />
+                    <stop offset="30%" stopColor="#F3E8FF" />
+                    <stop offset="60%" stopColor="#C084FC" />
+                    <stop offset="100%" stopColor="#581C87" />
                   </linearGradient>
                 </defs>
-                <g filter="drop-shadow(0px 8px 20px rgba(192,132,252,0.5))">
-                  <path d="M 10 10 L 70 10 L 40 50 L 70 90 L 10 90 L 40 50 Z" fill="url(#hourglassGrad)" stroke="#070706" strokeWidth="2.5" strokeLinejoin="round" />
+                <g filter="drop-shadow(0px 8px 20px rgba(192,132,252,0.55))">
+                  <path d="M 10 10 L 70 10 L 40 50 L 70 90 L 10 90 L 40 50 Z" fill="url(#hourglassGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" strokeLinejoin="round" />
                 </g>
               </svg>
             </div>
 
-            {/* 3. 3D GLOWING DIAMOND GEM (Top Right) */}
-            <div ref={diamondRef} className="intro-graphic absolute top-10 right-6 sm:right-10 z-20">
+            {/* 3. 3D GLOWING DIAMOND GEM (Top Right - Metallic Amber/Gold) */}
+            <div ref={diamondRef} className="intro-graphic absolute top-10 right-6 sm:right-10 z-20 transform-gpu will-change-transform">
               <svg viewBox="0 0 60 60" className="w-10 h-10 sm:w-14 sm:h-14 lg:w-18 lg:h-18 overflow-visible">
                 <defs>
                   <linearGradient id="diamondGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#FED7AA" />
-                    <stop offset="50%" stopColor="#FF7A00" />
-                    <stop offset="100%" stopColor="#EA580C" />
+                    <stop offset="0%" stopColor="#FFFFFF" />
+                    <stop offset="30%" stopColor="#FEF08A" />
+                    <stop offset="60%" stopColor="#FF7A00" />
+                    <stop offset="100%" stopColor="#9A3412" />
                   </linearGradient>
                 </defs>
                 <g filter="drop-shadow(0px 8px 20px rgba(255,122,0,0.55))">
-                  <polygon points="30,5 55,30 30,55 5,30" fill="url(#diamondGrad)" stroke="#070706" strokeWidth="2" />
+                  <polygon points="30,5 55,30 30,55 5,30" fill="url(#diamondGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1.5" />
                 </g>
               </svg>
             </div>
 
-            {/* 4. 3D PINK 4-PETAL FLOWER BLOOM (Center resting on Dome) */}
-            <div ref={flowerRef} className="intro-graphic absolute bottom-24 sm:bottom-32 right-14 sm:right-20 z-30">
+            {/* 4. 3D PINK 4-PETAL FLOWER BLOOM (Center resting on Dome - Metallic Rose Pink) */}
+            <div ref={flowerRef} className="intro-graphic absolute bottom-24 sm:bottom-32 right-14 sm:right-20 z-30 transform-gpu will-change-transform">
               <svg viewBox="0 0 120 120" className="w-28 h-28 sm:w-44 sm:h-44 lg:w-52 lg:h-52 overflow-visible">
                 <defs>
                   <linearGradient id="flowerGradIntro" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#FFF0FA" />
-                    <stop offset="35%" stopColor="#F5A7E8" />
-                    <stop offset="75%" stopColor="#EC4899" />
-                    <stop offset="100%" stopColor="#9333EA" />
+                    <stop offset="0%" stopColor="#FFFFFF" />
+                    <stop offset="25%" stopColor="#FFF0FA" />
+                    <stop offset="55%" stopColor="#F472B6" />
+                    <stop offset="80%" stopColor="#E1147D" />
+                    <stop offset="100%" stopColor="#701A75" />
                   </linearGradient>
                 </defs>
                 <g filter="drop-shadow(0px 16px 32px rgba(245,167,232,0.55))">
                   <path
                     d="M 60 60 C 40 25, 10 10, 60 5 C 110 10, 80 25, 60 60 C 95 40, 110 10, 115 60 C 110 110, 95 80, 60 60 C 80 95, 110 110, 60 115 C 10 110, 40 95, 60 60 C 25 80, 10 110, 5 60 C 10 10, 25 40, 60 60 Z"
                     fill="url(#flowerGradIntro)"
+                    stroke="rgba(255,255,255,0.4)"
+                    strokeWidth="1.5"
                   />
                 </g>
               </svg>
             </div>
 
-            {/* 5. GIANT VIBRANT GREEN GLOWING DOME BASE (Bottom Right) */}
-            <div ref={domeRef} className="absolute bottom-0 right-0 w-[220px] sm:w-[320px] md:w-[390px] lg:w-[440px] h-[140px] sm:h-[195px] md:h-[240px] lg:h-[270px] z-10 overflow-hidden rounded-t-full">
-              <div className="w-full h-full bg-gradient-to-t from-[#00E83F] via-[#10B981] to-[#00E555] shadow-[0_0_100px_rgba(0,232,63,0.7)]" />
+            {/* 5. GIANT VIBRANT GREEN GLOWING DOME BASE (Bottom Right - Metallic Emerald Luster) */}
+            <div ref={domeRef} className="absolute bottom-0 right-0 w-[220px] sm:w-[320px] md:w-[390px] lg:w-[440px] h-[140px] sm:h-[195px] md:h-[240px] lg:h-[270px] z-10 overflow-hidden rounded-t-full transform-gpu will-change-transform">
+              <div className="w-full h-full bg-gradient-to-t from-[#00A832] via-[#00E83F] via-[#34D399] to-[#ECFDF5] border-t-2 border-white/50 shadow-[0_0_100px_rgba(0,232,63,0.6)]" />
             </div>
           </div>
         </div>
@@ -1166,13 +1889,14 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
                 <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
                   <defs>
                     <linearGradient id="pinkArcRibbonGrad" x1="0%" y1="100%" x2="100%" y2="0%">
-                      <stop offset="0%" stopColor="#FBCFE8" />
-                      <stop offset="30%" stopColor="#F472B6" />
-                      <stop offset="65%" stopColor="#E1147D" />
-                      <stop offset="100%" stopColor="#D9166E" />
+                      <stop offset="0%" stopColor="#FFFFFF" />
+                      <stop offset="20%" stopColor="#FFF0FA" />
+                      <stop offset="50%" stopColor="#F472B6" />
+                      <stop offset="80%" stopColor="#E1147D" />
+                      <stop offset="100%" stopColor="#831843" />
                     </linearGradient>
                   </defs>
-                  <g filter="drop-shadow(0px 16px 30px rgba(225,20,125,0.7))">
+                  <g filter="drop-shadow(0px 14px 28px rgba(225,20,125,0.65))">
                     <path
                       d="M 18 56 A 38 38 0 0 0 84 20"
                       fill="none"
@@ -1219,23 +1943,24 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
                 <svg viewBox="0 0 90 90" className="w-full h-full overflow-visible">
                   <defs>
                     <linearGradient id="cyanTileGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                      <stop offset="0%" stopColor="#E0F7FA" />
-                      <stop offset="35%" stopColor="#A5F3FC" />
-                      <stop offset="70%" stopColor="#38BDF8" />
-                      <stop offset="100%" stopColor="#0EA5E9" />
+                      <stop offset="0%" stopColor="#FFFFFF" />
+                      <stop offset="25%" stopColor="#A5F3FC" />
+                      <stop offset="55%" stopColor="#00F0FF" />
+                      <stop offset="85%" stopColor="#0284C7" />
+                      <stop offset="100%" stopColor="#0369A1" />
                     </linearGradient>
                   </defs>
                   <g filter="drop-shadow(0px 8px 22px rgba(56,189,248,0.65))">
                     {/* Top-Left */}
-                    <rect x="0" y="0" width="30" height="30" rx="4" fill="url(#cyanTileGrad)" />
+                    <rect x="0" y="0" width="30" height="30" rx="4" fill="url(#cyanTileGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
                     {/* Top-Right */}
-                    <rect x="60" y="0" width="30" height="30" rx="4" fill="url(#cyanTileGrad)" />
+                    <rect x="60" y="0" width="30" height="30" rx="4" fill="url(#cyanTileGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
                     {/* Center */}
-                    <rect x="30" y="30" width="30" height="30" rx="4" fill="url(#cyanTileGrad)" />
+                    <rect x="30" y="30" width="30" height="30" rx="4" fill="url(#cyanTileGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
                     {/* Bottom-Left */}
-                    <rect x="0" y="60" width="30" height="30" rx="4" fill="url(#cyanTileGrad)" />
+                    <rect x="0" y="60" width="30" height="30" rx="4" fill="url(#cyanTileGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
                     {/* Bottom-Right */}
-                    <rect x="60" y="60" width="30" height="30" rx="4" fill="url(#cyanTileGrad)" />
+                    <rect x="60" y="60" width="30" height="30" rx="4" fill="url(#cyanTileGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
                   </g>
                 </svg>
               </div>
@@ -1325,16 +2050,26 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
             </div>
           </div>
 
-          {/* PHRASE 5: "into high-dimensional" KINETIC 3D REVEAL */}
-          <span ref={phrase5Ref} className="phrase-high-dimensional inline-flex items-center gap-3 sm:gap-4 select-none align-middle mx-3 sm:mx-5 [perspective:900px]">
-            <span className="into-word inline-block font-normal text-3xl sm:text-5xl lg:text-6xl text-[#E2E8F0] tracking-tight opacity-0 transform-gpu will-change-transform">
+          {/* PHRASE 5: "into high-dimensional" WITH "Vector Topology" FLOATING ON UPPER SIDE */}
+          <span ref={phrase5Ref} className="phrase-high-dimensional relative inline-flex items-baseline gap-4 select-none align-baseline [perspective:900px] my-auto">
+            {/* VECTOR TOPOLOGY FLOATING ABOVE THE SENTENCE */}
+            <div className="vector-topology-wrapper absolute -top-16 sm:-top-24 lg:-top-28 right-0 sm:right-2 z-30 pointer-events-none">
+              <span
+                ref={vectorTopologyRef}
+                className="vector-topology-card inline-block px-5 py-2 sm:px-7 sm:py-2.5 rounded-md sm:rounded-lg bg-[#FFE500] text-black font-extrabold text-2xl sm:text-4xl lg:text-5xl shadow-[0_12px_28px_rgba(255,229,0,0.45)] border-2 border-black rotate-0 transform-gpu opacity-0 select-none will-change-transform pointer-events-auto"
+              >
+                Vector Topology
+              </span>
+            </div>
+
+            <span className="into-word inline-block opacity-0 transform-gpu will-change-transform">
               into
             </span>
             <span className="high-dimensional-word inline-flex overflow-hidden">
               {"high-dimensional".split("").map((letter, idx) => (
                 <span
                   key={idx}
-                  className="high-dimensional-letter inline-block font-bold text-3xl sm:text-5xl lg:text-6xl text-[#F4F1EA] tracking-tight transform-gpu origin-bottom opacity-0 will-change-transform"
+                  className="high-dimensional-letter inline-block transform-gpu origin-bottom opacity-0 will-change-transform"
                 >
                   {letter}
                 </span>
@@ -1342,138 +2077,414 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
             </span>
           </span>
 
-          {/* STICKER 5: "Vector Topology" */}
-          <span
-            className="sticker-pop inline-block px-7 py-3 rounded-3xl bg-[#FFE500] text-black font-extrabold text-4xl sm:text-6xl lg:text-[6.5rem] shadow-2xl border-2 border-black -rotate-4 transform-gpu"
-            data-rotation="-4"
-          >
-            Vector Topology
-          </span>
-
-          {/* INTERACTIVE SVG BEZIER EASING CURVE DIAGRAM 1 (from photo 3 & 4) */}
-          <div className="graphic-pop inline-block mx-8 align-middle">
-            <div className="p-5 rounded-3xl bg-[#141416]/90 border border-[#F4F1EA]/20 shadow-2xl backdrop-blur-xl">
-              <svg viewBox="0 0 240 140" className="w-52 h-32 md:w-72 md:h-40 overflow-visible">
-                {/* Control Guide Lines */}
-                <line ref={line1aRef} x1="20" y1="120" x2="60" y2="20" stroke="#00E83F" strokeWidth="2" strokeDasharray="4 4" opacity="0.8" />
-                <line ref={line1bRef} x1="220" y1="20" x2="180" y2="120" stroke="#00E83F" strokeWidth="2" strokeDasharray="4 4" opacity="0.8" />
-
-                {/* Animated Cubic Bezier Path */}
-                <path
-                  ref={easingCurve1Ref}
-                  d="M 20 120 C 60 20, 180 120, 220 20"
-                  fill="none"
-                  stroke="#F4F1EA"
-                  strokeWidth="4.5"
-                  strokeLinecap="round"
-                />
-
-                {/* Start & End Square Anchors */}
-                <rect x="11" y="111" width="18" height="18" fill="#00E83F" rx="4" className="rotate-45 transform-gpu" />
-                <rect x="211" y="11" width="18" height="18" fill="#00E83F" rx="4" className="rotate-45 transform-gpu" />
-
-                {/* Animated Control Handle Circles */}
-                <circle ref={handle1aRef} cx="60" cy="20" r="8" fill="#00E83F" />
-                <circle ref={handle1bRef} cx="180" cy="120" r="8" fill="#00E83F" />
+          {/* 5-METALLIC-DIAMOND CLUSTER ELEMENT: METALLIC LILAC-TO-INDIGO GRADIENT MATCHING '&' DIAMOND */}
+          <div ref={topGliderRef} className="metallic-top-glider relative inline-flex items-center justify-center mx-4 sm:mx-8 align-middle my-auto select-none opacity-0 transform-gpu [perspective:1000px]">
+            <div ref={topGliderSpinnerRef} className="metallic-cluster-spinner w-20 h-20 sm:w-28 sm:h-28 lg:w-36 lg:h-36 transform-gpu shrink-0">
+              <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
+                <defs>
+                  <linearGradient id="metallicDiamondTileGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="#FFFFFF" />
+                    <stop offset="25%" stopColor="#F3E8FF" />
+                    <stop offset="55%" stopColor="#C084FC" />
+                    <stop offset="85%" stopColor="#9333EA" />
+                    <stop offset="100%" stopColor="#4338CA" />
+                  </linearGradient>
+                </defs>
+                <g filter="drop-shadow(0px 8px 24px rgba(168,85,247,0.55))">
+                  {/* Top-Left */}
+                  <rect x="0" y="0" width="34" height="34" rx="4" fill="url(#metallicDiamondTileGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
+                  {/* Top-Right */}
+                  <rect x="66" y="0" width="34" height="34" rx="4" fill="url(#metallicDiamondTileGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
+                  {/* Center */}
+                  <rect x="33" y="33" width="34" height="34" rx="4" fill="url(#metallicDiamondTileGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
+                  {/* Bottom-Left */}
+                  <rect x="0" y="66" width="34" height="34" rx="4" fill="url(#metallicDiamondTileGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
+                  {/* Bottom-Right */}
+                  <rect x="66" y="66" width="34" height="34" rx="4" fill="url(#metallicDiamondTileGrad)" stroke="rgba(255,255,255,0.45)" strokeWidth="1" />
+                </g>
               </svg>
             </div>
           </div>
 
-          {/* STACKED STICKERS: "Super" + "Plug-and-play" (from photo 3) */}
-          <span className="inline-flex flex-col items-start align-middle mx-4">
+          {/* STACKED STICKERS: "Super" (Same size as "Nice and" bar) + "Plug-and-play" (A very little smaller) */}
+          <span ref={superPlugRef} className="relative inline-flex flex-col items-start align-middle mx-3 sm:mx-6 select-none">
+            {/* SUPER: Appears from Top with a slight Back Flip */}
             <span
-              className="sticker-pop inline-block px-7 py-3 rounded-3xl bg-[#00E83F] text-black font-extrabold text-4xl sm:text-6xl lg:text-[6.5rem] shadow-2xl border-2 border-black -rotate-6 z-20 transform-gpu"
-              data-rotation="-6"
+              ref={superStickerRef}
+              className="inline-block px-6 py-2.5 sm:px-9 sm:py-3.5 lg:px-11 lg:py-4.5 rounded-md sm:rounded-lg lg:rounded-xl bg-[#00E83F] text-black font-bold text-4xl sm:text-6xl lg:text-7xl shadow-[0_16px_36px_rgba(0,0,0,0.85)] border-2 border-black -rotate-6 z-20 transform-gpu will-change-transform opacity-0 pointer-events-auto tracking-normal"
             >
               Super
             </span>
-            <span
-              className="sticker-pop inline-block px-7 py-3 rounded-3xl bg-[#F5A7E8] text-black font-extrabold text-4xl sm:text-6xl lg:text-[6.5rem] shadow-2xl border-2 border-black rotate-3 -mt-6 ml-4 z-10 transform-gpu"
-              data-rotation="3"
+
+            {/* PLUG-AND-PLAY: Smoothly Spans Width from Left with Sequential Text Parts */}
+            <div
+              className="relative inline-block rotate-3 -mt-4 sm:-mt-6 lg:-mt-7 ml-4 sm:ml-7 lg:ml-9 z-10 transform-gpu will-change-transform"
             >
-              Plug-and-play
+              <div
+                ref={plugBarRef}
+                className="inline-flex items-center px-5 py-2 sm:px-8 sm:py-3 lg:px-10 lg:py-4 rounded-md sm:rounded-lg lg:rounded-xl bg-[#F5A7E8] text-black font-bold text-3xl sm:text-5xl lg:text-6xl shadow-[0_14px_32px_rgba(0,0,0,0.85)] border-2 border-black transform-gpu will-change-transform overflow-hidden pointer-events-auto tracking-normal"
+                style={{ clipPath: "inset(0% 100% 0% 0% round 12px)" }}
+              >
+                <span className="plug-part-plug inline-block opacity-0 will-change-transform">
+                  Plug
+                </span>
+                <span className="plug-part-hyphen1 inline-block opacity-0 mx-[0.04em] will-change-transform">
+                  -
+                </span>
+                <span className="plug-part-and inline-block opacity-0 will-change-transform">
+                  and
+                </span>
+                <span className="plug-part-hyphen2 inline-block opacity-0 mx-[0.04em] will-change-transform">
+                  -
+                </span>
+                <span className="plug-part-play inline-block opacity-0 will-change-transform">
+                  play
+                </span>
+              </div>
+            </div>
+          </span>
+
+          {/* PHRASE 6: "eases, or build your own custom virality curves." WITH FLOATING TOP 8-POINT STAR GLIDER */}
+          <span ref={phrase6Ref} className="phrase-6 relative inline-flex items-center gap-[0.42em] shrink-0 mx-4 sm:mx-8">
+            {/* FLOATING TOP 8-POINT STAR GLIDER: POPS UP AT TOP AND GLIDES ACROSS SENTENCE LIKE PARSING GLIDER */}
+            <div ref={starGliderRef} className="star-top-glider absolute -top-14 sm:-top-20 lg:-top-24 left-0 z-20 pointer-events-none opacity-0 select-none">
+              <div ref={starGliderSpinnerRef} className="star-spinner w-16 h-16 sm:w-22 sm:h-22 lg:w-28 lg:h-28 transform-gpu">
+                <svg viewBox="0 0 100 100" className="w-full h-full overflow-visible">
+                  <defs>
+                    <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FFFFFF" />
+                      <stop offset="25%" stopColor="#FED7AA" />
+                      <stop offset="55%" stopColor="#FF7A00" />
+                      <stop offset="85%" stopColor="#F472B6" />
+                      <stop offset="100%" stopColor="#9D174D" />
+                    </linearGradient>
+                  </defs>
+                  <g filter="drop-shadow(0px 10px 24px rgba(255,122,0,0.55))">
+                    <path
+                      d="M 50 0 L 57 33 L 85 15 L 67 43 L 100 50 L 67 57 L 85 85 L 57 67 L 50 100 L 43 67 L 15 85 L 33 57 L 0 50 L 33 43 L 15 15 L 43 33 Z"
+                      fill="url(#starGrad)"
+                      stroke="rgba(255,255,255,0.45)"
+                      strokeWidth="1"
+                    />
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            {/* WORD "eases,": Letter by letter 3D wave reveal */}
+            <span className="eases-word inline-flex overflow-hidden text-[#F5A7E8] font-bold">
+              {"eases,".split("").map((letter, idx) => (
+                <span
+                  key={idx}
+                  className="eases-letter inline-block transform-gpu origin-bottom opacity-0 will-change-transform"
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
+
+            {/* WORD "or": 3D Flip drop */}
+            <span className="or-word inline-block transform-gpu opacity-0 will-change-transform text-[#F4F1EA]/80">
+              or
+            </span>
+
+            {/* WORD "build": Kinetic slide-up reveal */}
+            <span className="build-word inline-flex overflow-hidden font-bold text-[#00E83F]">
+              {"build".split("").map((letter, idx) => (
+                <span
+                  key={idx}
+                  className="build-letter inline-block transform-gpu origin-bottom opacity-0 will-change-transform"
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
+
+            {/* WORD "your": 3D tilt reveal */}
+            <span className="your-own-word1 inline-block transform-gpu opacity-0 will-change-transform text-[#F4F1EA]">
+              your
+            </span>
+
+            {/* WORD "own": 3D flip-up reveal */}
+            <span className="your-own-word2 inline-block transform-gpu opacity-0 will-change-transform text-[#F4F1EA]">
+              own
+            </span>
+
+            {/* FLOATING BOTTOM GEOMETRICAL S-TO-U BEZIER GLIDER: GLIDES FROM "c" OF "custom" TO "." OF "curves." */}
+            <div
+              ref={customCurveRef}
+              className="custom-bezier-element absolute -bottom-36 sm:-bottom-46 lg:-bottom-56 left-0 z-20 pointer-events-none opacity-0 select-none transform-gpu"
+            >
+              <div className="w-38 h-28 sm:w-52 sm:h-38 lg:w-68 lg:h-50 transform-gpu">
+                <svg viewBox="0 0 200 150" className="w-full h-full overflow-visible">
+                  <defs>
+                    {/* 1. Ultra-Refined High-Gloss Metallic Chrome Emerald Anchor Gradient */}
+                    <linearGradient id="metallicEmeraldAnchorGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FFFFFF" />
+                      <stop offset="20%" stopColor="#E2E8F0" />
+                      <stop offset="45%" stopColor="#34D399" />
+                      <stop offset="75%" stopColor="#059669" />
+                      <stop offset="100%" stopColor="#022C22" />
+                    </linearGradient>
+
+                    {/* 2. Sleek Platinum Champagne Metallic Curve Line Gradient */}
+                    <linearGradient id="metallicCurveGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+                      <stop offset="0%" stopColor="#FFFFFF" />
+                      <stop offset="30%" stopColor="#F8FAFC" />
+                      <stop offset="60%" stopColor="#CBD5E1" />
+                      <stop offset="85%" stopColor="#E2E8F0" />
+                      <stop offset="100%" stopColor="#FFFFFF" />
+                    </linearGradient>
+
+                    {/* 3. Metallic Chrome Handle Gradient */}
+                    <linearGradient id="metallicHandleGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FFFFFF" />
+                      <stop offset="25%" stopColor="#A7F3D0" />
+                      <stop offset="65%" stopColor="#10B981" />
+                      <stop offset="100%" stopColor="#047857" />
+                    </linearGradient>
+
+                    {/* 4. Delicate Ambient Specular Sheen (No Fuzzy Neon Glow) */}
+                    <filter id="subtleSpecular" x="-20%" y="-20%" width="140%" height="140%">
+                      <feDropShadow dx="0" dy="1" stdDeviation="1.5" floodColor="#00E83F" floodOpacity="0.35" />
+                    </filter>
+                  </defs>
+                  <g>
+                    {/* Guideline 1 (Delicate & Skinny) */}
+                    <line
+                      ref={customLine1Ref}
+                      x1="25"
+                      y1="25"
+                      x2="175"
+                      y2="25"
+                      stroke="#FFFDE7"
+                      strokeWidth="1.2"
+                      strokeDasharray="3 3"
+                      strokeOpacity="0.75"
+                    />
+                    {/* Guideline 2 (Delicate & Skinny) */}
+                    <line
+                      ref={customLine2Ref}
+                      x1="25"
+                      y1="125"
+                      x2="175"
+                      y2="125"
+                      stroke="#FFFDE7"
+                      strokeWidth="1.2"
+                      strokeDasharray="3 3"
+                      strokeOpacity="0.75"
+                    />
+
+                    {/* Skinny Metallic Cubic Bezier Curve */}
+                    <path
+                      ref={customPathRef}
+                      d="M 25 125 C 175 125, 25 25, 175 25"
+                      fill="none"
+                      stroke="url(#metallicCurveGrad)"
+                      strokeWidth="2.2"
+                      strokeLinecap="round"
+                    />
+
+                    {/* Handle 1 (Skinny Chrome-Rimmed Circle) */}
+                    <circle
+                      ref={customHandle1Ref}
+                      cx="25"
+                      cy="25"
+                      r="7.5"
+                      fill="url(#metallicHandleGrad)"
+                      stroke="#FFFFFF"
+                      strokeWidth="1.5"
+                      filter="url(#subtleSpecular)"
+                    />
+
+                    {/* Anchor 2 (Top Right - Skinny Metallic Square) */}
+                    <rect
+                      ref={customAnchor2Ref}
+                      x="166"
+                      y="16"
+                      width="18"
+                      height="18"
+                      rx="3"
+                      fill="url(#metallicEmeraldAnchorGrad)"
+                      stroke="rgba(255,255,255,0.95)"
+                      strokeWidth="1.2"
+                      filter="url(#subtleSpecular)"
+                    />
+
+                    {/* Anchor 1 (Bottom Left -> Top Left - Skinny Metallic Square) */}
+                    <rect
+                      ref={customAnchor1Ref}
+                      x="16"
+                      y="116"
+                      width="18"
+                      height="18"
+                      rx="3"
+                      fill="url(#metallicEmeraldAnchorGrad)"
+                      stroke="rgba(255,255,255,0.95)"
+                      strokeWidth="1.2"
+                      filter="url(#subtleSpecular)"
+                    />
+
+                    {/* Handle 2 (Skinny Chrome-Rimmed Circle) */}
+                    <circle
+                      ref={customHandle2Ref}
+                      cx="175"
+                      cy="125"
+                      r="7.5"
+                      fill="url(#metallicHandleGrad)"
+                      stroke="#FFFFFF"
+                      strokeWidth="1.5"
+                      filter="url(#subtleSpecular)"
+                    />
+                  </g>
+                </svg>
+              </div>
+            </div>
+
+            {/* WORD "custom": Normal style like other sentence words */}
+            <span className="custom-word inline-flex overflow-hidden text-[#F4F1EA]">
+              {"custom".split("").map((letter, idx) => (
+                <span
+                  key={idx}
+                  className="custom-letter inline-block transform-gpu origin-bottom opacity-0 will-change-transform"
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
+
+            {/* WORD "virality": Bold luminous emerald kinetic text */}
+            <span className="virality-curve-word1 inline-flex overflow-hidden font-extrabold text-[#00E83F]">
+              {"virality".split("").map((letter, idx) => (
+                <span
+                  key={idx}
+                  className="virality-letter inline-block transform-gpu origin-bottom opacity-0 will-change-transform"
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
+
+            {/* WORD "curves.": Smooth stomp drop */}
+            <span className="curves-word inline-block transform-gpu opacity-0 will-change-transform font-bold text-[#F4F1EA]">
+              curves.
             </span>
           </span>
 
-          {/* DECORATIVE 8-POINT GRADIENT STAR ASTERISK (from photo 3) */}
-          <div className="graphic-pop inline-block mx-6 align-middle">
-            <svg viewBox="0 0 100 100" className="w-16 h-16 md:w-24 md:h-24 overflow-visible">
-              <defs>
-                <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#FF7A00" />
-                  <stop offset="100%" stopColor="#F5A7E8" />
-                </linearGradient>
-              </defs>
-              <g filter="drop-shadow(0px 10px 20px rgba(255,122,0,0.5))">
-                <path
-                  d="M 50 0 L 57 33 L 85 15 L 67 43 L 100 50 L 67 57 L 85 85 L 57 67 L 50 100 L 43 67 L 15 85 L 33 57 L 0 50 L 33 43 L 15 15 L 43 33 Z"
-                  fill="url(#starGrad)"
-                />
-              </g>
-            </svg>
-          </div>
+          {/* 3-BAR STACKED COMPOSITION: "100 AI Agents" + "Synthetic Swarm" + "in a snap" (White Outline Alignment, Straight, Normal Size, Decreased Radius) */}
+          <div
+            ref={agentSwarmGroupRef}
+            className="agent-swarm-composition relative inline-flex items-center min-w-[540px] sm:min-w-[820px] lg:min-w-[1140px] h-36 sm:h-52 lg:h-64 mx-4 sm:mx-8 align-middle select-none [perspective:1000px]"
+          >
+            {/* 1. "100 AI Agents" (Emerald Bar - Base anchor, Straight, Rounded-2xl matching Predict Virality) */}
+            <div
+              ref={sticker100AgentsRef}
+              className="sticker-100-agents absolute left-0 z-30 inline-block px-6 py-2.5 sm:px-9 sm:py-3.5 lg:px-11 lg:py-4.5 rounded-2xl bg-[#00E83F] text-black font-bold text-4xl sm:text-6xl lg:text-7xl shadow-[0_16px_36px_rgba(0,0,0,0.85)] border-2 border-black rotate-0 transform-gpu opacity-0 will-change-transform whitespace-nowrap tracking-normal pointer-events-auto"
+            >
+              100 AI A<span ref={letterGRef}>g</span>ents
+            </div>
 
-          {/* PHRASE 5 */}
-          <span className="inline-block">eases, or build your own</span>
+            {/* 2. "Synthetic Swarm" (Orange Bar - Slides down to exact white outline below the 'A' of AI Agents) */}
+            <div
+              ref={stickerSyntheticSwarmRef}
+              className="sticker-synthetic-swarm absolute left-0 z-20 inline-block px-6 py-2.5 sm:px-9 sm:py-3.5 lg:px-11 lg:py-4.5 rounded-2xl bg-[#FF7A00] text-black font-bold text-4xl sm:text-6xl lg:text-7xl shadow-[0_16px_36px_rgba(0,0,0,0.85)] border-2 border-black rotate-0 transform-gpu opacity-0 will-change-transform whitespace-nowrap tracking-normal pointer-events-auto"
+            >
+              Synthetic <span ref={letterSwarmSRef}>S</span>warm
+            </div>
 
-          {/* SECOND SVG BEZIER ARCH CURVE DIAGRAM (from photo 2) */}
-          <div className="graphic-pop inline-block mx-8 align-middle">
-            <div className="p-5 rounded-3xl bg-[#141416]/90 border border-[#F4F1EA]/20 shadow-2xl backdrop-blur-xl">
-              <svg viewBox="0 0 240 140" className="w-52 h-32 md:w-72 md:h-40 overflow-visible">
-                {/* Vertical Dashed Guide Lines */}
-                <line ref={line2aRef} x1="20" y1="20" x2="20" y2="110" stroke="#00E83F" strokeWidth="2" strokeDasharray="4 4" opacity="0.8" />
-                <line ref={line2bRef} x1="220" y1="20" x2="220" y2="110" stroke="#00E83F" strokeWidth="2" strokeDasharray="4 4" opacity="0.8" />
+            {/* 3. "in a snap" (Yellow Bar - Emerges from behind towards top right) */}
+            <div
+              ref={stickerInASnapRef}
+              className="sticker-in-a-snap absolute left-0 z-10 inline-block px-6 py-2.5 sm:px-9 sm:py-3.5 lg:px-11 lg:py-4.5 rounded-2xl bg-[#FFE500] text-black font-bold text-4xl sm:text-6xl lg:text-7xl shadow-[0_16px_36px_rgba(0,0,0,0.85)] border-2 border-black rotate-0 transform-gpu opacity-0 will-change-transform whitespace-nowrap tracking-normal pointer-events-auto"
+            >
+              in a snap
+            </div>
 
-                {/* Animated Bezier Arch Path */}
-                <path
-                  ref={easingCurve2Ref}
-                  d="M 20 20 Q 120 110, 220 20"
-                  fill="none"
-                  stroke="#F4F1EA"
-                  strokeWidth="4.5"
-                  strokeLinecap="round"
-                />
+            {/* 4. AGENT KEYHOLE ELEMENT: Textured Metallic Pink Chrome with Specular Bevel */}
+            <div
+              ref={swarmBridgeElementRef}
+              className="swarm-bridge-element absolute left-0 z-40 inline-flex items-center justify-center pointer-events-none opacity-0 transform-gpu"
+            >
+              <div
+                ref={swarmBridgeSpinnerRef}
+                className="w-10 h-12 sm:w-14 sm:h-16 lg:w-16 lg:h-20 shrink-0 transform-gpu"
+              >
+                <svg viewBox="0 0 60 70" className="w-full h-full overflow-visible">
+                  <defs>
+                    {/* Textured Metallic Pink Chrome Gradient */}
+                    <linearGradient id="metallicPinkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#FFFFFF" />
+                      <stop offset="12%" stopColor="#FCE7F3" />
+                      <stop offset="28%" stopColor="#F472B6" />
+                      <stop offset="42%" stopColor="#FFFFFF" />
+                      <stop offset="55%" stopColor="#EC4899" />
+                      <stop offset="70%" stopColor="#BE185D" />
+                      <stop offset="85%" stopColor="#F472B6" />
+                      <stop offset="95%" stopColor="#831843" />
+                      <stop offset="100%" stopColor="#FFFFFF" />
+                    </linearGradient>
 
-                {/* Start & End Square Anchors */}
-                <rect x="11" y="11" width="18" height="18" fill="#00E83F" rx="4" />
-                <rect x="211" y="11" width="18" height="18" fill="#00E83F" rx="4" />
+                    {/* Radial Specular Highlight */}
+                    <radialGradient id="metallicPinkCoreGlow" cx="50%" cy="30%" r="55%">
+                      <stop offset="0%" stopColor="#FFFFFF" stopOpacity="0.85" />
+                      <stop offset="50%" stopColor="#F472B6" stopOpacity="0.35" />
+                      <stop offset="100%" stopColor="#9D174D" stopOpacity="0" />
+                    </radialGradient>
 
-                {/* Control Handle Circles */}
-                <circle ref={handle2aRef} cx="20" cy="110" r="8" fill="#00E83F" />
-                <circle ref={handle2bRef} cx="220" cy="110" r="8" fill="#00E83F" />
-              </svg>
+                    {/* Specular Ambient Glow & Drop Shadow */}
+                    <filter id="metallicPinkDrop" x="-30%" y="-30%" width="160%" height="160%">
+                      <feDropShadow dx="0" dy="4" stdDeviation="4" floodColor="#000000" floodOpacity="0.85" />
+                      <feDropShadow dx="0" dy="0" stdDeviation="6" floodColor="#F472B6" floodOpacity="0.5" />
+                    </filter>
+                  </defs>
+                  <g filter="url(#metallicPinkDrop)">
+                    {/* Metallic Pink Chrome Keyhole Body */}
+                    <path
+                      d="M 30 4 A 16 16 0 0 1 43.6 30.8 L 56 67 A 3 3 0 0 1 53 70 L 7 70 A 3 3 0 0 1 4 67 L 16.4 30.8 A 16 16 0 0 1 30 4 Z"
+                      fill="url(#metallicPinkGrad)"
+                      stroke="#FFFFFF"
+                      strokeWidth="1.5"
+                    />
+                    {/* Radial Specular Overlay */}
+                    <path
+                      d="M 30 4 A 16 16 0 0 1 43.6 30.8 L 56 67 A 3 3 0 0 1 53 70 L 7 70 A 3 3 0 0 1 4 67 L 16.4 30.8 A 16 16 0 0 1 30 4 Z"
+                      fill="url(#metallicPinkCoreGlow)"
+                    />
+                    {/* Inner Metallic Bevel Ridge (Textured Inner Seam) */}
+                    <path
+                      d="M 30 10 A 10 10 0 0 1 38.5 26.5 L 46 62 L 14 62 L 21.5 26.5 A 10 10 0 0 1 30 10 Z"
+                      fill="none"
+                      stroke="rgba(255, 255, 255, 0.75)"
+                      strokeWidth="1.2"
+                      strokeDasharray="4 2"
+                    />
+                    {/* Metallic Specular Core Pin */}
+                    <circle cx="30" cy="20" r="4.5" fill="#FFFFFF" fillOpacity="0.95" />
+                  </g>
+                </svg>
+              </div>
             </div>
           </div>
 
-          {/* PHRASE 6 */}
-          <span className="inline-block">custom virality curves.</span>
-
-          {/* STACKED STICKERS: "100 AI Agents" + "Synthetic Swarm" */}
-          <span className="inline-flex items-center mx-4 align-middle">
-            <span
-              className="sticker-pop inline-block px-7 py-3 rounded-3xl bg-[#10B981] text-black font-extrabold text-4xl sm:text-6xl lg:text-[6.5rem] shadow-2xl border-2 border-black -rotate-3 z-20 transform-gpu"
-              data-rotation="-3"
-            >
-              100 AI Agents
+          {/* PHRASE 7: "before you publish." (Normal Text Matching Sentence with Kinetic 3D Wave Reveal) */}
+          <span ref={phrase7Ref} className="phrase-7 inline-flex items-baseline gap-[0.38em] shrink-0 ml-20 sm:ml-32 lg:ml-44 mr-8 sm:mr-14 select-none align-baseline [perspective:1000px]">
+            <span className="before-word inline-block transform-gpu opacity-0 will-change-transform text-[#F4F1EA]">
+              before
             </span>
-            <span
-              className="sticker-pop inline-block px-7 py-3 rounded-3xl bg-[#FF7A00] text-black font-extrabold text-4xl sm:text-6xl lg:text-[6.5rem] shadow-2xl border-2 border-black rotate-4 -ml-8 z-10 transform-gpu"
-              data-rotation="4"
-            >
-              Synthetic Swarm
+            <span className="you-word inline-block transform-gpu opacity-0 will-change-transform text-[#F4F1EA]">
+              you
+            </span>
+            <span className="publish-word inline-flex overflow-hidden text-[#F4F1EA]">
+              {"publish.".split("").map((letter, idx) => (
+                <span
+                  key={idx}
+                  className="publish-letter inline-block transform-gpu origin-bottom opacity-0 will-change-transform"
+                >
+                  {letter}
+                </span>
+              ))}
             </span>
           </span>
-
-          {/* STICKER 10: "in a snap" */}
-          <span
-            className="sticker-pop inline-block px-7 py-3 rounded-3xl bg-[#FFE500] text-black font-extrabold text-4xl sm:text-6xl lg:text-[6.5rem] shadow-2xl border-2 border-black -rotate-2 transform-gpu"
-            data-rotation="-2"
-          >
-            in a snap
-          </span>
-
-          {/* PHRASE 7 */}
-          <span className="inline-block">before you publish.</span>
         </div>
       </div>
     </div>
