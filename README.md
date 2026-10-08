@@ -78,7 +78,17 @@
   - **"Nice and"**: Vibrant lime-to-pastel green pill dropping from the top.
   - **"Easy"**: Lilac-to-indigo pill nestled in a frosted dark glass frame (`bg-black/45`) dropping in second.
   - **"Easing"**: Warm sunrise orange badge peeking at a $16^\circ$ angle with half-rotation and subtle spring bounce.
-- **Kinetic Letter Mechanics & Stacked Stickers**: Letter-by-letter wave reveals (`parsing`), 3D flip-ups (`optical`), gradient star asterisks, and stacked diagonal sticker tags (`Super`, `Plug-and-play`, `Vector Topology`).
+- **Interactive 3-Bar Stacked Composition & Agent Keyhole**:
+  - **3-Bar Geometry**: Straight stickers (`rotate-0`) with connected borders (`y: bar100.offsetHeight - 2`) seamlessly merging 2px borders with zero overlap.
+  - **Letter-Anchored Alignment**: `"Synthetic Swarm"` slides right to align its left edge with the letter **`"g"`** of `Agents`, while `"in a snap"` emerges smoothly stopping at the letter **`"S"`** of `Swarm`.
+  - **Textured Metallic Pink Chrome Keyhole**: Multi-stop specular chrome gradient (`#FFFFFF` ➔ `#FCE7F3` ➔ `#F472B6` ➔ `#EC4899` ➔ `#BE185D` ➔ `#831843` ➔ `#FFFFFF`) with radial specular sheen, inner beveled dashed ridge, and periodic 2s micro-vibration haptic pulse.
+- **Panel 1 3D Artworks Kinetic Staging & Ambient Physics**:
+  - **Giant Green Dome**: Emerges from bottom-right with dynamic rotational torque (`rotateX: 50°`, `rotateZ: -35°`, `scale: 0 -> 1`, `power4.out`).
+  - **3D Pink Bloom Flower**: Multi-turn blossom spin (`rotateZ: -420°`, `back.out(2.6)`) with ambient breathing float.
+  - **3D Cyan Torus Ring**: Gyro orbital dive (`rotateX: 75°`, `rotateZ: -180°`, `back.out(2.0)`) with ambient levitation.
+  - **3D Hourglass Prism**: Multi-axis gyro-flip (`rotateY: 270°`, `rotateX: -70°`, `back.out(2.2)`) resting on the dome.
+  - **3D Amber Diamond Crystal**: High-speed facet spin pop (`elastic.out(1.25, 0.4)`) with crystal shimmer float.
+- **Kinetic Letter Mechanics & Stacked Stickers**: Letter-by-letter wave reveals (`parsing`, `publish.`), 3D flip-ups (`optical`), gradient star asterisks, and stacked diagonal sticker tags (`Super`, `Plug-and-play`, `Vector Topology`).
 
 ---
 
