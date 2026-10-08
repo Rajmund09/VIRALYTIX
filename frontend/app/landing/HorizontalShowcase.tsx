@@ -40,6 +40,7 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
   const phrase2Ref = useRef<HTMLSpanElement>(null);
   const phrase3Ref = useRef<HTMLDivElement>(null);
   const phrase4Ref = useRef<HTMLDivElement>(null);
+  const phrase5Ref = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -817,6 +818,70 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
           }
         }
 
+        // 3.9. "into high-dimensional" - KINETIC 3D WAVE REVEAL & STAGGERED FLIP
+        if (phrase5Ref.current) {
+          const intoWord = phrase5Ref.current.querySelector(".into-word");
+          const highLetters = phrase5Ref.current.querySelectorAll(".high-dimensional-letter");
+
+          const phrase5Tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: phrase5Ref.current,
+              containerAnimation: horizontalTween,
+              start: "left 85%",
+              end: "left 20%",
+              scrub: 1.2,
+            },
+          });
+
+          // a) "into": Smooth 3D slide-in from top-left
+          if (intoWord) {
+            phrase5Tl.fromTo(
+              intoWord,
+              { opacity: 0, x: -35, y: -25, scale: 0.75 },
+              {
+                opacity: 1,
+                x: 0,
+                y: 0,
+                scale: 1,
+                duration: 0.85,
+                ease: "power3.out",
+              },
+              0
+            );
+          }
+
+          // b) "high-dimensional": Alternating 3D letter wave flip-up
+          if (highLetters.length) {
+            highLetters.forEach((letterEl, idx) => {
+              const isEven = idx % 2 === 0;
+              const startY = isEven ? -30 : 35;
+              const startRot = isEven ? -14 : 14;
+
+              phrase5Tl.fromTo(
+                letterEl,
+                {
+                  opacity: 0,
+                  y: startY,
+                  rotationX: -60,
+                  rotationZ: startRot,
+                  scale: 0.5,
+                  transformOrigin: "center bottom",
+                },
+                {
+                  opacity: 1,
+                  y: 0,
+                  rotationX: 0,
+                  rotationZ: 0,
+                  scale: 1,
+                  duration: 0.9,
+                  ease: "back.out(1.5)",
+                },
+                idx * 0.045
+              );
+            });
+          }
+        }
+
         // 5. ANIMATED SVG BEZIER EASING CURVE 1 MORPH
         if (
           easingCurve1Ref.current &&
@@ -1260,8 +1325,22 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
             </div>
           </div>
 
-          {/* PHRASE 4 */}
-          <span className="inline-block">into high-dimensional</span>
+          {/* PHRASE 5: "into high-dimensional" KINETIC 3D REVEAL */}
+          <span ref={phrase5Ref} className="phrase-high-dimensional inline-flex items-center gap-3 sm:gap-4 select-none align-middle mx-3 sm:mx-5 [perspective:900px]">
+            <span className="into-word inline-block font-normal text-3xl sm:text-5xl lg:text-6xl text-[#E2E8F0] tracking-tight opacity-0 transform-gpu will-change-transform">
+              into
+            </span>
+            <span className="high-dimensional-word inline-flex overflow-hidden">
+              {"high-dimensional".split("").map((letter, idx) => (
+                <span
+                  key={idx}
+                  className="high-dimensional-letter inline-block font-bold text-3xl sm:text-5xl lg:text-6xl text-[#F4F1EA] tracking-tight transform-gpu origin-bottom opacity-0 will-change-transform"
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
+          </span>
 
           {/* STICKER 5: "Vector Topology" */}
           <span
