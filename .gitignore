@@ -46,8 +46,15 @@ Thumbs.db
 .vscode/
 .idea/
 
+# Media recordings
+*.mp4
+*.webm
+*.mov
+
 # Uploads (temp)
+uploads/
 backend/uploads/
 
 # Logs
 *.log
+

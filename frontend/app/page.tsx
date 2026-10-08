@@ -12,6 +12,8 @@ import {
 import { motion, AnimatePresence } from "framer-motion";
 import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip as ChartTooltip } from "recharts";
 import Lenis from "lenis";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { StudioLandingPage } from "./landing/StudioLandingPage";
 
 /* =========================================================
@@ -1250,25 +1252,32 @@ export default function Dashboard() {
   const playbackTimer = useRef<NodeJS.Timeout | null>(null);
   const logContainerRef = useRef<HTMLDivElement>(null);
 
-  // Initialize Lenis Smooth Scroll Engine Site-Wide
+  // Initialize Lenis Smooth Scroll Engine Site-Wide with GSAP ScrollTrigger synchronization
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-      smoothWheel: true,
-      touchMultiplier: 1.8,
-    });
+    if (typeof window !== "undefined") {
+      gsap.registerPlugin(ScrollTrigger);
 
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
+      const lenis = new Lenis({
+        duration: 1.1,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        smoothWheel: true,
+        touchMultiplier: 1.5,
+      });
+
+      lenis.on("scroll", ScrollTrigger.update);
+
+      const tickerCallback = (time: number) => {
+        lenis.raf(time * 1000);
+      };
+
+      gsap.ticker.add(tickerCallback);
+      gsap.ticker.lagSmoothing(0);
+
+      return () => {
+        gsap.ticker.remove(tickerCallback);
+        lenis.destroy();
+      };
     }
-
-    requestAnimationFrame(raf);
-
-    return () => {
-      lenis.destroy();
-    };
   }, []);
 
   // Initialize Particle Wave Canvas Engine
