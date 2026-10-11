@@ -3,6 +3,7 @@
 import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Silk from "./hero/Silk";
 
 interface HorizontalShowcaseProps {
   onLaunchApp?: () => void;
@@ -1684,11 +1685,15 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
       ref={containerRef}
       className="relative w-full h-screen bg-[#070706] text-[#F4F1EA] overflow-hidden border-t border-[#F4F1EA]/10 font-sans select-none"
     >
-      {/* Subtle Ambient Background Gradient Lighting */}
-      <div className="absolute inset-0 z-0 pointer-events-none opacity-20">
-        <div className="absolute top-1/3 left-1/4 w-[50rem] h-[28rem] bg-[#00E83F]/10 rounded-full blur-[140px]" />
-        <div className="absolute bottom-1/3 right-1/4 w-[50rem] h-[28rem] bg-[#F5A7E8]/10 rounded-full blur-[140px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(244,241,234,0.08)_1px,transparent_1px)] [background-size:32px_32px]" />
+      {/* Pure Silk Background Canvas matching Hero Section (#1E1B4B) */}
+      <div className="absolute inset-0 z-0 opacity-65 pointer-events-none">
+        <Silk
+          speed={12}
+          scale={1.25}
+          color="#1E1B4B"
+          noiseIntensity={1.8}
+          rotation={0}
+        />
       </div>
 
       {/* ── CONTINUOUS EDITORIAL KINETIC MOTION TRACK ── */}
