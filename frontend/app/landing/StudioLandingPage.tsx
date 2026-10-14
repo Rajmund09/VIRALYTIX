@@ -27,6 +27,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { LayeredText } from "./LayeredText";
 import { Hero } from "./hero/Hero";
 import { HorizontalShowcase } from "./HorizontalShowcase";
+import { GlassTiles } from "@/components/ui/glass-tiles";
 
 interface StudioLandingPageProps {
   onLaunchApp: () => void;
@@ -134,17 +135,34 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
       {/* ── 02 MASTER GSAP HERO EXPERIENCE (Modular Architecture) ────────────────── */}
       <Hero onLaunchApp={onLaunchApp} />
 
-      {/* ── 03 KINETIC TYPOGRAPHY DISPLACEMENT SECTION ─────────────────── */}
-      <section ref={kineticTextRef} className="py-24 px-6 md:px-12 border-t border-[#F4F1EA]/10 bg-[#0A0A09]">
-        <div className="max-w-7xl mx-auto space-y-8">
+      {/* ── 02 KINETIC TYPOGRAPHY DISPLACEMENT SECTION WITH GLASS TILES ─── */}
+      <section ref={kineticTextRef} className="relative py-28 px-6 md:px-12 border-t border-[#F4F1EA]/10 bg-black overflow-hidden">
+        {/* Shimmering Glass Tiles Background */}
+        <div className="absolute inset-0 pointer-events-none z-0 w-full h-full">
+          <GlassTiles
+            className="w-full h-full"
+            speed={1.0}
+            opacity={1.0}
+            chromaticSpread={0.0}
+            tileDensity={4.0}
+            rippleLayers={6}
+            warpStrength={0.33}
+            bandSharpness={3.0}
+            colorA="#1E00FF"
+            colorB="#D765E6"
+            backgroundColor="#000000"
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto space-y-8">
           <div className="text-xs font-mono text-[#F5A7E8] font-bold uppercase tracking-widest">
             02 // SIGNAL DECOMPOSITION
           </div>
 
           <div className="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#F4F1EA] space-y-2 uppercase leading-none">
-            <div className="kinetic-word">YOUR VIDEO IS</div>
-            <div className="kinetic-word text-[#00E83F] italic">MORE THAN FRAMES.</div>
-            <div className="kinetic-word text-4xl sm:text-6xl lg:text-7xl font-mono text-[#F5A7E8]">
+            <div className="kinetic-word drop-shadow-md">YOUR VIDEO IS</div>
+            <div className="kinetic-word text-[#00E83F] italic drop-shadow-md">MORE THAN FRAMES.</div>
+            <div className="kinetic-word text-4xl sm:text-6xl lg:text-7xl font-mono text-[#F5A7E8] drop-shadow-lg">
               A VIDEO IS 32 SIGNALS DISGUISED AS ONE.
             </div>
           </div>
