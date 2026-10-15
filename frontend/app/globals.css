@@ -648,15 +648,72 @@ body::after {
   height: 100%;
 }
 
-/* Tactile Woven Linen / Canvas Background */
-.canvas-woven-bg {
-  background-color: #ECE9E2;
+/* ── Studio Glass Poster Theme (Image 3 Aesthetic) ── */
+.studio-glass-bg {
+  background-color: #DDE2EB;
   background-image: 
-    radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.45) 0%, rgba(215, 210, 200, 0.3) 100%),
-    url('/textures/linen-canvas.webp');
-  background-repeat: repeat;
-  background-size: 256px 256px;
-  background-blend-mode: normal;
+    radial-gradient(110% 75% at 50% 0%, #EEF2F8 0%, #D8DFEB 50%, #CAD2E0 100%);
+  position: relative;
+}
+
+/* Poster Glass Card (Matching the optical 3D glass slab from reference image) */
+.poster-glass-card {
+  position: relative;
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.76) 0%, rgba(236, 241, 250, 0.58) 100%);
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 
+    0 35px 85px -15px rgba(25, 35, 60, 0.18),
+    0 10px 25px -5px rgba(0, 0, 0, 0.05),
+    inset 0 1px 2px rgba(255, 255, 255, 1),
+    inset 0 -1px 2px rgba(0, 0, 0, 0.04);
+  color: #0A0C12;
+}
+
+/* Chromatic Refraction Rim (Exact rainbow dispersion fringe from reference image) */
+.poster-chromatic-rim {
+  position: relative;
+}
+.poster-chromatic-rim::before {
+  content: '';
+  position: absolute;
+  inset: -1.5px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, #FF1E40 0%, #8A2BE2 25%, #0070FF 50%, #00E83F 75%, #FFA500 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+.poster-chromatic-rim:hover::before {
+  opacity: 1;
+}
+
+/* Diagonal Specular Sheen (Optical cylinder highlight) */
+.poster-glass-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.35) 28%,
+    rgba(255, 255, 255, 0.75) 34%,
+    rgba(255, 255, 255, 0.2) 40%,
+    transparent 55%
+  );
+}
+
+/* Tactile Woven Linen / Canvas Background (Retained for legacy if needed) */
+.canvas-woven-bg {
+  background-color: #DDE2EB;
+  background-image: 
+    radial-gradient(110% 75% at 50% 0%, #EEF2F8 0%, #D8DFEB 50%, #CAD2E0 100%);
 }
 
 /* ── Towering Ultra-Condensed Poster Typography (Image 3 Aesthetic) ── */
