@@ -426,42 +426,30 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
             </p>
           </div>
 
-          {/* Bespoke 3D Optical Glass Dropzone Card (Image 3 Reference Style) */}
-          <div className="poster-glass-card poster-chromatic-rim relative rounded-3xl p-6 md:p-10 overflow-hidden space-y-6">
-            {/* Diagonal Specular Cylinder Highlight */}
-            <div className="poster-glass-sheen" />
-
-            {/* Precision Corner Alignment Brackets */}
-            <div className="absolute top-3 left-3 text-[#0B0D12]/30 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute top-3 right-3 text-[#0B0D12]/30 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute bottom-3 left-3 text-[#0B0D12]/30 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute bottom-3 right-3 text-[#0B0D12]/30 font-mono text-xs select-none pointer-events-none">+</div>
-
-            {/* Animated Laser Scanline at Top */}
-            <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#008A20] to-transparent animate-pulse" />
-
-            {/* Dropzone Inner Target Box */}
+          {/* Direct Interactive Dropzone Area (Big outer card removed) */}
+          <div className="space-y-6 max-w-2xl mx-auto">
+            {/* Dropzone Target Box */}
             <div
               onClick={onLaunchApp}
-              className="group relative cursor-pointer p-6 md:p-8 rounded-2xl border-2 border-dashed border-[#0B0D12]/20 hover:border-[#008A20] bg-white/50 hover:bg-white/80 transition-all duration-300 space-y-3 shadow-sm"
+              className="group relative cursor-pointer p-8 md:p-12 rounded-3xl border-2 border-dashed border-[#0B0D12]/20 hover:border-[#008A20] bg-white/60 hover:bg-white/90 backdrop-blur-md transition-all duration-300 space-y-4 shadow-[0_10px_30px_rgba(25,35,60,0.06)] hover:shadow-[0_20px_45px_rgba(0,138,32,0.15)] active:scale-[0.99]"
             >
               {/* Prismatic Radar Beacon */}
-              <div className="w-14 h-14 mx-auto rounded-2xl bg-white/90 border border-white flex items-center justify-center text-[#008A20] group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(0,138,32,0.3)] transition-all duration-300">
-                <Zap className="w-6 h-6 transition-transform group-hover:-translate-y-0.5 fill-current" />
+              <div className="w-16 h-16 mx-auto rounded-2xl bg-white border border-[#CBD4E2] flex items-center justify-center text-[#008A20] group-hover:scale-110 group-hover:shadow-[0_0_25px_rgba(0,138,32,0.25)] transition-all duration-300">
+                <Zap className="w-7 h-7 transition-transform group-hover:-translate-y-0.5 fill-current" />
               </div>
 
-              <div className="space-y-1">
-                <div className="font-condensed-slab text-xl md:text-2xl text-[#0B0D12] group-hover:text-[#008A20] transition-colors tracking-wide">
+              <div className="space-y-1.5 text-center">
+                <div className="font-condensed-slab text-2xl md:text-3xl text-[#0B0D12] group-hover:text-[#008A20] transition-colors tracking-wide">
                   DROP VIDEO FOOTAGE OR BROWSE
                 </div>
-                <div className="text-[10px] font-mono text-[#0B0D12]/60 tracking-widest uppercase font-semibold">
+                <div className="text-[11px] font-mono text-[#0B0D12]/60 tracking-widest uppercase font-semibold">
                   MP4 • MOV • WEBM UP TO 500MB • 32 SENSORS EXTRACTED LIVE
                 </div>
               </div>
             </div>
 
             {/* Quick Benchmark Preset Tags */}
-            <div className="relative z-10 flex flex-wrap items-center justify-center gap-2 pt-1 text-xs font-mono">
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-1 text-xs font-mono">
               <span className="text-[#0B0D12]/60 uppercase tracking-widest text-[10px] font-bold">Or test benchmark:</span>
               {[
                 { name: "⚡ 0:15 TikTok Hook" },
@@ -471,7 +459,7 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
                 <button
                   key={idx}
                   onClick={onLaunchApp}
-                  className="px-3 py-1 rounded-full bg-white/70 hover:bg-white border border-white/90 hover:border-[#008A20]/60 text-[#0B0D12]/80 hover:text-[#0B0D12] transition-all cursor-pointer text-[11px] font-medium shadow-sm"
+                  className="px-3.5 py-1.5 rounded-full bg-white/70 hover:bg-white border border-white/90 hover:border-[#008A20]/60 text-[#0B0D12]/80 hover:text-[#0B0D12] transition-all cursor-pointer text-[11px] font-medium shadow-sm hover:shadow-md"
                 >
                   {preset.name}
                 </button>
@@ -479,7 +467,7 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
             </div>
 
             {/* High-End Tactile Obsidian Glass Cyber-Button */}
-            <div className="relative z-10 pt-2 flex justify-center">
+            <div className="pt-2 flex justify-center">
               <button
                 onClick={onLaunchApp}
                 className="group relative cursor-pointer overflow-hidden rounded-full p-[2px] bg-gradient-to-r from-[#FF1E40] via-[#0070FF] to-[#00E83F] shadow-[0_12px_35px_rgba(0,112,255,0.25)] hover:shadow-[0_16px_45px_rgba(0,232,63,0.4)] transition-all duration-300 active:scale-[0.98]"
