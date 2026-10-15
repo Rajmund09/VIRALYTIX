@@ -30,6 +30,7 @@ import { HorizontalShowcase } from "./HorizontalShowcase";
 import { GlassTiles } from "@/components/ui/glass-tiles";
 import { Beams } from "@/components/ui/beams";
 import { GlassSurface } from "@/components/ui/glass-surface";
+import { InfiniteBand } from "@/components/ui/infinite-band";
 
 interface StudioLandingPageProps {
   onLaunchApp: () => void;
@@ -325,6 +326,16 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
         </div>
       </section>
 
+      {/* ── 01 LUXURY LAUREL GARLAND INFINITE BAND (Between Section 6 & 7) ── */}
+      <InfiniteBand
+        image="/bands/band1.png"
+        height={48}
+        direction="left"
+        speedSeconds={28}
+        alt="Ornamental laurel leaf infinite band"
+        className="bg-[#0A0D12] border-t border-[#CBD4E2]/20 border-b border-[#CBD4E2]/40"
+      />
+
       {/* ── 07 SHAP EXPLAINABILITY FORCE VECTORS SECTION WITH STUDIO GLASS THEME ─────── */}
       <section id="explainability" ref={shapRef} className="relative py-28 px-6 md:px-12 border-t border-[#CBD4E2] studio-glass-bg overflow-hidden">
         <div className="relative z-10 max-w-5xl mx-auto space-y-10">
@@ -466,6 +477,16 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
         </div>
       </section>
 
+      {/* ── 02 GILDED FOLIAGE TAPESTRY INFINITE BAND (Between Section 7 & 8) ── */}
+      <InfiniteBand
+        image="/bands/band2.png"
+        height={50}
+        direction="right"
+        speedSeconds={32}
+        alt="Gilded foliage tapestry infinite band"
+        className="bg-[#DDE2EB] border-y border-[#CBD4E2]"
+      />
+
       {/* ── 08 / 09 LIVE PREDICTION INTERACTIVE UPLOAD EXPERIENCE ────────────── */}
       <section className="py-28 px-6 md:px-12 border-t border-[#CBD4E2] studio-glass-bg">
         <div className="max-w-4xl mx-auto space-y-10 text-center">
@@ -550,6 +571,16 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
           </div>
         </div>
       </section>
+
+      {/* ── 03 GEOMETRIC DIAMOND CHEVRON INFINITE BAND (At Footer) ── */}
+      <InfiniteBand
+        image="/bands/band3.png"
+        height={40}
+        direction="left"
+        speedSeconds={26}
+        alt="Geometric tribal diamond infinite band"
+        className="bg-[#050608] border-y border-white/10"
+      />
 
       {/* ── 10 FINAL EDITORIAL CTA & FOOTER (STUDIO GLASS POSTER THEME) ─────── */}
       <footer className="py-20 px-6 md:px-12 border-t border-[#CBD4E2] studio-glass-bg">

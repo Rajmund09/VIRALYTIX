@@ -807,3 +807,42 @@ body::after {
   0% { transform: translateX(-100%) rotate(12deg); }
   100% { transform: translateX(100%) rotate(12deg); }
 }
+
+/* ── Infinite Moving Ornamental Bands ── */
+@keyframes infinite-band-left {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes infinite-band-right {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-band-left {
+  display: flex;
+  width: max-content;
+  animation: infinite-band-left var(--band-speed, 35s) linear infinite;
+  will-change: transform;
+}
+
+.animate-band-right {
+  display: flex;
+  width: max-content;
+  animation: infinite-band-right var(--band-speed, 35s) linear infinite;
+  will-change: transform;
+}
+
+.animate-band-left:hover,
+.animate-band-right:hover {
+  animation-play-state: paused;
+}
+
