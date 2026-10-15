@@ -3,6 +3,7 @@
 import React, { useRef, useState, useLayoutEffect } from "react";
 import { Zap, ArrowRight, Sun, Moon, Sparkles } from "lucide-react";
 import { gsap, ScrollToPlugin } from "./gsapPlugins";
+import { GlassSurface } from "@/components/ui/glass-surface";
 
 interface HeroNavigationProps {
   onLaunchApp: () => void;
@@ -45,14 +46,25 @@ export const HeroNavigation: React.FC<HeroNavigationProps> = ({ onLaunchApp }) =
       ref={containerRef}
       className="fixed top-4 md:top-6 left-0 right-0 z-50 px-4 md:px-8 transition-transform pointer-events-none flex justify-center"
     >
-      <div className="w-full max-w-5xl pointer-events-auto">
-        {/* ── HYBRID FROSTED GLASS CAPSULE (Mixture of Tourera Glass Pill + Illoca Geometric Structure) ── */}
-        <div
-          ref={pillRef}
-          className="relative flex items-center justify-between px-3 md:px-5 py-2 md:py-2.5 rounded-full bg-[#0A0A0E]/80 backdrop-blur-2xl border border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.7),inset_0_1px_1px_rgba(255,255,255,0.25)] transition-all duration-300"
+      <div ref={pillRef} className="w-full max-w-5xl pointer-events-auto">
+        {/* ── REAL REFRACTIVE GLASS SURFACE NAVBAR ── */}
+        <GlassSurface
+          width="100%"
+          height="auto"
+          borderRadius={9999}
+          distortionScale={-140}
+          redOffset={0}
+          greenOffset={8}
+          blueOffset={16}
+          blur={10}
+          displace={0.5}
+          backgroundOpacity={0.12}
+          saturation={1.2}
+          className="shadow-[0_20px_50px_rgba(0,0,0,0.65)]"
         >
-          {/* Subtle Top Specular Rim Reflection */}
-          <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent pointer-events-none" />
+          <div className="relative flex items-center justify-between px-3 md:px-5 py-2 md:py-2.5 w-full">
+            {/* Subtle Top Specular Rim Reflection */}
+            <div className="absolute top-0 left-6 right-6 h-[1px] bg-gradient-to-r from-transparent via-white/50 to-transparent pointer-events-none" />
 
           {/* ── LEFT: BRAND BLOCK (Tourera Pill Header + Illoca Geometric Icon Badge) ── */}
           <div
@@ -152,8 +164,9 @@ export const HeroNavigation: React.FC<HeroNavigationProps> = ({ onLaunchApp }) =
             </button>
           </div>
         </div>
-      </div>
-    </header>
+      </GlassSurface>
+    </div>
+  </header>
   );
 };
 

@@ -29,7 +29,7 @@ import { Hero } from "./hero/Hero";
 import { HorizontalShowcase } from "./HorizontalShowcase";
 import { GlassTiles } from "@/components/ui/glass-tiles";
 import { Beams } from "@/components/ui/beams";
-import FluidGlassCardFilter from "@/components/ui/FluidGlassCardFilter";
+import { GlassSurface } from "@/components/ui/glass-surface";
 
 interface StudioLandingPageProps {
   onLaunchApp: () => void;
@@ -286,126 +286,138 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
             </p>
           </div>
 
-          {/* Bespoke Fluid Glass Architectural Telemetry Console (Compact & Refined) */}
-          <div className="fluid-glass-card chromatic-rim relative rounded-3xl p-6 md:p-8 text-[#F4F1EA] overflow-hidden space-y-6">
-            {/* Ambient Fluid Glass Card Filter (Refraction, caustics, no cursor attachment) */}
-            <FluidGlassCardFilter glowColor="#00E83F" />
+          {/* Bespoke Real Glass Refractive Telemetry Console */}
+          <GlassSurface
+            width="100%"
+            height="auto"
+            borderRadius={28}
+            distortionScale={-150}
+            redOffset={0}
+            greenOffset={10}
+            blueOffset={20}
+            blur={12}
+            displace={0.4}
+            backgroundOpacity={0.14}
+            saturation={1.25}
+            className="chromatic-rim relative shadow-[0_30px_80px_-15px_rgba(0,0,0,0.65)]"
+          >
+            <div className="relative p-6 md:p-8 text-[#F4F1EA] w-full space-y-6">
+              {/* Precision Laser Crosshairs at Corners */}
+              <div className="absolute top-3 left-3 text-white/30 font-mono text-xs select-none pointer-events-none">+</div>
+              <div className="absolute top-3 right-3 text-white/30 font-mono text-xs select-none pointer-events-none">+</div>
+              <div className="absolute bottom-3 left-3 text-white/30 font-mono text-xs select-none pointer-events-none">+</div>
+              <div className="absolute bottom-3 right-3 text-white/30 font-mono text-xs select-none pointer-events-none">+</div>
 
-            {/* Precision Laser Crosshairs at Corners */}
-            <div className="absolute top-3 left-3 text-white/20 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute top-3 right-3 text-white/20 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute bottom-3 left-3 text-white/20 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute bottom-3 right-3 text-white/20 font-mono text-xs select-none pointer-events-none">+</div>
+              {/* Console Header Bar */}
+              <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-white/10 gap-4">
+                <div className="flex items-center gap-3">
+                  <span className="relative flex h-3 w-3">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E83F] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-[#00E83F]"></span>
+                  </span>
+                  <div>
+                    <div className="text-xs font-mono font-bold tracking-widest text-white uppercase flex items-center gap-2">
+                      <span>SHAP FORCE VECTOR BALANCER</span>
+                      <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-white/70">LIVE</span>
+                    </div>
+                    <div className="text-[10px] font-mono text-[#00E83F] tracking-wider opacity-85">
+                      MODEL: XGBOOST REGRESSOR • 32 COGNITIVE SIGNALS
+                    </div>
+                  </div>
+                </div>
 
-            {/* Console Header Bar */}
-            <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-white/10 gap-4">
-              <div className="flex items-center gap-3">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00E83F] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-[#00E83F]"></span>
-                </span>
-                <div>
-                  <div className="text-xs font-mono font-bold tracking-widest text-white uppercase flex items-center gap-2">
-                    <span>SHAP FORCE VECTOR BALANCER</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-white/10 text-white/70">LIVE</span>
-                  </div>
-                  <div className="text-[10px] font-mono text-[#00E83F] tracking-wider opacity-85">
-                    MODEL: XGBOOST REGRESSOR • 32 COGNITIVE SIGNALS
-                  </div>
+                {/* Condensed Poster Score Readout */}
+                <div className="flex items-center gap-3 bg-white/[0.04] border border-white/15 px-4 py-2 rounded-2xl backdrop-blur-md">
+                  <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">
+                    TOTAL SCORE:
+                  </span>
+                  <span className="font-poster text-3xl md:text-4xl text-white tracking-tight leading-none">
+                    91.2
+                  </span>
+                  <span className="text-xs font-mono font-bold text-[#00E83F]">/ 100</span>
                 </div>
               </div>
 
-              {/* Condensed Poster Score Readout */}
-              <div className="flex items-center gap-3 bg-white/[0.04] border border-white/15 px-4 py-2 rounded-2xl backdrop-blur-md">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-white/50">
-                  TOTAL SCORE:
-                </span>
-                <span className="font-poster text-3xl md:text-4xl text-white tracking-tight leading-none">
-                  91.2
-                </span>
-                <span className="text-xs font-mono font-bold text-[#00E83F]">/ 100</span>
+              {/* Precision Telemetry Vector Channels */}
+              <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+                {/* Channel 1 */}
+                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#00E83F]/50 transition-all space-y-2.5 group">
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="font-mono font-semibold text-white/90 flex items-center gap-1.5">
+                      <span className="text-[#00E83F] font-bold">+</span> 0-3s Hook Power & Text Overlay
+                    </span>
+                    <span className="font-mono font-bold text-[#00E83F] px-2 py-0.5 rounded bg-[#00E83F]/15 border border-[#00E83F]/30 text-[11px] shadow-[0_0_10px_rgba(0,232,63,0.2)]">
+                      +18.4 pts
+                    </span>
+                  </div>
+                  <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden p-[1px]">
+                    <div className="bg-gradient-to-r from-[#00E83F] to-[#00FF88] h-full rounded-full w-[88%] shadow-[0_0_10px_rgba(0,232,63,0.8)]" />
+                  </div>
+                  <div className="text-[10px] font-mono text-white/50 flex justify-between">
+                    <span>MOTION INDEX: 0.88</span>
+                    <span>SYNC: &lt;120ms</span>
+                  </div>
+                </div>
+
+                {/* Channel 2 */}
+                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#00E83F]/50 transition-all space-y-2.5 group">
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="font-mono font-semibold text-white/90 flex items-center gap-1.5">
+                      <span className="text-[#00E83F] font-bold">+</span> Optical Motion Vectors & Scene Cut Speed
+                    </span>
+                    <span className="font-mono font-bold text-[#00E83F] px-2 py-0.5 rounded bg-[#00E83F]/15 border border-[#00E83F]/30 text-[11px] shadow-[0_0_10px_rgba(0,232,63,0.2)]">
+                      +12.6 pts
+                    </span>
+                  </div>
+                  <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden p-[1px]">
+                    <div className="bg-gradient-to-r from-[#00E83F] to-[#00FF88] h-full rounded-full w-[65%] shadow-[0_0_10px_rgba(0,232,63,0.8)]" />
+                  </div>
+                  <div className="text-[10px] font-mono text-white/50 flex justify-between">
+                    <span>CADENCE: 1.8s AVG</span>
+                    <span>ABANDONMENT: MINIMAL</span>
+                  </div>
+                </div>
+
+                {/* Channel 3 */}
+                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-rose-400/50 transition-all space-y-2.5 group">
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="font-mono font-semibold text-white/90 flex items-center gap-1.5">
+                      <span className="text-rose-400 font-bold">-</span> Prolonged Speech Silence Gap
+                    </span>
+                    <span className="font-mono font-bold text-rose-400 px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/30 text-[11px] shadow-[0_0_10px_rgba(244,63,94,0.2)]">
+                      -7.2 pts
+                    </span>
+                  </div>
+                  <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden p-[1px]">
+                    <div className="bg-gradient-to-r from-rose-500 to-rose-400 h-full rounded-full w-[38%] shadow-[0_0_10px_rgba(244,63,94,0.7)]" />
+                  </div>
+                  <div className="text-[10px] font-mono text-white/50 flex justify-between">
+                    <span>SILENCE: 1.2s AT 0:14</span>
+                    <span>DROP-OFF RISK: HIGH</span>
+                  </div>
+                </div>
+
+                {/* Channel 4 */}
+                <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/50 transition-all space-y-2.5 group">
+                  <div className="flex justify-between items-center text-xs">
+                    <span className="font-mono font-semibold text-white/90 flex items-center gap-1.5">
+                      <span className="text-amber-400 font-bold">+</span> Semantic Climax & Narrative Peak
+                    </span>
+                    <span className="font-mono font-black text-amber-400 px-2 py-0.5 rounded bg-amber-400/15 border border-amber-400/30 text-[11px] shadow-[0_0_10px_rgba(251,191,36,0.2)]">
+                      +7.4 pts
+                    </span>
+                  </div>
+                  <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden p-[1px]">
+                    <div className="bg-gradient-to-r from-amber-400 to-yellow-300 h-full rounded-full w-[72%] shadow-[0_0_10px_rgba(251,191,36,0.7)]" />
+                  </div>
+                  <div className="text-[10px] font-mono text-white/50 flex justify-between">
+                    <span>POLARITY SPIKE: 0:28</span>
+                    <span>COMMENT VELOCITY: HIGH</span>
+                  </div>
+                </div>
               </div>
             </div>
-
-            {/* Precision Telemetry Vector Channels */}
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-              {/* Channel 1 */}
-              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#00E83F]/50 transition-all space-y-2.5 group">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono font-semibold text-white/90 flex items-center gap-1.5">
-                    <span className="text-[#00E83F] font-bold">+</span> 0-3s Hook Power & Text Overlay
-                  </span>
-                  <span className="font-mono font-bold text-[#00E83F] px-2 py-0.5 rounded bg-[#00E83F]/15 border border-[#00E83F]/30 text-[11px] shadow-[0_0_10px_rgba(0,232,63,0.2)]">
-                    +18.4 pts
-                  </span>
-                </div>
-                <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden p-[1px]">
-                  <div className="bg-gradient-to-r from-[#00E83F] to-[#00FF88] h-full rounded-full w-[88%] shadow-[0_0_10px_rgba(0,232,63,0.8)]" />
-                </div>
-                <div className="text-[10px] font-mono text-white/50 flex justify-between">
-                  <span>MOTION INDEX: 0.88</span>
-                  <span>SYNC: &lt;120ms</span>
-                </div>
-              </div>
-
-              {/* Channel 2 */}
-              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-[#00E83F]/50 transition-all space-y-2.5 group">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono font-semibold text-white/90 flex items-center gap-1.5">
-                    <span className="text-[#00E83F] font-bold">+</span> Optical Motion Vectors & Scene Cut Speed
-                  </span>
-                  <span className="font-mono font-bold text-[#00E83F] px-2 py-0.5 rounded bg-[#00E83F]/15 border border-[#00E83F]/30 text-[11px] shadow-[0_0_10px_rgba(0,232,63,0.2)]">
-                    +12.6 pts
-                  </span>
-                </div>
-                <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden p-[1px]">
-                  <div className="bg-gradient-to-r from-[#00E83F] to-[#00FF88] h-full rounded-full w-[65%] shadow-[0_0_10px_rgba(0,232,63,0.8)]" />
-                </div>
-                <div className="text-[10px] font-mono text-white/50 flex justify-between">
-                  <span>CADENCE: 1.8s AVG</span>
-                  <span>ABANDONMENT: MINIMAL</span>
-                </div>
-              </div>
-
-              {/* Channel 3 */}
-              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-rose-400/50 transition-all space-y-2.5 group">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono font-semibold text-white/90 flex items-center gap-1.5">
-                    <span className="text-rose-400 font-bold">-</span> Prolonged Speech Silence Gap
-                  </span>
-                  <span className="font-mono font-bold text-rose-400 px-2 py-0.5 rounded bg-rose-500/15 border border-rose-500/30 text-[11px] shadow-[0_0_10px_rgba(244,63,94,0.2)]">
-                    -7.2 pts
-                  </span>
-                </div>
-                <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden p-[1px]">
-                  <div className="bg-gradient-to-r from-rose-500 to-rose-400 h-full rounded-full w-[38%] shadow-[0_0_10px_rgba(244,63,94,0.7)]" />
-                </div>
-                <div className="text-[10px] font-mono text-white/50 flex justify-between">
-                  <span>SILENCE: 1.2s AT 0:14</span>
-                  <span>DROP-OFF RISK: HIGH</span>
-                </div>
-              </div>
-
-              {/* Channel 4 */}
-              <div className="p-4 rounded-xl bg-white/[0.03] border border-white/10 hover:border-amber-400/50 transition-all space-y-2.5 group">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono font-semibold text-white/90 flex items-center gap-1.5">
-                    <span className="text-amber-400 font-bold">+</span> Semantic Climax & Narrative Peak
-                  </span>
-                  <span className="font-mono font-black text-amber-400 px-2 py-0.5 rounded bg-amber-400/15 border border-amber-400/30 text-[11px] shadow-[0_0_10px_rgba(251,191,36,0.2)]">
-                    +7.4 pts
-                  </span>
-                </div>
-                <div className="w-full bg-white/10 h-1.5 rounded-full overflow-hidden p-[1px]">
-                  <div className="bg-gradient-to-r from-amber-400 to-yellow-300 h-full rounded-full w-[72%] shadow-[0_0_10px_rgba(251,191,36,0.7)]" />
-                </div>
-                <div className="text-[10px] font-mono text-white/50 flex justify-between">
-                  <span>POLARITY SPIKE: 0:28</span>
-                  <span>COMMENT VELOCITY: HIGH</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          </GlassSurface>
         </div>
       </section>
 
@@ -426,108 +438,139 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
             </p>
           </div>
 
-          {/* Bespoke Interactive Fluid Glass Dropzone Card */}
-          <div className="fluid-glass-card chromatic-rim relative rounded-3xl p-6 md:p-10 text-[#F4F1EA] overflow-hidden space-y-6">
-            {/* Ambient Fluid Glass Card Filter (Refraction, caustics, no cursor attachment) */}
-            <FluidGlassCardFilter glowColor="#00E83F" />
+          {/* Bespoke Interactive Real Glass Dropzone Card */}
+          <GlassSurface
+            width="100%"
+            height="auto"
+            borderRadius={28}
+            distortionScale={-150}
+            redOffset={0}
+            greenOffset={10}
+            blueOffset={20}
+            blur={12}
+            displace={0.4}
+            backgroundOpacity={0.14}
+            saturation={1.25}
+            className="chromatic-rim relative shadow-[0_30px_80px_-15px_rgba(0,0,0,0.65)]"
+          >
+            <div className="relative p-6 md:p-10 text-[#F4F1EA] w-full space-y-6">
+              {/* Precision Corner Alignment Brackets */}
+              <div className="absolute top-3 left-3 text-white/30 font-mono text-xs select-none pointer-events-none">+</div>
+              <div className="absolute top-3 right-3 text-white/30 font-mono text-xs select-none pointer-events-none">+</div>
+              <div className="absolute bottom-3 left-3 text-white/30 font-mono text-xs select-none pointer-events-none">+</div>
+              <div className="absolute bottom-3 right-3 text-white/30 font-mono text-xs select-none pointer-events-none">+</div>
 
-            {/* Precision Corner Alignment Brackets */}
-            <div className="absolute top-3 left-3 text-white/20 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute top-3 right-3 text-white/20 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute bottom-3 left-3 text-white/20 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute bottom-3 right-3 text-white/20 font-mono text-xs select-none pointer-events-none">+</div>
+              {/* Animated Laser Scanline at Top */}
+              <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#00E83F] to-transparent animate-pulse" />
 
-            {/* Animated Laser Scanline at Top */}
-            <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-transparent via-[#00E83F] to-transparent animate-pulse" />
-
-            {/* Dropzone Inner Target Box */}
-            <div
-              onClick={onLaunchApp}
-              className="group relative cursor-pointer p-6 md:p-8 rounded-2xl border border-dashed border-white/20 hover:border-[#00E83F]/70 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 space-y-3"
-            >
-              {/* Prismatic Radar Beacon */}
-              <div className="w-14 h-14 mx-auto rounded-2xl bg-white/[0.05] border border-white/20 flex items-center justify-center text-[#00E83F] group-hover:scale-110 group-hover:border-[#00E83F]/80 group-hover:shadow-[0_0_25px_rgba(0,232,63,0.5)] transition-all duration-300">
-                <Zap className="w-6 h-6 transition-transform group-hover:-translate-y-0.5 fill-current" />
-              </div>
-
-              <div className="space-y-1">
-                <div className="font-condensed-slab text-xl md:text-2xl text-white group-hover:text-[#00E83F] transition-colors tracking-wide">
-                  DROP VIDEO FOOTAGE OR BROWSE
-                </div>
-                <div className="text-[10px] font-mono text-white/50 tracking-widest uppercase">
-                  MP4 • MOV • WEBM UP TO 500MB • 32 SENSORS EXTRACTED LIVE
-                </div>
-              </div>
-            </div>
-
-            {/* Quick Benchmark Preset Tags */}
-            <div className="relative z-10 flex flex-wrap items-center justify-center gap-2 pt-1 text-xs font-mono">
-              <span className="text-white/40 uppercase tracking-widest text-[10px]">Or test benchmark:</span>
-              {[
-                { name: "⚡ 0:15 TikTok Hook" },
-                { name: "📈 0:45 YT Shorts" },
-                { name: "🎬 1:00 Brand Reel" },
-              ].map((preset, idx) => (
-                <button
-                  key={idx}
-                  onClick={onLaunchApp}
-                  className="px-3 py-1 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-[#00E83F]/60 text-white/80 hover:text-white transition-all cursor-pointer text-[11px]"
-                >
-                  {preset.name}
-                </button>
-              ))}
-            </div>
-
-            {/* Unique Aesthetic Fluid-Glass Tactile Button */}
-            <div className="relative z-10 pt-2 flex justify-center">
-              <button
+              {/* Dropzone Inner Target Box */}
+              <div
                 onClick={onLaunchApp}
-                className="fluid-glass-button group cursor-pointer"
+                className="group relative cursor-pointer p-6 md:p-8 rounded-2xl border border-dashed border-white/20 hover:border-[#00E83F]/80 bg-white/[0.02] hover:bg-white/[0.05] transition-all duration-300 space-y-3"
               >
-                {/* Diagonal Specular Light Glint Sweep */}
-                <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transform duration-700 ease-in-out" />
+                {/* Prismatic Radar Beacon */}
+                <div className="w-14 h-14 mx-auto rounded-2xl bg-white/[0.05] border border-white/20 flex items-center justify-center text-[#00E83F] group-hover:scale-110 group-hover:border-[#00E83F]/80 group-hover:shadow-[0_0_25px_rgba(0,232,63,0.5)] transition-all duration-300">
+                  <Zap className="w-6 h-6 transition-transform group-hover:-translate-y-0.5 fill-current" />
+                </div>
 
-                <span className="w-7 h-7 rounded-full bg-[#00E83F]/20 border border-[#00E83F]/60 flex items-center justify-center text-[#00E83F] shadow-[0_0_15px_rgba(0,232,63,0.5)] group-hover:scale-110 transition-transform">
-                  <Zap className="w-3.5 h-3.5 fill-current animate-pulse" />
-                </span>
+                <div className="space-y-1">
+                  <div className="font-condensed-slab text-xl md:text-2xl text-white group-hover:text-[#00E83F] transition-colors tracking-wide">
+                    DROP VIDEO FOOTAGE OR BROWSE
+                  </div>
+                  <div className="text-[10px] font-mono text-white/50 tracking-widest uppercase">
+                    MP4 • MOV • WEBM UP TO 500MB • 32 SENSORS EXTRACTED LIVE
+                  </div>
+                </div>
+              </div>
 
-                <span className="font-condensed-slab text-base md:text-lg tracking-wider text-white drop-shadow-md">
-                  LAUNCH VIRALITY ENGINE
-                </span>
+              {/* Quick Benchmark Preset Tags */}
+              <div className="relative z-10 flex flex-wrap items-center justify-center gap-2 pt-1 text-xs font-mono">
+                <span className="text-white/40 uppercase tracking-widest text-[10px]">Or test benchmark:</span>
+                {[
+                  { name: "⚡ 0:15 TikTok Hook" },
+                  { name: "📈 0:45 YT Shorts" },
+                  { name: "🎬 1:00 Brand Reel" },
+                ].map((preset, idx) => (
+                  <button
+                    key={idx}
+                    onClick={onLaunchApp}
+                    className="px-3 py-1 rounded-full bg-white/5 hover:bg-white/15 border border-white/10 hover:border-[#00E83F]/60 text-white/80 hover:text-white transition-all cursor-pointer text-[11px]"
+                  >
+                    {preset.name}
+                  </button>
+                ))}
+              </div>
 
-                <span className="w-7 h-7 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/80 group-hover:bg-[#00E83F] group-hover:text-black group-hover:translate-x-1 transition-all">
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </span>
-              </button>
+              {/* Unique Aesthetic Fluid-Glass Tactile Button */}
+              <div className="relative z-10 pt-2 flex justify-center">
+                <button
+                  onClick={onLaunchApp}
+                  className="fluid-glass-button group cursor-pointer"
+                >
+                  {/* Diagonal Specular Light Glint Sweep */}
+                  <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transform duration-700 ease-in-out" />
+
+                  <span className="w-7 h-7 rounded-full bg-[#00E83F]/20 border border-[#00E83F]/60 flex items-center justify-center text-[#00E83F] shadow-[0_0_15px_rgba(0,232,63,0.5)] group-hover:scale-110 transition-transform">
+                    <Zap className="w-3.5 h-3.5 fill-current animate-pulse" />
+                  </span>
+
+                  <span className="font-condensed-slab text-base md:text-lg tracking-wider text-white drop-shadow-md">
+                    LAUNCH VIRALITY ENGINE
+                  </span>
+
+                  <span className="w-7 h-7 rounded-full bg-white/10 border border-white/20 flex items-center justify-center text-white/80 group-hover:bg-[#00E83F] group-hover:text-black group-hover:translate-x-1 transition-all">
+                    <ArrowRight className="w-3.5 h-3.5" />
+                  </span>
+                </button>
+              </div>
             </div>
-          </div>
+          </GlassSurface>
         </div>
       </section>
 
       {/* ── 10 FINAL EDITORIAL CTA & FOOTER ─────────────────────────────── */}
       <footer className="py-20 px-6 md:px-12 border-t border-black/15 canvas-woven-bg">
-        <div className="max-w-7xl mx-auto space-y-16">
-          <div className="space-y-4">
-            <div className="text-xs font-mono text-[#008A20] font-bold uppercase tracking-widest">
-              VIRALYTIX INTELLIGENCE SYSTEM
-            </div>
-            <div className="text-6xl sm:text-8xl font-black tracking-tighter uppercase font-sans">
-              <LayeredText text="SEE THE SIGNAL." topColor="#111111" />
-            </div>
-          </div>
+        <div className="max-w-7xl mx-auto space-y-12">
+          {/* Real Glass Surface Footer Intelligence Console */}
+          <GlassSurface
+            width="100%"
+            height="auto"
+            borderRadius={28}
+            distortionScale={-130}
+            redOffset={0}
+            greenOffset={8}
+            blueOffset={16}
+            blur={10}
+            displace={0.4}
+            backgroundOpacity={0.14}
+            saturation={1.2}
+            className="chromatic-rim relative shadow-[0_25px_70px_-15px_rgba(0,0,0,0.6)]"
+          >
+            <div className="p-8 md:p-12 space-y-12 w-full">
+              <div className="space-y-4">
+                <div className="text-xs font-mono text-[#00E83F] font-bold uppercase tracking-widest flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#00E83F] animate-pulse" />
+                  VIRALYTIX INTELLIGENCE SYSTEM
+                </div>
+                <div className="text-5xl sm:text-7xl lg:text-8xl font-black tracking-tighter uppercase font-sans text-white">
+                  <LayeredText text="SEE THE SIGNAL." topColor="#FFFFFF" />
+                </div>
+              </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-between border-t border-black/15 pt-8 text-xs font-mono text-[#141412]/60 gap-4">
-            <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-[#008A20]" />
-              <span className="text-[#141412]/80">VIRALYTIX © 2026 • Built with ❤️ by Prabhu Shankar Mund (Raj)</span>
+              <div className="flex flex-col md:flex-row items-center justify-between border-t border-white/10 pt-8 text-xs font-mono text-[#F4F1EA]/70 gap-4">
+                <div className="flex items-center gap-2">
+                  <Zap className="w-4 h-4 text-[#00E83F]" />
+                  <span className="text-white/90">VIRALYTIX © 2026 • Built with ❤️ by Prabhu Shankar Mund (Raj)</span>
+                </div>
+                <div className="flex items-center gap-6">
+                  <a href="#signals" className="hover:text-[#00E83F] transition-colors">Signals</a>
+                  <a href="#swarm" className="hover:text-[#00E83F] transition-colors">Swarm</a>
+                  <a href="#models" className="hover:text-[#00E83F] transition-colors">XGBoost</a>
+                  <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-[#00E83F] transition-colors">GitHub</a>
+                </div>
+              </div>
             </div>
-            <div className="flex items-center gap-6">
-              <a href="#signals" className="hover:text-[#008A20] transition-colors">Signals</a>
-              <a href="#swarm" className="hover:text-[#008A20] transition-colors">Swarm</a>
-              <a href="#models" className="hover:text-[#008A20] transition-colors">XGBoost</a>
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-[#008A20] transition-colors">GitHub</a>
-            </div>
-          </div>
+          </GlassSurface>
         </div>
       </footer>
     </div>

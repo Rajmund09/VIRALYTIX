@@ -1,0 +1,113 @@
+.glass-surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 0.26s ease-out;
+}
+
+.glass-surface__filter {
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  z-index: -1;
+}
+
+.glass-surface__content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-radius: inherit;
+  position: relative;
+  z-index: 1;
+}
+
+.glass-surface--svg,
+.glass-surface--fallback,
+.glass-surface--webgl {
+  background: rgba(14, 16, 22, calc(0.68 + var(--glass-frost, 0.08) * 0.3));
+  backdrop-filter: var(--filter-id, url(#glass-filter)) saturate(var(--glass-saturation, 1.25)) blur(20px);
+  -webkit-backdrop-filter: var(--filter-id, url(#glass-filter)) saturate(var(--glass-saturation, 1.25)) blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    0 24px 70px -12px rgba(0, 0, 0, 0.65),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.35),
+    inset 0 -1px 2px 0 rgba(0, 232, 63, 0.15);
+}
+
+.glass-surface__canvas,
+.glass-surface__frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.glass-surface__sheen,
+.glass-surface__rim {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.glass-surface__sheen {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.18) 0%,
+    transparent 35%,
+    transparent 65%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+}
+
+.glass-surface__rim {
+  padding: 1.5px;
+  background: linear-gradient(
+    140deg,
+    rgba(255, 255, 255, 0.6) 0%,
+    rgba(0, 232, 63, 0.35) 30%,
+    rgba(60, 160, 255, 0.35) 60%,
+    rgba(255, 255, 255, 0.15) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box exclude,
+    linear-gradient(#000 0 0);
+}
+
+.glass-surface__line,
+.glass-surface__glow {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  -webkit-mask-size: 100% 100%;
+  mask-size: 100% 100%;
+}
+
+.glass-surface--svg .glass-surface__line,
+.glass-surface--webgl .glass-surface__line,
+.glass-surface--fallback .glass-surface__line {
+  background: rgba(255, 255, 255, 0.45);
+}
+
+.glass-surface--svg .glass-surface__glow,
+.glass-surface--webgl .glass-surface__glow,
+.glass-surface--fallback .glass-surface__glow {
+  background: rgba(0, 232, 63, 0.2);
+}
+
+.glass-surface:focus-visible {
+  outline: 2px solid #00E83F;
+  outline-offset: 2px;
+}
