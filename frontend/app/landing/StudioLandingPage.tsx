@@ -29,7 +29,7 @@ import { Hero } from "./hero/Hero";
 import { HorizontalShowcase } from "./HorizontalShowcase";
 import { GlassTiles } from "@/components/ui/glass-tiles";
 import { Beams } from "@/components/ui/beams";
-import { FluidGlassCardOverlay } from "@/components/ui/fluid-glass";
+import FluidGlassCardFilter from "@/components/ui/FluidGlassCardFilter";
 
 interface StudioLandingPageProps {
   onLaunchApp: () => void;
@@ -288,8 +288,8 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
 
           {/* Bespoke Fluid Glass Architectural Telemetry Console (Compact & Refined) */}
           <div className="fluid-glass-card chromatic-rim relative rounded-3xl p-6 md:p-8 text-[#F4F1EA] overflow-hidden space-y-6">
-            {/* Embedded 3D Fluid Glass Chromatic Refraction Layer */}
-            <FluidGlassCardOverlay mode="bar" opacity={0.6} />
+            {/* Ambient Fluid Glass Card Filter (Refraction, caustics, no cursor attachment) */}
+            <FluidGlassCardFilter glowColor="#00E83F" />
 
             {/* Precision Laser Crosshairs at Corners */}
             <div className="absolute top-3 left-3 text-white/20 font-mono text-xs select-none pointer-events-none">+</div>
@@ -428,8 +428,8 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
 
           {/* Bespoke Interactive Fluid Glass Dropzone Card */}
           <div className="fluid-glass-card chromatic-rim relative rounded-3xl p-6 md:p-10 text-[#F4F1EA] overflow-hidden space-y-6">
-            {/* Embedded 3D Fluid Glass Chromatic Refraction Layer */}
-            <FluidGlassCardOverlay mode="lens" opacity={0.65} />
+            {/* Ambient Fluid Glass Card Filter (Refraction, caustics, no cursor attachment) */}
+            <FluidGlassCardFilter glowColor="#00E83F" />
 
             {/* Precision Corner Alignment Brackets */}
             <div className="absolute top-3 left-3 text-white/20 font-mono text-xs select-none pointer-events-none">+</div>
