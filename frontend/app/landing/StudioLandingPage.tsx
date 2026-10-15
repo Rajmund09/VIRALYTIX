@@ -326,19 +326,19 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
         </div>
       </section>
 
-      {/* ── 01 LUXURY LAUREL GARLAND INFINITE BAND (Between Section 6 & 7) ── */}
-      <InfiniteBand
-        image="/bands/band1.png"
-        height={48}
-        direction="left"
-        speedSeconds={28}
-        alt="Ornamental laurel leaf infinite band"
-        className="bg-[#0A0D12] border-t border-[#CBD4E2]/20 border-b border-[#CBD4E2]/40"
-      />
-
       {/* ── 07 SHAP EXPLAINABILITY FORCE VECTORS SECTION WITH STUDIO GLASS THEME ─────── */}
-      <section id="explainability" ref={shapRef} className="relative py-28 px-6 md:px-12 border-t border-[#CBD4E2] studio-glass-bg overflow-hidden">
-        <div className="relative z-10 max-w-5xl mx-auto space-y-10">
+      <section id="explainability" ref={shapRef} className="relative border-t border-[#CBD4E2] studio-glass-bg overflow-hidden">
+        {/* ── 01 LUXURY LAUREL GARLAND INFINITE BAND (At Starting of Section 7) ── */}
+        <InfiniteBand
+          image="/bands/band1.png"
+          height={48}
+          direction="left"
+          speedSeconds={28}
+          alt="Ornamental laurel leaf infinite band"
+          className="bg-[#DDE2EB] border-b border-[#CBD4E2]"
+        />
+
+        <div className="relative z-10 max-w-5xl mx-auto space-y-10 py-20 md:py-24 px-6 md:px-12">
           {/* Editorial Poster Header (Image 3 Poster Aesthetic: Cool Periwinkle Studio & Towering Black Typography) */}
           <div className="space-y-4 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/70 backdrop-blur-md border border-white/80 text-xs font-mono font-bold tracking-widest text-[#008A20] uppercase shadow-sm">
