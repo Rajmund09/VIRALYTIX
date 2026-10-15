@@ -28,6 +28,7 @@ import { LayeredText } from "./LayeredText";
 import { Hero } from "./hero/Hero";
 import { HorizontalShowcase } from "./HorizontalShowcase";
 import { GlassTiles } from "@/components/ui/glass-tiles";
+import { Beams } from "@/components/ui/beams";
 
 interface StudioLandingPageProps {
   onLaunchApp: () => void;
@@ -172,9 +173,35 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
       {/* ── 03, 04 & 05 GSAP SIDEWAYS HORIZONTAL SCROLL SHOWCASE ────────── */}
       <HorizontalShowcase />
 
-      {/* ── 07 MACHINE LEARNING MODEL RACE SECTION ─────────────────────── */}
-      <section id="models" ref={mlRef} className="py-24 px-6 md:px-12 border-t border-[#F4F1EA]/10">
-        <div className="max-w-7xl mx-auto space-y-12">
+      {/* ── 06 MACHINE LEARNING MODEL RACE SECTION WITH BEAMS ─────────── */}
+      <section id="models" ref={mlRef} className="relative py-28 px-6 md:px-12 border-t border-[#F4F1EA]/10 bg-black overflow-hidden">
+        {/* Shimmering Metallic Beams Canvas Background (Studio Preset: 28° Angle, 140px Beam Width) */}
+        <div className="absolute inset-0 pointer-events-none z-0 w-full h-full">
+          <Beams
+            className="w-full h-full"
+            color="#ffffff"
+            backgroundColor="#000000"
+            beamWidth={140}
+            rotation={28}
+            waveLength={233}
+            depth={1}
+            sharpness={0.6}
+            twist={0}
+            fillLight={0.3}
+            speed={1}
+            brightness={1.6}
+            glow={0.6}
+            grain={0.35}
+            variation={0}
+            mouseStrength={1}
+            fade={0}
+            opacity={1}
+            mouseInteraction={false}
+            intro={false}
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto space-y-12">
           <div className="space-y-2">
             <span className="text-xs font-mono text-[#00E83F] font-bold uppercase tracking-widest">
               06 // LABORATORY EVALUATION BENCHMARK
@@ -220,9 +247,35 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
         </div>
       </section>
 
-      {/* ── 08 SHAP EXPLAINABILITY FORCE VECTORS SECTION ───────────────── */}
-      <section id="explainability" ref={shapRef} className="py-24 px-6 md:px-12 border-t border-[#F4F1EA]/10">
-        <div className="max-w-7xl mx-auto space-y-12">
+      {/* ── 07 SHAP EXPLAINABILITY FORCE VECTORS SECTION WITH BEAMS ─────── */}
+      <section id="explainability" ref={shapRef} className="relative py-28 px-6 md:px-12 border-t border-[#F4F1EA]/10 bg-black overflow-hidden">
+        {/* Shimmering Metallic Beams Canvas Background (Studio Preset: 28° Angle, 140px Beam Width) */}
+        <div className="absolute inset-0 pointer-events-none z-0 w-full h-full">
+          <Beams
+            className="w-full h-full"
+            color="#ffffff"
+            backgroundColor="#000000"
+            beamWidth={140}
+            rotation={28}
+            waveLength={233}
+            depth={1}
+            sharpness={0.6}
+            twist={0}
+            fillLight={0.3}
+            speed={1}
+            brightness={1.6}
+            glow={0.6}
+            grain={0.35}
+            variation={0}
+            mouseStrength={1}
+            fade={0}
+            opacity={1}
+            mouseInteraction={false}
+            intro={false}
+          />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto space-y-12">
           <div className="space-y-2">
             <span className="text-xs font-mono text-[#F5A7E8] font-bold uppercase tracking-widest">
               07 // EXPLAINABLE AI ATTRIBUTION
