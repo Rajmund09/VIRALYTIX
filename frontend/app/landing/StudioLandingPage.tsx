@@ -331,7 +331,7 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
         {/* ── 01 LUXURY LAUREL GARLAND INFINITE BAND (At Starting of Section 7) ── */}
         <InfiniteBand
           image="/bands/band1.png"
-          height={48}
+          height={64}
           direction="left"
           speedSeconds={28}
           alt="Ornamental laurel leaf infinite band"
@@ -480,7 +480,7 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
       {/* ── 02 GILDED FOLIAGE TAPESTRY INFINITE BAND (Between Section 7 & 8) ── */}
       <InfiniteBand
         image="/bands/band2.png"
-        height={50}
+        height={68}
         direction="right"
         speedSeconds={32}
         alt="Gilded foliage tapestry infinite band"
@@ -575,7 +575,7 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
       {/* ── 03 GEOMETRIC DIAMOND CHEVRON INFINITE BAND (At Footer) ── */}
       <InfiniteBand
         image="/bands/band3.png"
-        height={40}
+        height={52}
         direction="left"
         speedSeconds={26}
         alt="Geometric tribal diamond infinite band"
