@@ -284,7 +284,7 @@ void main() {
 
   float hot = textureLod(uField, uv, 0.0).g;
   vec3 light = uColor * (radiance + bloom * uGlow) * uGain;
-  light += mix(uColor, vec3(1.0), 0.7) * hot * hot * 0.12 * uGain;
+  light += vec3(1.0) * hot * hot * 0.3 * uGain;
   light *= uPresence;
   vec3 color = toSrgb(acesFilmic(light));
   color -= grainNoise(gl_FragCoord.xy) / 15.0 * uGrain;

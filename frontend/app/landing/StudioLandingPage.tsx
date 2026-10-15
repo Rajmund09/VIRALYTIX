@@ -183,7 +183,7 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
             backgroundColor="#000000"
             beamWidth={140}
             rotation={28}
-            waveLength={120}
+            waveLength={337}
             depth={1}
             sharpness={0.6}
             twist={0}
@@ -235,9 +235,8 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
 
                 <div className="w-full bg-[#141412] h-4 rounded-full overflow-hidden border border-[#F4F1EA]/15 p-0.5">
                   <div
-                    className={`ml-model-bar h-full rounded-full origin-left transition-all ${
-                      m.selected ? "bg-gradient-to-r from-[#00E83F] to-[#F5A7E8]" : "bg-[#F4F1EA]/30"
-                    }`}
+                    className={`ml-model-bar h-full rounded-full origin-left transition-all ${m.selected ? "bg-gradient-to-r from-[#00E83F] to-[#F5A7E8]" : "bg-[#F4F1EA]/30"
+                      }`}
                     style={{ width: `${parseFloat(m.r2) * 100}%` }}
                   />
                 </div>
@@ -257,14 +256,14 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
             backgroundColor="#000000"
             beamWidth={140}
             rotation={28}
-            waveLength={120}
+            waveLength={337}
             depth={1}
-            sharpness={0.6}
+            sharpness={0.5}
             twist={0}
-            fillLight={0.3}
+            fillLight={0.7}
             speed={1}
-            brightness={1.6}
-            glow={0.6}
+            brightness={2.6}
+            glow={1.2}
             grain={0.35}
             variation={0}
             mouseStrength={1}
