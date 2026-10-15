@@ -222,45 +222,102 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto space-y-12">
-          <div className="space-y-2">
-            <span className="text-xs font-mono text-[#00E83F] font-bold uppercase tracking-widest">
-              06 // LABORATORY EVALUATION BENCHMARK
-            </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-[#F4F1EA]">
-              Four Models. One Prediction.
+        <div className="relative z-10 max-w-7xl mx-auto space-y-10">
+          <div className="space-y-3">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-none bg-[#00E83F]/10 border-l-2 border-[#00E83F] text-xs font-mono font-bold tracking-widest text-[#00E83F] uppercase">
+              <span className="w-1.5 h-1.5 bg-[#00E83F] animate-pulse" />
+              06 // LABORATORY EVALUATION BENCHMARK • SERIES 03
+            </div>
+            <h2 className="font-poster text-5xl sm:text-7xl lg:text-8xl text-[#F4F1EA] tracking-tight leading-[0.88] uppercase">
+              Four Models. <br />
+              <span className="text-[#00E83F]">One Prediction.</span>
             </h2>
+            <p className="text-xs sm:text-sm font-mono text-[#F4F1EA]/60 tracking-wider max-w-xl">
+              Benchmarked across 100,000+ short-form videos with 32 cognitive and acoustic sensors.
+            </p>
           </div>
 
-          <div className="space-y-6">
+          <div className="space-y-4">
             {[
-              { model: "XGBoost Regressor", r2: "0.912", mae: "3.42", selected: true },
-              { model: "Random Forest", r2: "0.845", mae: "4.88", selected: false },
-              { model: "MLP Neural Network", r2: "0.810", mae: "5.12", selected: false },
-              { model: "Linear Regression", r2: "0.624", mae: "7.94", selected: false },
-            ].map((m, idx) => (
-              <div key={idx} className="space-y-2 font-mono">
-                <div className="flex justify-between items-center text-xs">
-                  <div className="flex items-center gap-2">
-                    <span className="font-bold text-[#F4F1EA]">{m.model}</span>
+              { id: "01", model: "XGBoost Regressor", r2: "0.912", mae: "3.42", selected: true, latency: "1.2ms" },
+              { id: "02", model: "Random Forest", r2: "0.845", mae: "4.88", selected: false, latency: "8.4ms" },
+              { id: "03", model: "MLP Neural Network", r2: "0.810", mae: "5.12", selected: false, latency: "14.1ms" },
+              { id: "04", model: "Linear Regression", r2: "0.624", mae: "7.94", selected: false, latency: "0.3ms" },
+            ].map((m) => (
+              <div
+                key={m.id}
+                className={`p-4 md:p-5 transition-all duration-300 rounded-none border ${
+                  m.selected
+                    ? "bg-[#0A0D14]/90 border-l-4 border-l-[#00E83F] border-t-white/15 border-r-white/15 border-b-white/15 shadow-[0_10px_30px_rgba(0,232,63,0.12)]"
+                    : "bg-[#07090E]/60 border-l-2 border-l-white/20 border-t-white/10 border-r-white/10 border-b-white/10 hover:border-l-[#38BDF8]"
+                }`}
+              >
+                {/* Header Row */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-3 gap-2">
+                  <div className="flex flex-wrap items-center gap-3">
+                    <span className="font-mono text-xs font-bold text-white/40 tracking-wider">[{m.id}]</span>
+                    <span className="font-condensed-slab text-xl md:text-2xl text-[#F4F1EA] tracking-wide uppercase">
+                      {m.model}
+                    </span>
                     {m.selected && (
-                      <span className="px-2 py-0.5 rounded bg-[#00E83F]/20 text-[#00E83F] border border-[#00E83F]/40 text-[9px] font-bold">
+                      <span className="px-2.5 py-0.5 rounded-none bg-[#00E83F]/15 border border-[#00E83F]/50 text-[#00E83F] font-mono text-[10px] font-bold tracking-widest uppercase flex items-center gap-1.5 shadow-[0_0_12px_rgba(0,232,63,0.3)]">
+                        <span className="w-1.5 h-1.5 bg-[#00E83F] animate-ping" />
                         SELECTED PRODUCTION MODEL
                       </span>
                     )}
                   </div>
-                  <span className={m.selected ? "text-[#00E83F] font-black text-sm" : "text-[#F4F1EA]/60 text-xs"}>
-                    R² = {m.r2} (MAE: {m.mae})
-                  </span>
+
+                  <div className="flex items-center gap-4 font-mono text-xs">
+                    <span className="text-white/40 text-[11px] hidden md:inline">
+                      LATENCY: <span className="text-white/80 font-bold">{m.latency}</span>
+                    </span>
+                    <span className="text-white/40 text-[11px]">
+                      MAE: <span className="text-white/80 font-bold">{m.mae}</span>
+                    </span>
+                    <div className="flex items-baseline gap-1.5">
+                      <span className="text-white/40 text-[10px] uppercase tracking-wider">R² ACCURACY:</span>
+                      <span className={`text-base font-bold font-mono tracking-tight ${m.selected ? "text-[#00E83F]" : "text-white/80"}`}>
+                        {m.r2}
+                      </span>
+                    </div>
+                  </div>
                 </div>
 
-                <div className="w-full bg-[#141412] h-4 rounded-full overflow-hidden border border-[#F4F1EA]/15 p-0.5">
+                {/* Precision Architectural Rectangular Bar Track */}
+                <div className="relative w-full h-5 bg-[#030508] border border-white/15 rounded-none overflow-hidden p-0.5">
+                  {/* Laboratory Ruler Tick Grid */}
+                  <div className="absolute inset-0 flex justify-between pointer-events-none px-2 z-10">
+                    <div className="w-[1px] h-full bg-white/10" style={{ marginLeft: "25%" }} />
+                    <div className="w-[1px] h-full bg-white/10" style={{ marginLeft: "25%" }} />
+                    <div className="w-[1px] h-full bg-white/10" style={{ marginLeft: "25%" }} />
+                  </div>
+
+                  {/* Architectural Rectangular Fill with Angled Slant on Single Leading Edge */}
                   <div
-                    className={`ml-model-bar h-full rounded-full origin-left transition-all ${
-                      m.selected ? "bg-gradient-to-r from-[#00E83F] to-[#F5A7E8]" : "bg-[#F4F1EA]/30"
+                    className={`ml-model-bar h-full rounded-none origin-left transition-all duration-700 relative ${
+                      m.selected
+                        ? "bg-gradient-to-r from-[#00A82F] via-[#00E83F] to-[#38BDF8]"
+                        : "bg-white/20 hover:bg-white/30"
                     }`}
-                    style={{ width: `${parseFloat(m.r2) * 100}%` }}
-                  />
+                    style={{
+                      width: `${parseFloat(m.r2) * 100}%`,
+                      clipPath: "polygon(0 0, 100% 0, calc(100% - 8px) 100%, 0 100%)",
+                    }}
+                  >
+                    {/* Laser Tip Highlight on Leading Edge */}
+                    {m.selected && (
+                      <div className="absolute top-0 right-0 bottom-0 w-1.5 bg-white shadow-[0_0_12px_#00E83F]" />
+                    )}
+                  </div>
+                </div>
+
+                {/* Metric Ruler Scale Labels */}
+                <div className="flex justify-between text-[9px] font-mono text-white/30 pt-1.5 uppercase tracking-widest">
+                  <span>0.0 BASELINE</span>
+                  <span>0.25</span>
+                  <span>0.50</span>
+                  <span>0.75</span>
+                  <span className={m.selected ? "text-[#00E83F] font-bold" : ""}>1.0 PERFECT CORRELATION</span>
                 </div>
               </div>
             ))}
