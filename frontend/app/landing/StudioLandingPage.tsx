@@ -110,8 +110,28 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
         );
       }
 
-      // ML Model Comparison Line Progress
+      // ML Model Comparison Line Progress & Section 06 Beams Background Appearance
       if (mlRef.current) {
+        const beamsBg = mlRef.current.querySelector(".beams-bg-wrapper");
+        if (beamsBg) {
+          gsap.fromTo(
+            beamsBg,
+            { opacity: 0, scale: 1.08, filter: "brightness(0.15) contrast(1.5)" },
+            {
+              opacity: 1,
+              scale: 1,
+              filter: "brightness(1) contrast(1)",
+              duration: 1.8,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: mlRef.current,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+
         const bars = mlRef.current.querySelectorAll(".ml-model-bar");
         gsap.fromTo(
           bars,
@@ -175,15 +195,15 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
 
       {/* ── 06 MACHINE LEARNING MODEL RACE SECTION WITH BEAMS ─────────── */}
       <section id="models" ref={mlRef} className="relative py-28 px-6 md:px-12 border-t border-[#F4F1EA]/10 bg-black overflow-hidden">
-        {/* Shimmering Metallic Beams Canvas Background (Studio Preset: 28° Angle, 140px Beam Width) */}
-        <div className="absolute inset-0 pointer-events-none z-0 w-full h-full">
+        {/* Shimmering Metallic Beams Canvas Background with Cinematic Appearing Entrance */}
+        <div className="beams-bg-wrapper absolute inset-0 pointer-events-none z-0 w-full h-full will-change-transform">
           <Beams
             className="w-full h-full"
             color="#ffffff"
             backgroundColor="#000000"
             beamWidth={140}
             rotation={28}
-            waveLength={120}
+            waveLength={337}
             depth={1}
             sharpness={0.6}
             twist={0}
@@ -194,10 +214,10 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
             grain={0.35}
             variation={0}
             mouseStrength={1}
-            fade={0}
+            fade={0.2}
             opacity={1}
             mouseInteraction={false}
-            intro={false}
+            intro={true}
           />
         </div>
 
