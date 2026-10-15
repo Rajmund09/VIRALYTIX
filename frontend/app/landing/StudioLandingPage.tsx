@@ -25,6 +25,7 @@ import {
   Cpu,
   AlertTriangle,
   TrendingDown,
+  ArrowUpRight,
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
@@ -787,28 +788,194 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
         </div>
       </section>
 
-      {/* ── 10 FINAL EDITORIAL CTA & FOOTER ─────────────────────────────── */}
-      <footer className="py-20 px-6 md:px-12 border-t border-black/15 canvas-woven-bg">
-        <div className="max-w-7xl mx-auto space-y-16">
-          <div className="space-y-4">
-            <div className="text-xs font-mono text-[#008A20] font-bold uppercase tracking-widest">
-              VIRALYTIX INTELLIGENCE SYSTEM
+      {/* ── 10 MASTER EDITORIAL FOOTER (PRISMATIC SWISS REFRACTION AESTHETIC) ── */}
+      <footer className="relative py-24 px-6 md:px-12 border-t border-black/15 bg-[#E2E5EE] text-[#0A0A0E] overflow-hidden">
+        {/* Soft Studio Ambient Vignette Overlay */}
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.75)_0%,rgba(215,220,232,0.95)_100%)]" />
+
+        <div className="relative z-10 max-w-7xl mx-auto space-y-16">
+          {/* Top Swiss Editorial Header & Metadata Line */}
+          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-black/15 pb-8 gap-6">
+            <div className="space-y-2">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-black/5 border border-black/10 text-xs font-mono font-bold tracking-widest text-[#008A20] uppercase shadow-sm">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#008A20] animate-pulse" />
+                VIRALYTIX // PREDICTIVE SENSORY AUDIENCE SIMULATOR
+              </div>
+              <h3 className="text-3xl md:text-5xl font-black tracking-tight text-[#0D0D12] uppercase font-sans">
+                Refraction & Signal Telemetry
+              </h3>
             </div>
-            <div className="text-6xl sm:text-8xl font-black tracking-tighter uppercase font-sans">
-              <LayeredText text="SEE THE SIGNAL." topColor="#111111" />
+
+            <div className="flex items-center gap-4 md:gap-6 text-xs font-mono text-[#0A0A0E]/70 uppercase tracking-widest flex-wrap">
+              <div>EDITION: 2026.1</div>
+              <div>•</div>
+              <div>32 SENSORY SIGNALS</div>
+              <div>•</div>
+              <div>SWARM AGENTS: 100/100</div>
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-between border-t border-black/15 pt-8 text-xs font-mono text-[#141412]/60 gap-4">
+          {/* ── CENTERPIECE: PRISMATIC REFRACTION EDITORIAL INSTALLATION ── */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center bg-[#D4D8E4]/60 p-6 md:p-12 rounded-[40px] border border-black/12 shadow-[0_30px_90px_rgba(0,0,0,0.12)]">
+            {/* Left Column: The Exact Vertical Prismatic Refraction Poster Art */}
+            <div className="lg:col-span-5 flex justify-center">
+              <div className="relative rounded-[32px] overflow-hidden border border-black/20 shadow-[0_25px_60px_rgba(0,0,0,0.25)] bg-[#E8EBF2] max-w-[380px] w-full group transform hover:-translate-y-1 transition-transform duration-500">
+                <img
+                  src="/footer/prismatic_poster.jpg"
+                  alt="GO SLOWER OR YOU MIGHT MISS THE DETAILS - Prismatic Refraction Artwork"
+                  className="w-full h-auto object-cover transform group-hover:scale-[1.03] transition-transform duration-700 ease-out"
+                />
+
+                {/* Ambient Glass Highlight Glint */}
+                <div className="absolute inset-0 pointer-events-none bg-gradient-to-tr from-black/10 via-transparent to-white/25" />
+
+                {/* Floating Technical Swiss Overlay Badges */}
+                <div className="absolute top-4 left-4 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white font-mono text-[9px] font-bold tracking-widest uppercase">
+                  [ PRECISION // 60 FPS ]
+                </div>
+                <div className="absolute bottom-4 right-4 px-2.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/20 text-white font-mono text-[9px] font-bold tracking-widest uppercase">
+                  [ PRISM REFRACTION: 1.52 ]
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column: Giant Ultra-Condensed Typography & Studio Directives */}
+            <div className="lg:col-span-7 space-y-8 lg:pl-6">
+              {/* Massive Ultra-Condensed Statement Typography */}
+              <div className="space-y-0 text-[#0D0D12] uppercase leading-[0.84] tracking-tighter select-none font-black font-['Anton',sans-serif]">
+                <div className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl transform hover:skew-x-[-2deg] transition-transform duration-300">
+                  GO SLOWER
+                </div>
+                <div className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl text-[#008A20] transform hover:skew-x-[2deg] transition-transform duration-300">
+                  OR YOU
+                </div>
+                <div className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl transform hover:skew-x-[-2deg] transition-transform duration-300">
+                  MIGHT MISS
+                </div>
+                <div className="text-6xl sm:text-7xl lg:text-8xl xl:text-9xl text-transparent [-webkit-text-stroke:2px_#0D0D12] hover:text-[#0D0D12] transition-colors duration-300">
+                  THE SIGNALS.
+                </div>
+              </div>
+
+              <div className="space-y-4 max-w-xl">
+                <p className="text-sm md:text-base font-sans text-[#252530] leading-relaxed">
+                  Every millisecond of the opening hook, every ocular saccade, every optical cut velocity vector dictates whether your video is shared by millions or skipped in 0.4 seconds.
+                </p>
+
+                {/* Editorial Micro-Telemetry Badges */}
+                <div className="flex flex-wrap gap-2 text-xs font-mono">
+                  <span className="px-3 py-1.5 rounded-full bg-black/8 border border-black/10 text-[#0D0D12] font-semibold">
+                    ⚡ 32 SYNCHRONIZED MULTIMODAL SIGNALS
+                  </span>
+                  <span className="px-3 py-1.5 rounded-full bg-black/8 border border-black/10 text-[#0D0D12] font-semibold">
+                    🧠 100 SYNTHETIC AGENT AUDIENCE
+                  </span>
+                  <span className="px-3 py-1.5 rounded-full bg-black/8 border border-black/10 text-[#008A20] font-bold">
+                    ✓ 91.2% R² PREDICTIVE CONVERGENCE
+                  </span>
+                </div>
+              </div>
+
+              {/* Action Trigger Button */}
+              <div className="pt-2">
+                <button
+                  onClick={onLaunchApp}
+                  className="px-8 py-4 rounded-full bg-[#0D0D12] hover:bg-[#008A20] text-white font-mono font-black text-xs md:text-sm uppercase tracking-[0.16em] transition-all duration-300 inline-flex items-center gap-3 shadow-[0_10px_30px_rgba(0,0,0,0.25)] hover:shadow-[0_10px_35px_rgba(0,138,32,0.4)] cursor-pointer active:scale-95"
+                >
+                  <Zap className="w-4 h-4 fill-current text-[#00E83F]" />
+                  <span>LAUNCH VIRALITY ENGINE →</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Panoramic In-Depth Architectural Strip */}
+          <div className="relative rounded-[32px] overflow-hidden border border-black/15 shadow-[0_20px_50px_rgba(0,0,0,0.1)] group">
+            <div className="w-full h-48 md:h-64 overflow-hidden relative">
+              <img
+                src="/footer/prismatic_pano.jpg"
+                alt="Ultra-wide Prismatic Refraction Banner"
+                className="w-full h-full object-cover object-center transform group-hover:scale-[1.02] transition-transform duration-700 ease-out"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent flex items-end p-6 md:p-8">
+                <div className="text-white space-y-1">
+                  <div className="text-[10px] font-mono tracking-widest uppercase text-[#00FF66] font-bold">
+                    HIGH-FREQUENCY RETENTION DISPERSION
+                  </div>
+                  <div className="text-lg md:text-2xl font-bold font-sans">
+                    Precision Audience Telemetry for High-Stakes Creators & Studios.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Editorial Multi-Column Studio Sitemap */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 pt-8 border-t border-black/15 font-mono text-xs">
+            <div className="space-y-3">
+              <div className="font-bold text-[#0D0D12] tracking-wider uppercase text-[11px]">
+                01 // SENSORY SIGNALS
+              </div>
+              <ul className="space-y-2 text-[#0D0D12]/70">
+                <li><a href="#signals" className="hover:text-[#008A20] transition-colors">0-3s Hook Velocity</a></li>
+                <li><a href="#signals" className="hover:text-[#008A20] transition-colors">Optical Flow Motion Vectors</a></li>
+                <li><a href="#signals" className="hover:text-[#008A20] transition-colors">Facial Micro-Expressions</a></li>
+                <li><a href="#signals" className="hover:text-[#008A20] transition-colors">Acoustic Dead Air Detector</a></li>
+              </ul>
+            </div>
+
+            <div className="space-y-3">
+              <div className="font-bold text-[#0D0D12] tracking-wider uppercase text-[11px]">
+                02 // MACHINE LEARNING
+              </div>
+              <ul className="space-y-2 text-[#0D0D12]/70">
+                <li><a href="#models" className="hover:text-[#008A20] transition-colors">XGBoost Regressor (SOTA)</a></li>
+                <li><a href="#models" className="hover:text-[#008A20] transition-colors">Random Forest Ensemble</a></li>
+                <li><a href="#models" className="hover:text-[#008A20] transition-colors">MLP Perceptron Network</a></li>
+                <li><a href="#explainability" className="hover:text-[#008A20] transition-colors">TreeSHAP Attribution Engine</a></li>
+              </ul>
+            </div>
+
+            <div className="space-y-3">
+              <div className="font-bold text-[#0D0D12] tracking-wider uppercase text-[11px]">
+                03 // SIMULATION SWARM
+              </div>
+              <ul className="space-y-2 text-[#0D0D12]/70">
+                <li><a href="#swarm" className="hover:text-[#008A20] transition-colors">100 Autonomous Agents</a></li>
+                <li><a href="#swarm" className="hover:text-[#008A20] transition-colors">Gen-Z Trend Hunters (35%)</a></li>
+                <li><a href="#swarm" className="hover:text-[#008A20] transition-colors">Tech Cynics & Skeptics (25%)</a></li>
+                <li><a href="#swarm" className="hover:text-[#008A20] transition-colors">Casual Scrollers (40%)</a></li>
+              </ul>
+            </div>
+
+            <div className="space-y-3">
+              <div className="font-bold text-[#0D0D12] tracking-wider uppercase text-[11px]">
+                04 // SYSTEM STATUS
+              </div>
+              <ul className="space-y-2 text-[#0D0D12]/70">
+                <li className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#008A20] animate-ping" />
+                  <span>All Systems Nominal</span>
+                </li>
+                <li><span>VRAM Allocation: 32 GB</span></li>
+                <li><span>Inference: 4.2ms / frame</span></li>
+                <li><a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-[#008A20] transition-colors inline-flex items-center gap-1">GitHub Source <ArrowUpRight className="w-3 h-3" /></a></li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Bottom Monospace Signature & Copyright */}
+          <div className="flex flex-col md:flex-row items-center justify-between border-t border-black/15 pt-8 text-xs font-mono text-[#0D0D12]/60 gap-4">
             <div className="flex items-center gap-2">
               <Zap className="w-4 h-4 text-[#008A20]" />
-              <span className="text-[#141412]/80">VIRALYTIX © 2026 • Built with ❤️ by Prabhu Shankar Mund (Raj)</span>
+              <span className="text-[#0D0D12]/80 font-bold">VIRALYTIX © 2026</span>
+              <span>•</span>
+              <span>Built with ❤️ by Prabhu Shankar Mund (Raj)</span>
             </div>
             <div className="flex items-center gap-6">
-              <a href="#signals" className="hover:text-[#008A20] transition-colors">Signals</a>
-              <a href="#swarm" className="hover:text-[#008A20] transition-colors">Swarm</a>
-              <a href="#models" className="hover:text-[#008A20] transition-colors">XGBoost</a>
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-[#008A20] transition-colors">GitHub</a>
+              <a href="#top" className="hover:text-[#008A20] transition-colors">Back To Top ↑</a>
+              <span>•</span>
+              <span>SWISS EDITORIAL & PRISMATIC REFRACTION INSTALLATION</span>
             </div>
           </div>
         </div>
