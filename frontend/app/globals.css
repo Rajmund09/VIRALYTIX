@@ -658,3 +658,90 @@ body::after {
   background-size: 256px 256px;
   background-blend-mode: normal;
 }
+
+/* ── Towering Ultra-Condensed Poster Typography (Image 3 Aesthetic) ── */
+.font-poster {
+  font-family: 'Bebas Neue', 'Anton', 'Syne', sans-serif;
+  letter-spacing: -0.015em;
+  line-height: 0.88;
+  text-transform: uppercase;
+}
+
+.font-condensed-slab {
+  font-family: 'Bebas Neue', 'Anton', sans-serif;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+/* ── Fluid Glass Prismatic Card Chassis ── */
+.fluid-glass-card {
+  position: relative;
+  background: radial-gradient(130% 100% at 50% -10%, rgba(28, 28, 38, 0.88) 0%, rgba(12, 12, 16, 0.96) 100%);
+  backdrop-filter: blur(32px) saturate(190%);
+  -webkit-backdrop-filter: blur(32px) saturate(190%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 30px 80px -20px rgba(0, 0, 0, 0.75),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25),
+    inset 0 -1px 1px rgba(0, 0, 0, 0.6);
+}
+
+/* ── Prismatic Chromatic Glass Dispersion Rim ── */
+.chromatic-rim {
+  position: relative;
+}
+.chromatic-rim::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 80, 80, 0.5), rgba(0, 232, 63, 0.6) 45%, rgba(60, 160, 255, 0.6) 80%, rgba(220, 100, 255, 0.4));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.75;
+  transition: opacity 0.3s ease;
+}
+.chromatic-rim:hover::before {
+  opacity: 1;
+}
+
+/* ── Fluid Glass Tactile Cyber-Button ── */
+.fluid-glass-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 32px;
+  border-radius: 9999px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14) 0%, rgba(15, 20, 16, 0.85) 60%, rgba(8, 12, 9, 0.95) 100%);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #FFFFFF;
+  box-shadow: 
+    0 12px 36px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(0, 232, 63, 0.2),
+    inset 0 1px 2px rgba(255, 255, 255, 0.65),
+    inset 0 -1px 3px rgba(0, 232, 63, 0.35);
+  cursor: pointer;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.fluid-glass-button:hover {
+  border-color: rgba(0, 232, 63, 0.6);
+  box-shadow: 
+    0 16px 48px rgba(0, 232, 63, 0.35),
+    0 0 0 1px rgba(0, 232, 63, 0.5),
+    inset 0 1px 3px rgba(255, 255, 255, 0.9),
+    inset 0 -2px 6px rgba(0, 232, 63, 0.6);
+  transform: translateY(-2px);
+}
+
+.fluid-glass-button:active {
+  transform: translateY(1px) scale(0.98);
+}
