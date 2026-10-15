@@ -183,7 +183,7 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
             backgroundColor="#000000"
             beamWidth={140}
             rotation={28}
-            waveLength={337}
+            waveLength={120}
             depth={1}
             sharpness={0.6}
             twist={0}
@@ -235,8 +235,9 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
 
                 <div className="w-full bg-[#141412] h-4 rounded-full overflow-hidden border border-[#F4F1EA]/15 p-0.5">
                   <div
-                    className={`ml-model-bar h-full rounded-full origin-left transition-all ${m.selected ? "bg-gradient-to-r from-[#00E83F] to-[#F5A7E8]" : "bg-[#F4F1EA]/30"
-                      }`}
+                    className={`ml-model-bar h-full rounded-full origin-left transition-all ${
+                      m.selected ? "bg-gradient-to-r from-[#00E83F] to-[#F5A7E8]" : "bg-[#F4F1EA]/30"
+                    }`}
                     style={{ width: `${parseFloat(m.r2) * 100}%` }}
                   />
                 </div>
@@ -246,45 +247,19 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
         </div>
       </section>
 
-      {/* ── 07 SHAP EXPLAINABILITY FORCE VECTORS SECTION WITH BEAMS ─────── */}
-      <section id="explainability" ref={shapRef} className="relative py-28 px-6 md:px-12 border-t border-[#F4F1EA]/10 bg-black overflow-hidden">
-        {/* Shimmering Metallic Beams Canvas Background (Studio Preset: 28° Angle, 140px Beam Width) */}
-        <div className="absolute inset-0 pointer-events-none z-0 w-full h-full">
-          <Beams
-            className="w-full h-full"
-            color="#ffffff"
-            backgroundColor="#000000"
-            beamWidth={140}
-            rotation={28}
-            waveLength={337}
-            depth={1}
-            sharpness={0.5}
-            twist={0}
-            fillLight={0.7}
-            speed={1}
-            brightness={2.6}
-            glow={1.2}
-            grain={0.35}
-            variation={0}
-            mouseStrength={1}
-            fade={0}
-            opacity={1}
-            mouseInteraction={false}
-            intro={false}
-          />
-        </div>
-
+      {/* ── 07 SHAP EXPLAINABILITY FORCE VECTORS SECTION WITH WOVEN CANVAS BG ─────── */}
+      <section id="explainability" ref={shapRef} className="relative py-28 px-6 md:px-12 border-t border-black/15 canvas-woven-bg overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto space-y-12">
           <div className="space-y-2">
-            <span className="text-xs font-mono text-[#F5A7E8] font-bold uppercase tracking-widest">
+            <span className="text-xs font-mono text-[#008A20] font-bold uppercase tracking-widest">
               07 // EXPLAINABLE AI ATTRIBUTION
             </span>
-            <h2 className="text-3xl md:text-5xl font-extrabold text-[#F4F1EA]">
+            <h2 className="text-3xl md:text-5xl font-extrabold text-[#141412]">
               Don't Just Get The Score. Understand It.
             </h2>
           </div>
 
-          <div className="p-8 rounded-3xl bg-[#141412] border border-[#F4F1EA]/15 space-y-6 font-mono">
+          <div className="p-8 rounded-3xl bg-[#141412] text-[#F4F1EA] border border-[#141412] shadow-2xl shadow-black/20 space-y-6 font-mono">
             <div className="flex justify-between items-center text-xs border-b border-[#F4F1EA]/10 pb-4">
               <span>SHAP FORCE VECTOR BALANCER</span>
               <span className="text-[#00E83F] font-extrabold">TOTAL SCORE: 91.2 / 100</span>
@@ -329,16 +304,16 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
       </section>
 
       {/* ── 09 LIVE PREDICTION INTERACTIVE UPLOAD EXPERIENCE ────────────── */}
-      <section className="py-24 px-6 md:px-12 border-t border-[#F4F1EA]/10 bg-[#0A0A09]">
-        <div className="max-w-7xl mx-auto p-10 md:p-16 rounded-3xl bg-[#141412] border border-[#00E83F]/40 space-y-8 text-center relative overflow-hidden">
+      <section className="py-24 px-6 md:px-12 border-t border-black/10 canvas-woven-bg">
+        <div className="max-w-7xl mx-auto p-10 md:p-16 rounded-3xl bg-[#141412] text-[#F4F1EA] border border-[#00E83F]/50 shadow-2xl shadow-black/25 space-y-8 text-center relative overflow-hidden">
           <div className="space-y-3">
-            <span className="px-3 py-1 rounded-full bg-[#00E83F]/10 text-[#00E83F] border border-[#00E83F]/30 text-xs font-mono font-bold uppercase">
+            <span className="px-3 py-1 rounded-full bg-[#00E83F]/15 text-[#00E83F] border border-[#00E83F]/40 text-xs font-mono font-bold uppercase">
               LIVE PREDICTION INTERFACE
             </span>
             <h2 className="text-3xl md:text-5xl font-extrabold text-[#F4F1EA]">
               Test Your Next Video Now
             </h2>
-            <p className="text-xs font-mono text-[#F4F1EA]/60 max-w-md mx-auto">
+            <p className="text-xs font-mono text-[#F4F1EA]/70 max-w-md mx-auto">
               Drop your video file to extract 32 signals and run the 100-agent audience simulation live.
             </p>
           </div>
@@ -355,10 +330,10 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
       </section>
 
       {/* ── 10 FINAL EDITORIAL CTA & FOOTER ─────────────────────────────── */}
-      <footer className="py-20 px-6 md:px-12 border-t border-[#F4F1EA]/15 bg-[#0A0A09]">
+      <footer className="py-20 px-6 md:px-12 border-t border-black/15 canvas-woven-bg">
         <div className="max-w-7xl mx-auto space-y-16">
           <div className="space-y-4">
-            <div className="text-xs font-mono text-[#00E83F] font-bold uppercase tracking-widest">
+            <div className="text-xs font-mono text-[#008A20] font-bold uppercase tracking-widest">
               VIRALYTIX INTELLIGENCE SYSTEM
             </div>
             <div className="text-6xl sm:text-8xl font-black tracking-tighter uppercase font-sans">
@@ -366,16 +341,16 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
             </div>
           </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-between border-t border-[#F4F1EA]/15 pt-8 text-xs font-mono text-[#F4F1EA]/50 gap-4">
+          <div className="flex flex-col md:flex-row items-center justify-between border-t border-black/15 pt-8 text-xs font-mono text-[#141412]/60 gap-4">
             <div className="flex items-center gap-2">
-              <Zap className="w-4 h-4 text-[#00E83F]" />
-              <span>VIRALYTIX © 2026 • Built with ❤️ by Prabhu Shankar Mund (Raj)</span>
+              <Zap className="w-4 h-4 text-[#008A20]" />
+              <span className="text-[#141412]/80">VIRALYTIX © 2026 • Built with ❤️ by Prabhu Shankar Mund (Raj)</span>
             </div>
             <div className="flex items-center gap-6">
-              <a href="#signals" className="hover:text-[#F4F1EA]">Signals</a>
-              <a href="#swarm" className="hover:text-[#F4F1EA]">Swarm</a>
-              <a href="#models" className="hover:text-[#F4F1EA]">XGBoost</a>
-              <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-[#F4F1EA]">GitHub</a>
+              <a href="#signals" className="hover:text-[#008A20] transition-colors">Signals</a>
+              <a href="#swarm" className="hover:text-[#008A20] transition-colors">Swarm</a>
+              <a href="#models" className="hover:text-[#008A20] transition-colors">XGBoost</a>
+              <a href="https://github.com" target="_blank" rel="noreferrer" className="hover:text-[#008A20] transition-colors">GitHub</a>
             </div>
           </div>
         </div>

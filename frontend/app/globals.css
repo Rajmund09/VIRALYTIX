@@ -647,3 +647,14 @@ body::after {
   width: 100%;
   height: 100%;
 }
+
+/* Tactile Woven Linen / Canvas Background */
+.canvas-woven-bg {
+  background-color: #ECE9E2;
+  background-image: 
+    radial-gradient(ellipse at 50% 15%, rgba(255, 255, 255, 0.45) 0%, rgba(215, 210, 200, 0.3) 100%),
+    url('/textures/linen-canvas.webp');
+  background-repeat: repeat;
+  background-size: 256px 256px;
+  background-blend-mode: normal;
+}
