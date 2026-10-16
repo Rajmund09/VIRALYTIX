@@ -16,41 +16,106 @@ from app.config import settings
 router = APIRouter(prefix="/videos", tags=["Videos"])
 
 
+# Maximum allowed video upload size: 50MB
+MAX_FILE_SIZE = 50 * 1024 * 1024
+CHUNK_SIZE = 64 * 1024
+ALLOWED_EXTENSIONS = {".mp4", ".mov", ".webm", ".avi"}
+ALLOWED_MIME_TYPES = {"video/mp4", "video/quicktime", "video/x-msvideo", "video/webm", "application/octet-stream"}
+
+
+def is_valid_video_header(header: bytes) -> bool:
+    """
+    Validate binary magic signatures for legitimate video containers.
+    Prevents executable scripts/shells disguised as video files.
+    """
+    if len(header) < 12:
+        return False
+    # MP4 / MOV container: 'ftyp' box in first 32 bytes
+    if b"ftyp" in header[:32]:
+        return True
+    # WebM / MKV container: EBML header ID
+    if header.startswith(b"\x1a\x45\xdf\xa3"):
+        return True
+    # AVI container: 'RIFF' + 'AVI '
+    if header.startswith(b"RIFF") and header[8:12] == b"AVI ":
+        return True
+    return False
+
+
 @router.post("/upload", status_code=status.HTTP_201_CREATED)
 async def upload_video(
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
 ):
     """
-    Upload a short-form video file.
-    Returns the video record with its ID for use in subsequent pipeline calls.
+    Securely upload a short-form video file.
+    Enforces MIME check, binary magic signature verification, strict 50MB size limit,
+    and UUID file path isolation.
     """
-    # Validate file type
-    allowed_types = ["video/mp4", "video/quicktime", "video/x-msvideo", "video/webm"]
-    if file.content_type not in allowed_types:
+    # 1. Validate extension
+    raw_ext = Path(file.filename or "").suffix.lower()
+    if raw_ext not in ALLOWED_EXTENSIONS:
         raise HTTPException(
             status_code=400,
-            detail=f"Invalid file type: {file.content_type}. Allowed: mp4, mov, avi, webm"
+            detail=f"Invalid file extension: '{raw_ext}'. Allowed: {', '.join(sorted(ALLOWED_EXTENSIONS))}"
         )
 
-    # Ensure upload directory exists
+    # 2. Validate declared MIME type
+    if file.content_type and file.content_type not in ALLOWED_MIME_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Invalid MIME type: {file.content_type}. Allowed: mp4, mov, avi, webm"
+        )
+
+    # 3. Read first chunk & inspect binary magic signature
+    first_chunk = await file.read(CHUNK_SIZE)
+    if not first_chunk or not is_valid_video_header(first_chunk):
+        raise HTTPException(
+            status_code=400,
+            detail="Invalid video file: corrupted or prohibited binary signature."
+        )
+
+    # 4. Ensure upload directory exists
     upload_dir = Path(settings.UPLOAD_DIR)
     upload_dir.mkdir(parents=True, exist_ok=True)
 
-    # Save file with a unique name
-    ext = Path(file.filename).suffix
-    unique_filename = f"{uuid.uuid4()}{ext}"
+    # 5. Secure UUID file name and path traversal prevention
+    safe_original_name = os.path.basename(file.filename or "video.mp4")
+    unique_filename = f"{uuid.uuid4().hex}{raw_ext}"
     file_path = upload_dir / unique_filename
 
-    with open(file_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+    # 6. Stream and enforce strict 50MB size guard
+    total_size = len(first_chunk)
+    try:
+        with open(file_path, "wb") as buffer:
+            buffer.write(first_chunk)
+            while True:
+                chunk = await file.read(CHUNK_SIZE)
+                if not chunk:
+                    break
+                total_size += len(chunk)
+                if total_size > MAX_FILE_SIZE:
+                    buffer.close()
+                    if file_path.exists():
+                        file_path.unlink()
+                    raise HTTPException(
+                        status_code=413,
+                        detail=f"Payload too large: video exceeds maximum limit of {MAX_FILE_SIZE // (1024 * 1024)}MB."
+                    )
+                buffer.write(chunk)
+    except HTTPException:
+        raise
+    except Exception as e:
+        if file_path.exists():
+            file_path.unlink()
+        raise HTTPException(status_code=500, detail="Failed to securely store uploaded video.")
 
-    file_size_mb = os.path.getsize(file_path) / (1024 * 1024)
+    file_size_mb = total_size / (1024 * 1024)
 
-    # Create DB record
+    # 7. Create DB record
     video = Video(
         filename=str(file_path),
-        original_filename=file.filename,
+        original_filename=safe_original_name,
         file_size_mb=round(file_size_mb, 2),
         status="uploaded",
     )

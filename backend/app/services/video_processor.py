@@ -60,18 +60,22 @@ class VideoProcessor:
     def _real_extract_metadata(self, file_path: str) -> dict:
         """
         Use ffprobe (bundled with FFmpeg) to probe video metadata.
-        Falls back to simulation on any error.
+        Hardened with strict protocol whitelist to prevent SSRF / arbitrary file read.
         """
         try:
             cmd = [
                 "ffprobe",
+                "-nostdin",
+                "-protocol_whitelist", "file,crypto",
+                "-allowed_extensions", "mp4,mov,avi,webm,wav,m4a",
                 "-v", "quiet",
                 "-print_format", "json",
                 "-show_format",
                 "-show_streams",
+                "--",
                 file_path,
             ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=25)
 
             if result.returncode != 0:
                 raise RuntimeError(f"ffprobe error: {result.stderr}")
@@ -132,6 +136,7 @@ class VideoProcessor:
         """
         Extract one frame per second using FFmpeg.
         Frames saved as frame_001.jpg, frame_002.jpg, ...
+        Hardened against SSRF and option injection.
         """
         try:
             os.makedirs(output_dir, exist_ok=True)
@@ -139,14 +144,18 @@ class VideoProcessor:
 
             cmd = [
                 "ffmpeg",
+                "-nostdin",
+                "-protocol_whitelist", "file,crypto",
+                "-allowed_extensions", "mp4,mov,avi,webm,wav,m4a",
                 "-i", file_path,
                 "-vf", f"fps={fps}",         # 1 frame per second
                 "-q:v", "2",                  # JPEG quality (2=high)
                 "-vsync", "vfr",
-                output_pattern,
                 "-y",                         # overwrite
+                "--",
+                output_pattern,
             ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=35)
 
             if result.returncode != 0:
                 raise RuntimeError(f"FFmpeg frame extraction error: {result.stderr[-500:]}")
@@ -161,19 +170,24 @@ class VideoProcessor:
     def _real_extract_audio(self, file_path: str, output_path: str) -> str | None:
         """
         Extract audio as 16kHz mono WAV — optimised for Whisper transcription.
+        Hardened against SSRF and option injection.
         """
         try:
             cmd = [
                 "ffmpeg",
+                "-nostdin",
+                "-protocol_whitelist", "file,crypto",
+                "-allowed_extensions", "mp4,mov,avi,webm,wav,m4a",
                 "-i", file_path,
                 "-ac", "1",              # mono
                 "-ar", "16000",          # 16kHz sample rate (Whisper requirement)
                 "-vn",                   # no video
                 "-acodec", "pcm_s16le", # PCM WAV format
-                output_path,
                 "-y",
+                "--",
+                output_path,
             ]
-            result = subprocess.run(cmd, capture_output=True, text=True, timeout=120)
+            result = subprocess.run(cmd, capture_output=True, text=True, timeout=35)
 
             if result.returncode != 0:
                 raise RuntimeError(f"FFmpeg audio extraction error: {result.stderr[-300:]}")

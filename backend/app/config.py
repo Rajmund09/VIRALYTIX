@@ -6,7 +6,7 @@ class Settings(BaseSettings):
     # App
     APP_ENV: str = "development"
     SECRET_KEY: str = "viralytix-dev-secret-key"
-    ALLOWED_ORIGINS: str = "http://localhost:3000,http://127.0.0.1:3000"
+    ALLOWED_ORIGINS: str = "http://localhost:3000,http://127.0.0.1:3000,https://viralytix-eta.vercel.app,https://viralytix-git-main-rajmund09s-projects.vercel.app"
 
     # Database
     DATABASE_URL: str = "sqlite:///./viralytix.db"

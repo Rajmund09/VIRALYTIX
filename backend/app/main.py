@@ -117,20 +117,36 @@ def _seed_personas(db):
     print(f"[OK] Seeded {len(default_personas)} default personas")
 
 
-# ── Create FastAPI app ─────────────────────────────────────────────────────────
+# ── Create FastAPI app (Docs Disabled in Production) ──────────────────────────
+is_prod = settings.APP_ENV.lower() == "production"
+
 app = FastAPI(
     title="VIRALYTIX API",
     description="Machine Learning–Based Social Media Virality Prediction System",
     version="1.0.0",
+    docs_url=None if is_prod else "/docs",
+    redoc_url=None if is_prod else "/redoc",
+    openapi_url=None if is_prod else "/openapi.json",
     lifespan=lifespan,
 )
 
-# ── CORS ──────────────────────────────────────────────────────────────────────
+# ── Global Exception Masking (Zero Traceback Leakage) ─────────────────────────
+@app.exception_handler(Exception)
+async def global_exception_handler(request, exc: Exception):
+    import traceback
+    print(f"[SECURITY ALERT] Unhandled exception on {request.method} {request.url.path}: {exc}")
+    traceback.print_exc()
+    return JSONResponse(
+        status_code=500,
+        content={"detail": "An internal processing error occurred. Security team has been notified."}
+    )
+
+# ── CORS Whitelist ────────────────────────────────────────────────────────────
 app.add_middleware(
     CORSMiddleware,
     allow_origins=settings.allowed_origins_list,
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
@@ -143,13 +159,15 @@ app.include_router(simulations.router, prefix="/api")
 # ── Root Endpoints ────────────────────────────────────────────────────────────
 @app.get("/", tags=["Root"])
 def root():
-    return {
-        "app": "VIRALYTIX",
+    resp = {
+        "app": "VIRALYTIX API",
         "version": "1.0.0",
         "status": "running",
-        "docs": "/docs",
-        "redoc": "/redoc",
     }
+    if not is_prod:
+        resp["docs"] = "/docs"
+        resp["redoc"] = "/redoc"
+    return resp
 
 
 @app.get("/health", tags=["Root"])
