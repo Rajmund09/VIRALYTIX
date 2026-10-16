@@ -11,6 +11,7 @@ from fastapi.responses import JSONResponse
 
 from app.config import settings
 from app.database.database import engine, Base
+from app.middleware.rate_limiter import RateLimitMiddleware
 
 # Import all models so SQLAlchemy knows about them before creating tables
 import app.database.models  # noqa: F401
@@ -140,6 +141,9 @@ async def global_exception_handler(request, exc: Exception):
         status_code=500,
         content={"detail": "An internal processing error occurred. Security team has been notified."}
     )
+
+# ── Rate Limiting (DoS Protection) ───────────────────────────────────────────
+app.add_middleware(RateLimitMiddleware)
 
 # ── CORS Whitelist ────────────────────────────────────────────────────────────
 app.add_middleware(

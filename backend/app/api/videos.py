@@ -1,12 +1,11 @@
-"""
-VIRALYTIX — Video Upload & Management API
-"""
 import os
 import shutil
+import time
 import uuid
+import threading
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, status
+from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, BackgroundTasks, status
 from sqlalchemy.orm import Session
 
 from app.database.database import get_db
@@ -15,6 +14,30 @@ from app.config import settings
 
 router = APIRouter(prefix="/videos", tags=["Videos"])
 
+# Maximum concurrent analytical pipelines (FFmpeg + ML inference)
+_processing_semaphore = threading.Semaphore(2)
+
+def cleanup_stale_uploads(upload_dir: Path, max_age_seconds: int = 3600):
+    """
+    Automated Storage Hygiene (Layer 6):
+    Deletes files/folders in upload directory older than 1 hour to prevent disk exhaustion.
+    """
+    try:
+        now = time.time()
+        if not upload_dir.exists():
+            return
+        for item in upload_dir.iterdir():
+            try:
+                mtime = item.stat().st_mtime
+                if now - mtime > max_age_seconds:
+                    if item.is_dir():
+                        shutil.rmtree(item, ignore_errors=True)
+                    else:
+                        item.unlink(missing_ok=True)
+            except Exception:
+                continue
+    except Exception:
+        pass
 
 # Maximum allowed video upload size: 50MB
 MAX_FILE_SIZE = 50 * 1024 * 1024
@@ -28,29 +51,30 @@ def is_valid_video_header(header: bytes) -> bool:
     Validate binary magic signatures for legitimate video containers.
     Prevents executable scripts/shells disguised as video files.
     """
-    if len(header) < 12:
+    if len(header) < 4:
         return False
-    # MP4 / MOV container: 'ftyp' box in first 32 bytes
-    if b"ftyp" in header[:32]:
-        return True
     # WebM / MKV container: EBML header ID
     if header.startswith(b"\x1a\x45\xdf\xa3"):
         return True
+    # MP4 / MOV container: 'ftyp' box in first 32 bytes
+    if b"ftyp" in header[:32]:
+        return True
     # AVI container: 'RIFF' + 'AVI '
-    if header.startswith(b"RIFF") and header[8:12] == b"AVI ":
+    if len(header) >= 12 and header.startswith(b"RIFF") and header[8:12] == b"AVI ":
         return True
     return False
 
 
 @router.post("/upload", status_code=status.HTTP_201_CREATED)
 async def upload_video(
+    background_tasks: BackgroundTasks,
     file: UploadFile = File(...),
     db: Session = Depends(get_db),
 ):
     """
     Securely upload a short-form video file.
     Enforces MIME check, binary magic signature verification, strict 50MB size limit,
-    and UUID file path isolation.
+    UUID file path isolation, and background storage hygiene.
     """
     # 1. Validate extension
     raw_ext = Path(file.filename or "").suffix.lower()
@@ -75,9 +99,10 @@ async def upload_video(
             detail="Invalid video file: corrupted or prohibited binary signature."
         )
 
-    # 4. Ensure upload directory exists
+    # 4. Ensure upload directory exists and queue background hygiene
     upload_dir = Path(settings.UPLOAD_DIR)
     upload_dir.mkdir(parents=True, exist_ok=True)
+    background_tasks.add_task(cleanup_stale_uploads, upload_dir)
 
     # 5. Secure UUID file name and path traversal prevention
     safe_original_name = os.path.basename(file.filename or "video.mp4")
@@ -163,7 +188,23 @@ def process_video(video_id: int, db: Session = Depends(get_db)):
     3. Persona simulation
     4. ML prediction + SHAP
     Returns the complete prediction result.
+    Protected by concurrency semaphore (Max 2 simultaneous jobs).
     """
+    # Concurrency control: prevent OOM crashes on free/standard compute
+    acquired = _processing_semaphore.acquire(blocking=False)
+    if not acquired:
+        raise HTTPException(
+            status_code=503,
+            detail="Analytics pipeline is operating at peak capacity. Please retry in 30 seconds."
+        )
+
+    try:
+        return _execute_video_pipeline(video_id, db)
+    finally:
+        _processing_semaphore.release()
+
+
+def _execute_video_pipeline(video_id: int, db: Session):
     video = db.query(Video).filter(Video.id == video_id).first()
     if not video:
         raise HTTPException(status_code=404, detail="Video not found")
