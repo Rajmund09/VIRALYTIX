@@ -63,21 +63,17 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
 
       if (!container || !track) return;
 
-      const totalWidth = track.scrollWidth;
-      const viewportWidth = window.innerWidth;
-      const xTranslate = -(totalWidth - viewportWidth);
-
       const ctx = gsap.context(() => {
-        // 1. MASTER PINNED HORIZONTAL EDITORIAL REEL SCRUB
+        // 1. MASTER PINNED HORIZONTAL EDITORIAL REEL SCRUB (Dynamic calculation on resize & orientation change)
         const horizontalTween = gsap.to(track, {
-          x: xTranslate,
+          x: () => -(track.scrollWidth - window.innerWidth),
           ease: "none",
           scrollTrigger: {
             trigger: container,
             start: "top top",
-            end: () => `+=${totalWidth}`,
+            end: () => `+=${Math.max(window.innerWidth * 1.5, track.scrollWidth - window.innerWidth)}`,
             pin: true,
-            scrub: 1,
+            scrub: typeof window !== "undefined" && window.innerWidth < 768 ? 0.35 : 1,
             invalidateOnRefresh: true,
             anticipatePin: 1,
           },
@@ -1683,7 +1679,7 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-screen bg-[#070706] text-[#F4F1EA] overflow-hidden border-t border-[#F4F1EA]/10 font-sans select-none"
+      className="relative w-full min-h-[100dvh] h-[100dvh] bg-[#070706] text-[#F4F1EA] overflow-hidden border-t border-[#F4F1EA]/10 font-sans select-none"
     >
       {/* Pure Silk Background Canvas matching Hero Section (#1E1B4B) */}
       <div className="absolute inset-0 z-0 opacity-65 pointer-events-none">
@@ -1702,9 +1698,9 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
         className="flex h-full items-center whitespace-nowrap will-change-transform relative z-10"
       >
         {/* ━━ PANEL 1: EDITORIAL COVER & 3D ART COMPOSITION ━━ */}
-        <div className="w-[100vw] shrink-0 h-full flex items-center justify-between px-8 sm:px-16 md:px-24 relative overflow-hidden">
+        <div className="w-[100vw] shrink-0 h-full flex flex-col md:flex-row items-start md:items-center justify-center md:justify-between px-6 sm:px-12 md:px-24 py-8 md:py-0 relative overflow-hidden gap-6 md:gap-0">
           {/* LEFT COLUMN: STACKED STICKERS & EDITORIAL SUBTITLE */}
-          <div className="flex flex-col items-start gap-8 max-w-xl z-20">
+          <div className="flex flex-col items-start gap-5 sm:gap-8 max-w-xl z-20">
             {/* STACKED STICKER BANNER CONTAINER WITH 3D PERSPECTIVE */}
             <div
               className="relative inline-flex flex-col items-start pt-2 pb-4 select-none [perspective:1000px]"
@@ -1712,7 +1708,7 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
               {/* TOP PINK PILL (COMPLETELY STATIC & STRAIGHT, 12PX TRANSPARENT BLACK BORDER) */}
               <div
                 ref={pinkPillRef}
-                className="intro-pill relative z-20 px-5 py-2 sm:px-6 sm:py-2.5 rounded-2xl bg-[#F7A8E5] bg-clip-padding text-black font-bold text-lg sm:text-2xl lg:text-3xl tracking-tight border-[12px] border-black/35 transform-gpu"
+                className="intro-pill relative z-20 px-4 py-1.5 sm:px-6 sm:py-2.5 rounded-2xl bg-[#F7A8E5] bg-clip-padding text-black font-bold text-base sm:text-2xl lg:text-3xl tracking-tight border-[8px] sm:border-[12px] border-black/35 transform-gpu"
               >
                 Predict Virality
               </div>
@@ -1720,7 +1716,7 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
               {/* BOTTOM ORANGE PILL (3D FRONT & BACK HINGED SWING, STRAIGHT) */}
               <div
                 ref={orangePillRef}
-                className="intro-pill relative z-10 -mt-3.5 ml-7 sm:ml-9 px-6 py-2 sm:px-7 sm:py-2.5 rounded-xl bg-[#FF7A00] text-black font-bold text-lg sm:text-2xl lg:text-3xl tracking-tight border-[3px] border-black transform-gpu origin-top [transform-style:preserve-3d] [backface-visibility:hidden] will-change-transform"
+                className="intro-pill relative z-10 -mt-2.5 sm:-mt-3.5 ml-5 sm:ml-9 px-4 py-1.5 sm:px-7 sm:py-2.5 rounded-xl bg-[#FF7A00] text-black font-bold text-base sm:text-2xl lg:text-3xl tracking-tight border-[2px] sm:border-[3px] border-black transform-gpu origin-top [transform-style:preserve-3d] [backface-visibility:hidden] will-change-transform"
               >
                 <span>That&apos;s right, Multimodal AI</span>
               </div>
@@ -1729,27 +1725,27 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
             {/* EDITORIAL SUBTITLE PARAGRAPH */}
             <p
               ref={subtitleRef}
-              className="text-lg sm:text-xl lg:text-2xl text-[#F4F1EA]/85 font-normal leading-relaxed tracking-tight max-w-lg whitespace-normal"
+              className="text-base sm:text-xl lg:text-2xl text-[#F4F1EA]/85 font-normal leading-relaxed tracking-tight max-w-lg whitespace-normal"
             >
               Whether you&apos;re analyzing optical motion, audio cadence, or predicting high-impact viral moments, VIRALYTIX has your back.
             </p>
 
             {/* INTRO BADGE & SCROLL HINT */}
             <div className="flex items-center gap-4">
-              <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-[#00E83F]/10 border border-[#00E83F]/30 backdrop-blur-md">
+              <div className="inline-flex items-center gap-3 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#00E83F]/10 border border-[#00E83F]/30 backdrop-blur-md">
                 <span className="w-2.5 h-2.5 rounded-full bg-[#00E83F] animate-ping" />
                 <span className="text-xs sm:text-sm font-mono text-[#00E83F] font-extrabold uppercase tracking-widest">
                   03-05 // KINETIC REEL
                 </span>
               </div>
-              <span className="text-xs font-mono text-[#F4F1EA]/50 uppercase tracking-widest animate-pulse">
+              <span className="text-xs font-mono text-[#F4F1EA]/50 uppercase tracking-widest animate-pulse hidden sm:inline">
                 Scroll to explore →
               </span>
             </div>
           </div>
 
           {/* RIGHT COLUMN: 3D ARTWORKS COMPOSITION (Refined Proportions & 3D Spatial Staging) */}
-          <div className="relative w-[320px] sm:w-[420px] md:w-[500px] lg:w-[560px] h-[380px] sm:h-[460px] md:h-[500px] flex items-center justify-center shrink-0 mr-4 sm:mr-10 lg:mr-16 [perspective:1400px] [transform-style:preserve-3d]">
+          <div className="relative w-[280px] sm:w-[420px] md:w-[500px] lg:w-[560px] h-[260px] sm:h-[460px] md:h-[500px] flex items-center justify-center shrink-0 mr-0 md:mr-16 [perspective:1400px] [transform-style:preserve-3d] scale-90 sm:scale-100 origin-center">
             {/* 1. 3D CYAN TORUS RING (Top Left - Polished Metallic Cyan/Sky) */}
             <div ref={torusRef} className="intro-graphic absolute top-2 left-6 z-20 transform-gpu will-change-transform">
               <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-26 sm:h-26 lg:w-32 lg:h-32 overflow-visible">
@@ -1834,7 +1830,7 @@ export const HorizontalShowcase: React.FC<HorizontalShowcaseProps> = () => {
         </div>
 
         {/* ━━ PANEL 2: CONTINUOUS KINETIC TYPOGRAPHY SENTENCE ━━ */}
-        <div className="flex items-center gap-6 md:gap-10 text-5xl sm:text-7xl lg:text-[7rem] font-medium tracking-tight leading-none text-[#F4F1EA] pl-2 sm:pl-4 pr-24">
+        <div className="flex items-center gap-4 sm:gap-6 md:gap-10 text-4xl sm:text-6xl md:text-7xl lg:text-[7rem] font-medium tracking-tight leading-none text-[#F4F1EA] pl-2 sm:pl-4 pr-16 sm:pr-24">
           {/* PHRASE 1 WITH LETTER DECONSTRUCTION & CAMERA STICKER PNG */}
           <div ref={phrase1Ref} className="inline-flex items-center gap-[0.48em] shrink-0">
             {/* DECONSTRUCT: LETTER BY LETTER SPANS */}

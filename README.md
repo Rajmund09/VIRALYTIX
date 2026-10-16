@@ -4,16 +4,27 @@
 
 ### Multimodal Machine Learning & Persona-Based Social Media Virality Prediction System
 
-[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
-[![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-88CE02?style=for-the-badge&logo=greensock&logoColor=white)](https://greensock.com/gsap/)
-[![XGBoost](https://img.shields.io/badge/XGBoost-ML_Engine-FF6F00?style=for-the-badge&logo=xgboost&logoColor=white)](https://xgboost.readthedocs.io/)
-[![SHAP](https://img.shields.io/badge/SHAP-Explainability-red?style=for-the-badge)](https://shap.readthedocs.io/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+[![Live Web Application](https://img.shields.io/badge/Live_App-viralytix--eta.vercel.app-00E83F?style=for-the-badge&logo=vercel&logoColor=white)](https://viralytix-eta.vercel.app/)
+[![Production Backend](https://img.shields.io/badge/Production_API-onrender.com-46E3B7?style=for-the-badge&logo=render&logoColor=white)](https://viralytix-backend-162z.onrender.com/)
+[![Interactive Swagger API Docs](https://img.shields.io/badge/Swagger_Docs-API_Reference-blue?style=for-the-badge&logo=swagger&logoColor=white)](https://viralytix-backend-162z.onrender.com/docs)
 
-> **Predict how well your short-form video will perform before you publish it.**
+[![Python](https://img.shields.io/badge/Python-3.10%2B-blue?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-0.110%2B-009688?style=flat-square&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat-square&logo=next.js&logoColor=white)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Three.js](https://img.shields.io/badge/Three.js-WebGL-black?style=flat-square&logo=three.js&logoColor=white)](https://threejs.org/)
+[![GSAP](https://img.shields.io/badge/GSAP-ScrollTrigger-88CE02?style=flat-square&logo=greensock&logoColor=white)](https://greensock.com/gsap/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-ML_Engine-FF6F00?style=flat-square&logo=xgboost&logoColor=white)](https://xgboost.readthedocs.io/)
+[![SHAP](https://img.shields.io/badge/SHAP-Explainability-red?style=flat-square)](https://shap.readthedocs.io/)
+[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+
+> **Predict how well your short-form video will perform before you publish it.**  
+> Real-time multimodal feature extraction, synthetic demographic audience cascades, and gradient-boosted tree explainability.
+
+**🌐 Live Deployments:**
+- **Frontend App:** [https://viralytix-eta.vercel.app/](https://viralytix-eta.vercel.app/)
+- **Backend API:** [https://viralytix-backend-162z.onrender.com/](https://viralytix-backend-162z.onrender.com/)
+- **Swagger Documentation:** [https://viralytix-backend-162z.onrender.com/docs](https://viralytix-backend-162z.onrender.com/docs)
 
 </div>
 
@@ -22,6 +33,7 @@
 ## 📋 Table of Contents
 
 - [Overview](#-overview)
+- [Live Deployments](#-live-deployments)
 - [Key Features](#-key-features)
 - [GSAP Kinetic Hero & Horizontal Showcase](#-gsap-kinetic-hero--horizontal-showcase)
 - [🎨 Creative Prompts & Design Playbook](PROMPTS_AND_DESIGN_PLAYBOOK.md)
@@ -45,10 +57,24 @@
 
 ---
 
+## 🌐 Live Deployments
+
+| Component | Cloud Platform | Live URL | Status |
+| :--- | :--- | :--- | :---: |
+| **Frontend Web App** | Vercel | [viralytix-eta.vercel.app](https://viralytix-eta.vercel.app/) | 🟢 Active |
+| **Backend API Engine** | Render | [viralytix-backend-162z.onrender.com](https://viralytix-backend-162z.onrender.com/) | 🟢 Active |
+| **Interactive Swagger API** | Render / FastAPI | [viralytix-backend-162z.onrender.com/docs](https://viralytix-backend-162z.onrender.com/docs) | 🟢 Active |
+
+---
+
 ## ✨ Key Features
 
-- **⚡ GSAP Kinetic Hero Engine**: WebGL Silk shader background coupled with parallel 3D letter assembly choreography, offscreen replacement push badges (`c`, `a`), 3D reciprocal flips for `i`, and elastic vibration effects.
-- **↔️ Sideways Horizontal GSAP Scroll Showcase**: Interactive pinned horizontal scroll track (`300vw`) displaying Multimodal Signal Streams, 32-D Vector Cluster Topology, and Persona Swarm Simulations with floating tilted sticker badges.
+- **⚡ GSAP Kinetic Hero Engine**: WebGL Silk shader background (`#1E1B4B`) coupled with parallel 3D letter assembly choreography, offscreen replacement push badges (`c`, `a`), 3D reciprocal flips for `i`, and elastic vibration effects.
+- **🧭 Dynamic Corner-Docking Navigation**: Floating rectangular navbar (`max-w-7xl`, `rounded-[14px]`) that smoothly collapses inward into the brand logo upon scrolling ($>60\text{px}$) and docks to the top-left corner as an interactive return-to-top cube.
+- **🎉 3D Metallic Pill CTA & Upward V Party Popper**: Symmetrical word expansion (`GET` $\leftarrow$ | $\rightarrow$ `STARTED ↓`) on hover triggering a slow-motion $1.5\text{s}$ party popper fireworks eruption directly out of the gap in a celebratory **upward V-shape (`\  /`)** with 3D social stickers (TikTok, Instagram, YouTube, Facebook, LinkedIn) and metallic confetti.
+- **📄 Interactive 3D Paper Attribution Card (`PaperUnfoldCard`)**: Three.js paper card that preserves its initial entrance unfold animation from a crumpled paper ball, while featuring **interactive click-and-hold crumple**, **zero-latency 1:1 cursor dragging**, dynamic 3D inertial tilt, and a **smooth glide return-to-center and unfold on release**.
+- **✨ 3D Sticker Cursor Trail (`ImageTrail`)**: Streetwear / Pop-art cursor trail dropping glossy 3D social badges with spring pop scale (`0.2 -> 1.15 -> 1.0`) across Section 8.
+- **↔️ Sideways Horizontal GSAP Scroll Showcase**: Interactive pinned horizontal scroll track (`300vw`) displaying Multimodal Signal Streams, 32-D Vector Cluster Topology, and Persona Swarm Simulations with mechanical diamond rotor assemblies and floating tilted sticker badges.
 - **🎥 Multimodal Feature Extraction**: Extracts frame-level, audio-level, and transcript-level signals including scene transition frequency, motion vectors, acoustic energy, visual contrast, pitch variation, and speech sentiment.
 - **👥 Persona-Based Swarm Simulation**: Simulates content propagation through 6 distinct synthetic target demographic personas (*Tech Enthusiasts, Students, Founders, Creators, Designers, General Viewers*) across discrete time cascade rounds.
 - **🤖 Comparative ML Ensemble**: Harnesses XGBoost, Random Forest, Neural Networks, and Ridge Regression to forecast continuous virality metrics and discrete performance tier classifications.
@@ -64,31 +90,24 @@
 - **Offscreen Replacement Push Badges**:
   - `c`: Razor-sharp 8-point purple star badge enters from offscreen left, holds for 1.0s, and is pushed straight UP off top of screen when letter `c` rises from below.
   - `a`: Emerald clover gem badge drops from offscreen top, holds for 1.0s, and is pushed straight UP off top of screen when letter `a` rises from below.
-- **Reciprocal 3D Letter Flips**: 1st `i` in "virality" enters smoothly and performs a 3D Downward Flip (`rotationX: -360`) after a gap pause; 2nd `i` performs a 3D Upward Flip (`rotationX: 360`, vice-versa).
+- **Reciprocal 3D Letter Flips**: 1st `i` in "virality" enters smoothly and performs a 3D Downward Flip (`rotationX: -360`); 2nd `i` performs a 3D Upward Flip (`rotationX: 360`, vice-versa).
 - **Elastic Shake**: Letter `t` executes a 5-cycle elastic vibration shake (`rotationZ: ±6°`, `x: ±5px`).
 
-### 2. Sideways Horizontal GSAP Scroll (`HorizontalShowcase.tsx`)
+### 2. 3D Metallic Pill & Upward V Party Popper (`Hero.tsx`)
+- **3D Bevel & Inset**: Titanium gradient with top specular rim highlight (`inset 0 1px 1px rgba(255,255,255,0.35)`) and bottom dark recess shadow.
+- **Symmetric Word Separation**: "GET" translates $-16\text{px}$ left and "STARTED ↓" translates $+16\text{px}$ right.
+- **Upward V Burst (`\  /`)**: Erupts straight from the opened gap:
+  - Base vertex: TikTok sticker `(0, -58)`
+  - Wings: Instagram & YouTube `(±34, -86)`, Facebook & LinkedIn `(±64, -114)`
+  - Confetti streamers along both arms up to $y = -140$ with floating $1.5\text{s}$ arc deceleration.
+
+### 3. Sideways Horizontal GSAP Scroll (`HorizontalShowcase.tsx`)
 - **Pinned Viewport Scroll**: Pins the container during vertical scroll while transforming horizontal track smoothly across 3 panels (`300vw`).
 - **Interactive SVG Bezier Easing Diagrams**: Real-time animated cubic Bezier curves and arch paths with interactive control lines, diamond anchors, and floating handle nodes.
-- **Phrase 3 Mechanical Rotor Assembly**:
-  - **Straight Audio RMS Pill**: Crisp, high-contrast amber pill with reduced corner radius.
-  - **Diamond Rotor Hub with Static Ampersand**: Rotating lilac-to-indigo diamond plate with an independent, non-rotating central `&` bearing badge.
-  - **Edge-Attached Dual-Stick Rotor**: "Whisper Cadence" text anchored to the diamond edge (`origin-left`) that swings along the rotating facet with 3D perspective (`transformPerspective: 800`, `rotateX: 8deg`) and synchronized `power2.inOut` easing.
-- **Phrase 4 Sequential Stagger Composition**:
-  - **"Nice and"**: Vibrant lime-to-pastel green pill dropping from the top.
-  - **"Easy"**: Lilac-to-indigo pill nestled in a frosted dark glass frame (`bg-black/45`) dropping in second.
-  - **"Easing"**: Warm sunrise orange badge peeking at a $16^\circ$ angle with half-rotation and subtle spring bounce.
-- **Interactive 3-Bar Stacked Composition & Agent Keyhole**:
-  - **3-Bar Geometry**: Straight stickers (`rotate-0`) with connected borders (`y: bar100.offsetHeight - 2`) seamlessly merging 2px borders with zero overlap.
-  - **Letter-Anchored Alignment**: `"Synthetic Swarm"` slides right to align its left edge with the letter **`"g"`** of `Agents`, while `"in a snap"` emerges smoothly stopping at the letter **`"S"`** of `Swarm`.
-  - **Textured Metallic Pink Chrome Keyhole**: Multi-stop specular chrome gradient (`#FFFFFF` ➔ `#FCE7F3` ➔ `#F472B6` ➔ `#EC4899` ➔ `#BE185D` ➔ `#831843` ➔ `#FFFFFF`) with radial specular sheen, inner beveled dashed ridge, and periodic 2s micro-vibration haptic pulse.
-- **Panel 1 3D Artworks Kinetic Staging & Ambient Physics**:
-  - **Giant Green Dome**: Emerges from bottom-right with dynamic rotational torque (`rotateX: 50°`, `rotateZ: -35°`, `scale: 0 -> 1`, `power4.out`).
-  - **3D Pink Bloom Flower**: Multi-turn blossom spin (`rotateZ: -420°`, `back.out(2.6)`) with ambient breathing float.
-  - **3D Cyan Torus Ring**: Gyro orbital dive (`rotateX: 75°`, `rotateZ: -180°`, `back.out(2.0)`) with ambient levitation.
-  - **3D Hourglass Prism**: Multi-axis gyro-flip (`rotateY: 270°`, `rotateX: -70°`, `back.out(2.2)`) resting on the dome.
-  - **3D Amber Diamond Crystal**: High-speed facet spin pop (`elastic.out(1.25, 0.4)`) with crystal shimmer float.
-- **Kinetic Letter Mechanics & Stacked Stickers**: Letter-by-letter wave reveals (`parsing`, `publish.`), 3D flip-ups (`optical`), gradient star asterisks, and stacked diagonal sticker tags (`Super`, `Plug-and-play`, `Vector Topology`).
+- **Phrase 3 Mechanical Rotor Assembly**: Straight Audio RMS pill, rotating diamond plate with independent static `&` center bearing, and dual-stick "Whisper Cadence" mechanical text rotors.
+- **Phrase 4 Sequential Stagger Composition**: Staggered drops for "Nice and", "Easy" in frosted dark glass (`bg-black/45`), and $16^\circ$ spring bounce for "Easing".
+- **Phrase 6 Interactive 3-Bar Stacked Composition & Agent Keyhole**: Connected 2px black borders (`y = bar100.offsetHeight - 2`), dynamic letter-anchored alignment (`"g"` of Agents and `"S"` of Swarm), and textured metallic pink chrome keyhole icon with 2s micro-vibration haptic pulse.
+- **Panel 1 3D Artworks Kinetic Staging**: Giant green dome base, 3D pink bloom blossom, 3D cyan torus orbital ring, 3D hourglass prism, and diamond crystal gem with continuous ambient floating sine loops.
 
 ---
 
@@ -96,14 +115,15 @@
 
 ```mermaid
 flowchart TD
-    subgraph Client ["Frontend (Next.js 16 + GSAP + Three.js)"]
+    subgraph Client ["Frontend (Next.js 16 + GSAP + Three.js) - Vercel"]
         HeroUI["GSAP Kinetic Assembly Hero"]
         HorizontalUI["Sideways Scroll Showcase (300vw)"]
+        PaperCard["Interactive 3D Paper Unfold & Crumple Card"]
         Dashboard["Predictive Analytics Dashboard"]
         ABView["A/B Comparative Mode"]
     end
 
-    subgraph API ["Backend Gateway (FastAPI)"]
+    subgraph API ["Backend Gateway (FastAPI) - Render"]
         Router["API Router (/api)"]
         UploadHandler["File Upload & Streamer"]
     end
@@ -111,7 +131,7 @@ flowchart TD
     subgraph Pipeline ["Processing Pipeline"]
         FFmpeg["FFmpeg Visual & Audio Signal Extractor"]
         Whisper["OpenAI Whisper Transcript Engine"]
-        FeatureVector["32-Dim Multimodal Feature Vector"]
+        FeatureVector["32-Dim Multimodal Feature Tensor"]
     end
 
     subgraph Simulation ["Swarm Engine"]
@@ -212,6 +232,7 @@ $$\text{Engagement Score} = w_1 \cdot \text{Similarity}(\vec{I}_{\text{persona}}
 | **Database** | SQLite (Development) / PostgreSQL (Production) |
 | **ML & Data Science** | XGBoost, Scikit-Learn, NumPy, Pandas, SHAP |
 | **Media Processing** | FFmpeg, OpenAI Whisper, OpenCV |
+| **Cloud Hosting** | Vercel (Frontend), Render (Backend) |
 
 ---
 
@@ -236,7 +257,8 @@ viralytix/
 │   │   │   ├── hero/         # GSAP Kinetic Hero & WebGL Shader
 │   │   │   ├── HorizontalShowcase.tsx # Sideways GSAP Scroll Showcase
 │   │   │   └── StudioLandingPage.tsx  # Master Landing Page Layout
-│   ├── public/               # Static assets & icons
+│   ├── components/           # UI & ReactBits Components (PaperUnfoldCard, ImageTrail)
+│   ├── public/               # Static assets, stickers & pre-baked models
 │   ├── package.json          # Dependencies & npm scripts
 │   ├── tailwind.config.ts    # Tailwind styling config
 │   └── tsconfig.json         # TypeScript configuration
@@ -244,19 +266,21 @@ viralytix/
 │   ├── datasets/             # Synthetic & real engagement datasets
 │   ├── notebooks/            # Jupyter Notebooks (EDA, Training, Validation)
 │   └── experiments/          # Model comparison logs
-└── docs/                     # Documentation & Architecture specs
+├── PROMPTS_AND_DESIGN_PLAYBOOK.md # Complete Prompts & Architectural Math Playbook
+└── docs/                     # Additional documentation & specs
 ```
 
 ---
 
 ## 🔌 API Endpoints
 
-### Core Routes
+**Base Production URL**: `https://viralytix-backend-162z.onrender.com`
 
 | Method | Endpoint | Description |
 | :--- | :--- | :--- |
 | `GET` | `/` | API status and documentation index |
 | `GET` | `/health` | Server health check |
+| `GET` | `/docs` | Interactive Swagger API documentation |
 | `POST` | `/api/videos/upload` | Upload video file for extraction |
 | `POST` | `/api/predictions/predict` | Run XGBoost model prediction & SHAP explainability |
 | `POST` | `/api/simulations/run` | Execute persona swarm engagement simulation |
@@ -330,7 +354,8 @@ npm run dev
 | **08** | WebGL & GSAP Kinetic Assembly Hero | ✅ Completed |
 | **09** | Sideways Horizontal Scroll Showcase (`300vw`) | ✅ Completed |
 | **10** | A/B Video Testing Mode | ✅ Completed |
-| **11** | Cloud Production Deployment | ⬜ Pending |
+| **11** | Interactive 3D Paper Unfold & Drag Card | ✅ Completed |
+| **12** | Cloud Production Deployment (Vercel + Render) | ✅ Completed |
 
 ---
 
@@ -339,5 +364,5 @@ npm run dev
 Distributed under the MIT License. See `LICENSE` for details.
 
 <div align="center">
-  <sub>Built with ❤️ by Prabhu Shankar Mund (Raj) </sub>
+  <sub>Built with ❤️ by <b>Prabhu Shankar Mund (Raj)</b></sub>
 </div>

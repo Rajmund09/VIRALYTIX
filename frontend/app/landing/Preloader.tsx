@@ -62,6 +62,14 @@ export const Preloader: React.FC<PreloaderProps> = ({ onComplete }) => {
 
           {/* Center Brand Sequence */}
           <div className="my-auto space-y-6 text-center">
+            <div className="w-16 h-16 md:w-20 md:h-20 mx-auto">
+              <img
+                src="/logo.png"
+                alt="VIRALYTIX Logo"
+                className="w-full h-full object-contain filter drop-shadow-[0_0_24px_rgba(0,232,63,0.5)]"
+              />
+            </div>
+
             <div className="text-4xl md:text-7xl font-extrabold tracking-tighter text-[#F4F1EA] font-sans">
               VIRALYTIX
             </div>

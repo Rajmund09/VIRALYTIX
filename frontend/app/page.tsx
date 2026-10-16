@@ -1737,14 +1737,14 @@ export default function Dashboard() {
       </div>
 
       {/* ── Floating Bottom Dock Navbar ────────────────────────────────── */}
-      <div className="fixed bottom-4 md:bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center w-max max-w-[95vw]">
+      <div className="fixed bottom-3 md:bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center w-max max-w-[96vw]">
         {/* Outer Frosted Pill Container */}
-        <div className="bg-slate-300/40 backdrop-blur-2xl border-2 border-white/60 p-1.5 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center gap-2">
+        <div className="bg-slate-300/40 backdrop-blur-2xl border-2 border-white/60 p-1 sm:p-1.5 rounded-full shadow-[0_20px_50px_rgba(0,0,0,0.6)] flex items-center gap-1.5 sm:gap-2">
           
           {/* Left Circle: Logo Badge Button */}
           <div
             onClick={() => handleSetView("landing")}
-            className="w-11 h-11 rounded-full bg-white border-2 border-[#05190e] flex items-center justify-center p-1.5 shadow-md hover:scale-110 transition-transform cursor-pointer"
+            className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#05190e] flex items-center justify-center p-1.5 shadow-md hover:scale-110 transition-transform cursor-pointer shrink-0"
             title="Return to Landing Page"
           >
             <img src="/logo.png" alt="VIRALYTIX Logo" className="w-full h-full object-contain" />
@@ -1752,9 +1752,9 @@ export default function Dashboard() {
 
           <button
             onClick={() => handleSetView("landing")}
-            className="bg-[#05190e] hover:bg-emerald-950 text-emerald-400 border border-emerald-500/40 px-3 py-1.5 rounded-full font-mono font-bold text-xs flex items-center gap-1 shadow hover:scale-105 transition-all cursor-pointer"
+            className="bg-[#05190e] hover:bg-emerald-950 text-emerald-400 border border-emerald-500/40 px-2.5 sm:px-3 py-1.5 rounded-full font-mono font-bold text-[10px] sm:text-xs flex items-center gap-1 shadow hover:scale-105 transition-all cursor-pointer whitespace-nowrap"
           >
-            ← Landing Page
+            ← <span className="hidden xs:inline sm:inline">Landing Page</span><span className="xs:hidden sm:hidden">Landing</span>
           </button>
 
           {/* Center Main Pill Button */}
@@ -1764,23 +1764,23 @@ export default function Dashboard() {
                 if (file) runAnalysis();
                 else document.getElementById("file-input-a")?.click();
               }}
-              className="bg-[#1c1c1e] hover:bg-black text-white px-4 md:px-7 py-2.5 rounded-full font-display font-extrabold text-xs md:text-sm tracking-tight flex items-center gap-2 transition-all cursor-pointer shadow-lg hover:scale-105 whitespace-nowrap"
+              className="bg-[#1c1c1e] hover:bg-black text-white px-3 sm:px-5 md:px-7 py-2 sm:py-2.5 rounded-full font-display font-extrabold text-[11px] sm:text-xs md:text-sm tracking-tight flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer shadow-lg hover:scale-105 whitespace-nowrap"
             >
-              <Zap size={16} className="text-emerald-400 fill-emerald-400" />
+              <Zap size={14} className="text-emerald-400 fill-emerald-400 shrink-0" />
               <span>{file ? "Run Virality Engine" : "Upload Video"}</span>
             </button>
           ) : result ? (
             <button
               onClick={handleReset}
-              className="bg-[#1c1c1e] hover:bg-black text-white px-4 md:px-7 py-2.5 rounded-full font-display font-extrabold text-xs md:text-sm tracking-tight flex items-center gap-2 transition-all cursor-pointer shadow-lg hover:scale-105 whitespace-nowrap"
+              className="bg-[#1c1c1e] hover:bg-black text-white px-3 sm:px-5 md:px-7 py-2 sm:py-2.5 rounded-full font-display font-extrabold text-[11px] sm:text-xs md:text-sm tracking-tight flex items-center gap-1.5 sm:gap-2 transition-all cursor-pointer shadow-lg hover:scale-105 whitespace-nowrap"
             >
-              <RotateCcw size={16} className="text-emerald-400" />
+              <RotateCcw size={14} className="text-emerald-400 shrink-0" />
               <span>Reset Engine</span>
             </button>
           ) : (
-            <div className="bg-[#1c1c1e] text-white px-4 md:px-7 py-2.5 rounded-full font-display font-extrabold text-xs md:text-sm tracking-tight flex items-center gap-2 shadow-lg whitespace-nowrap">
-              <Activity size={16} className="text-emerald-400 animate-spin" />
-              <span>Processing Signals...</span>
+            <div className="bg-[#1c1c1e] text-white px-3 sm:px-5 md:px-7 py-2 sm:py-2.5 rounded-full font-display font-extrabold text-[11px] sm:text-xs md:text-sm tracking-tight flex items-center gap-1.5 sm:gap-2 shadow-lg whitespace-nowrap">
+              <Activity size={14} className="text-emerald-400 animate-spin shrink-0" />
+              <span>Processing...</span>
             </div>
           )}
 
@@ -1790,11 +1790,11 @@ export default function Dashboard() {
               if (result) setActiveTab(activeTab === "overview" ? "swarm" : "overview");
               else handleReset();
             }}
-            className="w-11 h-11 rounded-full bg-white border-2 border-[#05190e] flex flex-col items-center justify-center gap-1 shadow-md hover:scale-110 transition-transform cursor-pointer text-[#05190e]"
+            className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#05190e] flex flex-col items-center justify-center gap-1 shadow-md hover:scale-110 transition-transform cursor-pointer text-[#05190e] shrink-0"
             title="Engine Menu / Controls"
           >
-            <span className="w-4 h-[2.5px] bg-[#05190e] rounded-full" />
-            <span className="w-4 h-[2.5px] bg-[#05190e] rounded-full" />
+            <span className="w-3 sm:w-4 h-[2px] sm:h-[2.5px] bg-[#05190e] rounded-full" />
+            <span className="w-3 sm:w-4 h-[2px] sm:h-[2.5px] bg-[#05190e] rounded-full" />
           </button>
         </div>
       </div>
@@ -1822,10 +1822,10 @@ export default function Dashboard() {
 
             {/* Mode Selector Buttons */}
             <div className="flex justify-center pt-2">
-              <div className="bg-[#05190e] p-2 rounded-2xl border-3 border-[#05190e] flex gap-2 shadow-2xl max-w-md md:max-w-lg w-full">
+              <div className="bg-[#05190e] p-1.5 sm:p-2 rounded-2xl border-3 border-[#05190e] flex flex-col sm:flex-row gap-1.5 sm:gap-2 shadow-2xl max-w-md md:max-w-lg w-full">
                 <button
                   onClick={() => setMode("single")}
-                  className={`flex-1 py-3 px-6 rounded-xl text-xs md:text-sm font-display font-extrabold transition-all cursor-pointer ${
+                  className={`flex-1 py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl text-xs md:text-sm font-display font-extrabold transition-all cursor-pointer ${
                     mode === "single"
                       ? "bg-white text-[#05190e] border-2 border-[#05190e] shadow-md scale-102 font-black"
                       : "text-slate-300 hover:text-white"
@@ -1835,7 +1835,7 @@ export default function Dashboard() {
                 </button>
                 <button
                   onClick={() => setMode("ab")}
-                  className={`flex-1 py-3 px-6 rounded-xl text-xs md:text-sm font-display font-extrabold transition-all cursor-pointer ${
+                  className={`flex-1 py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl text-xs md:text-sm font-display font-extrabold transition-all cursor-pointer ${
                     mode === "ab"
                       ? "bg-white text-[#05190e] border-2 border-[#05190e] shadow-md scale-102 font-black"
                       : "text-slate-300 hover:text-white"
@@ -2332,7 +2332,7 @@ export default function Dashboard() {
             {activeTab === "overview" && (
               <div className="space-y-6">
                 {/* Top Metrics Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                   {/* Virality Score Card */}
                   <div className="brutal-card p-6 bg-white border-2 border-[#05190e] glow-emerald text-center flex flex-col items-center justify-center relative">
                     <div className="ambient-blob blob-emerald w-40 h-40 -top-8 -right-8" />
@@ -2597,22 +2597,22 @@ export default function Dashboard() {
                   <h3 className="font-display font-extrabold text-base text-[#05190e] flex items-center gap-2">
                     <Activity size={18} className="text-emerald-700" /> Extracted Multi-Modal Signals
                   </h3>
-                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                    <div className="p-4.5 rounded-2xl bg-slate-100 border-2 border-[#05190e] space-y-1">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+                    <div className="p-4 sm:p-4.5 rounded-2xl bg-slate-100 border-2 border-[#05190e] space-y-1">
                       <div className="text-xs font-mono text-slate-600 font-bold">Hook Score</div>
-                      <div className="text-2xl font-black text-[#05190e]">{result.features?.hook_score ?? 74}/100</div>
+                      <div className="text-xl sm:text-2xl font-black text-[#05190e]">{result.features?.hook_score ?? 74}/100</div>
                     </div>
-                    <div className="p-4.5 rounded-2xl bg-slate-100 border-2 border-[#05190e] space-y-1">
+                    <div className="p-4 sm:p-4.5 rounded-2xl bg-slate-100 border-2 border-[#05190e] space-y-1">
                       <div className="text-xs font-mono text-slate-600 font-bold">Scene Cut Speed</div>
-                      <div className="text-2xl font-black text-cyan-700">{result.features?.scene_change_rate ?? 1.8}/s</div>
+                      <div className="text-xl sm:text-2xl font-black text-cyan-700">{result.features?.scene_change_rate ?? 1.8}/s</div>
                     </div>
-                    <div className="p-4.5 rounded-2xl bg-slate-100 border-2 border-[#05190e] space-y-1">
+                    <div className="p-4 sm:p-4.5 rounded-2xl bg-slate-100 border-2 border-[#05190e] space-y-1">
                       <div className="text-xs font-mono text-slate-600 font-bold">Speech Rate</div>
-                      <div className="text-2xl font-black text-emerald-800">{result.features?.speech_rate ?? 142} WPM</div>
+                      <div className="text-xl sm:text-2xl font-black text-emerald-800">{result.features?.speech_rate ?? 142} WPM</div>
                     </div>
-                    <div className="p-4.5 rounded-2xl bg-slate-100 border-2 border-[#05190e] space-y-1">
+                    <div className="p-4 sm:p-4.5 rounded-2xl bg-slate-100 border-2 border-[#05190e] space-y-1">
                       <div className="text-xs font-mono text-slate-600 font-bold">CTA Intensity</div>
-                      <div className="text-2xl font-black text-amber-700">{((result.features?.cta_score ?? 0.65) * 100).toFixed(0)}%</div>
+                      <div className="text-xl sm:text-2xl font-black text-amber-700">{((result.features?.cta_score ?? 0.65) * 100).toFixed(0)}%</div>
                     </div>
                   </div>
                 </div>

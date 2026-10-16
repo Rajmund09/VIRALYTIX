@@ -17,6 +17,9 @@ import {
 } from '@react-three/drei';
 import { easing } from 'maath';
 
+const DreiText = Text as any;
+const DreiImage = Image as any;
+
 const IMAGE_URLS = [
   'https://images.unsplash.com/photo-1783394327207-acf441e37dda?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MzR8fHxlbnwwfHx8fHw%3D',
   'https://images.unsplash.com/photo-1782977389500-dd7adad33ebe?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwcm9maWxlLXBhZ2V8MzZ8fHxlbnwwfHx8fHw%3D',
@@ -140,12 +143,12 @@ const ModeWrapper = memo(function ModeWrapper({
   fallbackGeo = 'cylinder',
   ...props
 }: any) {
-  const ref = useRef<any>();
+  const ref = useRef<any>(null);
   let nodes: any = {};
   
   try {
-    const gltf = useGLTF(glb);
-    nodes = gltf.nodes || {};
+    const gltf = useGLTF(glb) as any;
+    nodes = gltf?.nodes || {};
   } catch (e) {
     // Graceful fallback to procedural geometry if network / file missing
   }
@@ -288,7 +291,7 @@ function Bar({ modeProps = {}, ...p }: any) {
 }
 
 function NavItems({ items, textColor }: { items: NavItem[]; textColor: string }) {
-  const group = useRef<any>();
+  const group = useRef<any>(null);
   const { viewport, camera } = useThree();
 
   const DEVICE = {
@@ -330,7 +333,7 @@ function NavItems({ items, textColor }: { items: NavItem[]; textColor: string })
   return (
     <group ref={group} renderOrder={10}>
       {items.map(({ label, link }) => (
-        <Text
+        <DreiText
           key={label}
           fontSize={fontSize}
           color={textColor}
@@ -355,14 +358,14 @@ function NavItems({ items, textColor }: { items: NavItem[]; textColor: string })
           }}
         >
           {label}
-        </Text>
+        </DreiText>
       ))}
     </group>
   );
 }
 
 function Images() {
-  const group = useRef<any>();
+  const group = useRef<any>(null);
   const data = useScroll();
   const { height } = useThree((s: any) => s.viewport);
 
@@ -377,11 +380,11 @@ function Images() {
 
   return (
     <group ref={group}>
-      <Image position={[-2, 0, 0]} scale={[3, height / 1.1, 1]} url={IMAGE_URLS[0]} />
-      <Image position={[2, 0, 3]} scale={3} url={IMAGE_URLS[1]} />
-      <Image position={[-2.05, -height, 6]} scale={[1, 3, 1]} url={IMAGE_URLS[2]} />
-      <Image position={[-0.6, -height, 9]} scale={[1, 2, 1]} url={IMAGE_URLS[3]} />
-      <Image position={[0.75, -height, 10.5]} scale={1.5} url={IMAGE_URLS[4]} />
+      <DreiImage position={[-2, 0, 0]} scale={[3, height / 1.1, 1]} url={IMAGE_URLS[0]} />
+      <DreiImage position={[2, 0, 3]} scale={3} url={IMAGE_URLS[1]} />
+      <DreiImage position={[-2.05, -height, 6]} scale={[1, 3, 1]} url={IMAGE_URLS[2]} />
+      <DreiImage position={[-0.6, -height, 9]} scale={[1, 2, 1]} url={IMAGE_URLS[3]} />
+      <DreiImage position={[0.75, -height, 10.5]} scale={1.5} url={IMAGE_URLS[4]} />
     </group>
   );
 }
@@ -409,7 +412,7 @@ function Typography({ textColor }: { textColor: string }) {
   const { fontSize } = (DEVICE as any)[device];
 
   return (
-    <Text
+    <DreiText
       position={[0, 0, 12]}
       fontSize={fontSize}
       letterSpacing={-0.05}
@@ -422,7 +425,7 @@ function Typography({ textColor }: { textColor: string }) {
       anchorY="middle"
     >
       VIRALYTIX
-    </Text>
+    </DreiText>
   );
 }
 

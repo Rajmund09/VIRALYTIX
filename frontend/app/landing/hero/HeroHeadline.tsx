@@ -22,6 +22,8 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
 
   // GSAP continuous stepped rotation, cursor parallax, and ScrollTrigger scroll scrub
   useEffect(() => {
+    let cleanupMouse: (() => void) | null = null;
+
     const ctx = gsap.context(() => {
       // 1. Top Pinwheel Badge: ONLY rhythmic 90-degree step ease-in-out rotation
       if (flowerRef.current) {
@@ -36,23 +38,34 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
         }
       }
 
-      // 2. Bottom Helical Coil Ribbon: Subtle cursor interaction (Entrance handled in master timeline)
+      // 2. Bottom Helical Coil Ribbon: Subtle cursor interaction (Throttled with RAF)
       if (ribbonRef.current) {
         const xTo = gsap.quickTo(ribbonRef.current, "x", { duration: 0.6, ease: "power2.out" });
         const rotTo = gsap.quickTo(ribbonRef.current, "rotation", { duration: 0.7, ease: "power2.out" });
 
+        let rafId = 0;
         const handleMouseMove = (e: MouseEvent) => {
-          const normX = (e.clientX / window.innerWidth - 0.5) * 2;
-          xTo(normX * 16);
-          rotTo(normX * 9);
+          if (rafId) return;
+          rafId = requestAnimationFrame(() => {
+            rafId = 0;
+            const normX = (e.clientX / window.innerWidth - 0.5) * 2;
+            xTo(normX * 16);
+            rotTo(normX * 9);
+          });
         };
 
-        window.addEventListener("mousemove", handleMouseMove);
+        window.addEventListener("mousemove", handleMouseMove, { passive: true });
+        cleanupMouse = () => {
+          if (rafId) cancelAnimationFrame(rafId);
+          window.removeEventListener("mousemove", handleMouseMove);
+        };
       }
 
       // 3. GSAP ScrollTrigger: "Predict" moves left & "virality" moves right on scroll (Starts at x=0 at top=0)
       if (line1Ref.current && line2Ref.current && containerRef.current) {
         const initialTop = containerRef.current.getBoundingClientRect().top;
+        const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+        const scrubDist = isMobile ? 55 : 160;
         gsap.timeline({
           scrollTrigger: {
             trigger: containerRef.current,
@@ -61,8 +74,8 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
             scrub: 1,
           },
         })
-          .to(line1Ref.current, { x: -160, ease: "none" }, 0)
-          .to(line2Ref.current, { x: 160, ease: "none" }, 0);
+          .to(line1Ref.current, { x: -scrubDist, ease: "none" }, 0)
+          .to(line2Ref.current, { x: scrubDist, ease: "none" }, 0);
       }
 
       // 4. Subtle Periodic Micro-Pulse for 'i' letters in "virality"
@@ -89,7 +102,10 @@ export const HeroHeadline = forwardRef<HeroHeadlineRef, {}>((_, ref) => {
       }
     }, containerRef);
 
-    return () => ctx.revert();
+    return () => {
+      if (cleanupMouse) cleanupMouse();
+      ctx.revert();
+    };
   }, []);
 
   useImperativeHandle(ref, () => ({

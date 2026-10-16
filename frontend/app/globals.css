@@ -648,11 +648,15 @@ body::after {
   height: 100%;
 }
 
-/* ── Studio Glass Poster Theme (Image 3 Aesthetic) ── */
-.studio-glass-bg {
-  background-color: #DDE2EB;
+/* ── High-Quality Textured Cloth / Woven Fabric Background ── */
+.studio-glass-bg,
+.cloth-woven-bg {
+  background-color: #ECE7DF;
   background-image: 
-    radial-gradient(110% 75% at 50% 0%, #EEF2F8 0%, #D8DFEB 50%, #CAD2E0 100%);
+    radial-gradient(110% 75% at 50% 0%, rgba(255, 255, 255, 0.45) 0%, rgba(228, 222, 214, 0.3) 100%),
+    url('/textures/cloth-fabric.webp');
+  background-repeat: repeat;
+  background-size: 260px auto;
   position: relative;
 }
 
@@ -708,6 +712,53 @@ body::after {
     transparent 55%
   );
 }
+
+/* ── High-Quality Smooth Paper Card with 3D Glossy Effect ── */
+.paper-glossy-card {
+  position: relative;
+  background: linear-gradient(135deg, #FAF7F2 0%, #F5EFEB 45%, #ECE4DA 100%);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 
+    0 40px 90px -20px rgba(45, 35, 25, 0.24),
+    0 20px 45px -10px rgba(0, 0, 0, 0.08),
+    0 2px 4px rgba(0, 0, 0, 0.04),
+    inset 0 2px 4px rgba(255, 255, 255, 1),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+  color: #1A1713;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.paper-glossy-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(
+    125deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.25) 26%,
+    rgba(255, 255, 255, 0.8) 35%,
+    rgba(255, 255, 255, 0.15) 44%,
+    transparent 60%
+  );
+}
+
+.paper-foil-rim {
+  position: relative;
+}
+.paper-foil-rim::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(210, 195, 175, 0.5) 50%, rgba(255, 255, 255, 0.9) 100%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
 
 /* Tactile Woven Linen / Canvas Background (Retained for legacy if needed) */
 .canvas-woven-bg {

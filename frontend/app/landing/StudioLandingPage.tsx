@@ -31,13 +31,14 @@ import { GlassTiles } from "@/components/ui/glass-tiles";
 import { Beams } from "@/components/ui/beams";
 import { GlassSurface } from "@/components/ui/glass-surface";
 import { InfiniteBand } from "@/components/ui/infinite-band";
+import { PaperUnfoldCard } from "@/components/ui/paper-unfold-card";
+import { ImageTrail } from "@/components/ui/image-trail";
 
 interface StudioLandingPageProps {
   onLaunchApp: () => void;
 }
 
 export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchApp }) => {
-
   // References for GSAP ScrollTrigger Animations
   const heroRef = useRef<HTMLDivElement>(null);
   const heroTitleRef = useRef<HTMLDivElement>(null);
@@ -326,8 +327,8 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
         </div>
       </section>
 
-      {/* ── 07 SHAP EXPLAINABILITY FORCE VECTORS SECTION WITH STUDIO GLASS THEME ─────── */}
-      <section id="explainability" ref={shapRef} className="relative border-t border-[#CBD4E2] studio-glass-bg overflow-hidden">
+      {/* ── 07 SHAP EXPLAINABILITY FORCE VECTORS SECTION WITH CLOTH FABRIC THEME ─────── */}
+      <section id="explainability" ref={shapRef} className="relative border-t border-[#D6CEC2] studio-glass-bg overflow-hidden">
         {/* ── 01 LUXURY LAUREL GARLAND INFINITE BAND (At Starting of Section 7) ── */}
         <InfiniteBand
           image="/bands/band1.png"
@@ -335,161 +336,83 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
           direction="left"
           speedSeconds={28}
           alt="Ornamental laurel leaf infinite band"
-          className="bg-[#DDE2EB] border-b border-[#CBD4E2]"
+          className="bg-[#ECE7DF] border-b border-[#D6CEC2]"
         />
 
-        <div className="relative z-10 max-w-5xl mx-auto space-y-10 py-20 md:py-24 px-6 md:px-12">
-          {/* Editorial Poster Header (Image 3 Poster Aesthetic: Cool Periwinkle Studio & Towering Black Typography) */}
-          <div className="space-y-4 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/70 backdrop-blur-md border border-white/80 text-xs font-mono font-bold tracking-widest text-[#008A20] uppercase shadow-sm">
+        <div className="max-w-6xl mx-auto space-y-12 relative z-10 py-24 px-6 md:px-12">
+          {/* Section 7 Header with Paper Crumple Toggle */}
+          <div className="space-y-4 max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/70 backdrop-blur-md border border-[#D6CEC2] text-xs font-mono font-bold tracking-widest text-[#008A20] uppercase shadow-sm">
               <span className="w-1.5 h-1.5 rounded-full bg-[#008A20] animate-pulse" />
-              07 // 3D GLASS ATTRIBUTION • SERIES 03
+              07 // 3D PAPER ATTRIBUTION • SERIES 03
             </div>
             <h2 className="font-poster text-5xl sm:text-7xl lg:text-8xl text-[#0B0D12] tracking-tight leading-[0.88] uppercase">
               Don't Just Get The Score. <br />
               <span className="text-[#008A20]">Understand It.</span>
             </h2>
             <p className="text-xs md:text-sm font-mono text-[#2C3342] tracking-wide leading-relaxed max-w-2xl">
-              TreeSHAP neural attribution decomposes every millisecond of footage into 32 marginal retention vectors through optical glass dispersion.
+              TreeSHAP neural attribution decomposes every millisecond of footage into 32 marginal retention vectors onto archival glossy print stock.
             </p>
           </div>
 
-          {/* Bespoke 3D Optical Glass Slab Console (Image 3 Reference Style) */}
-          <div className="poster-glass-card poster-chromatic-rim relative rounded-3xl p-6 md:p-10 overflow-hidden space-y-6">
-            {/* Diagonal Specular Cylinder Highlight */}
-            <div className="poster-glass-sheen" />
-
-            {/* Precision Laser Crosshairs at Corners */}
-            <div className="absolute top-3 left-3 text-[#0B0D12]/30 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute top-3 right-3 text-[#0B0D12]/30 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute bottom-3 left-3 text-[#0B0D12]/30 font-mono text-xs select-none pointer-events-none">+</div>
-            <div className="absolute bottom-3 right-3 text-[#0B0D12]/30 font-mono text-xs select-none pointer-events-none">+</div>
-
-            {/* Console Header Bar */}
-            <div className="relative z-10 flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-[#0B0D12]/10 gap-4">
-              <div className="flex items-center gap-3">
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#008A20] opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-[#008A20]"></span>
-                </span>
-                <div>
-                  <div className="text-xs font-mono font-bold tracking-widest text-[#0B0D12] uppercase flex items-center gap-2">
-                    <span>SHAP FORCE VECTOR BALANCER</span>
-                    <span className="text-[10px] px-2 py-0.5 rounded-full bg-[#0B0D12]/10 text-[#0B0D12] font-semibold">LIVE</span>
-                  </div>
-                  <div className="text-[10px] font-mono text-[#008A20] font-semibold tracking-wider">
-                    MODEL: XGBOOST REGRESSOR • 32 COGNITIVE SIGNALS
-                  </div>
-                </div>
-              </div>
-
-              {/* Condensed Poster Score Readout */}
-              <div className="flex items-center gap-3 bg-white/70 border border-white/90 px-4 py-2 rounded-2xl shadow-sm backdrop-blur-md">
-                <span className="text-[10px] font-mono uppercase tracking-widest text-[#0B0D12]/60 font-semibold">
-                  TOTAL SCORE:
-                </span>
-                <span className="font-poster text-3xl md:text-4xl text-[#0B0D12] tracking-tight leading-none">
-                  91.2
-                </span>
-                <span className="text-xs font-mono font-bold text-[#008A20]">/ 100</span>
-              </div>
-            </div>
-
-            {/* Precision Telemetry Vector Channels (Frosted Glass Modules) */}
-            <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-              {/* Channel 1 */}
-              <div className="p-4 rounded-xl bg-white/65 hover:bg-white/90 border border-white/80 shadow-[0_4px_16px_rgba(20,30,50,0.06)] transition-all space-y-2.5 group">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono font-semibold text-[#0B0D12] flex items-center gap-1.5">
-                    <span className="text-[#008A20] font-bold">+</span> 0-3s Hook Power & Text Overlay
-                  </span>
-                  <span className="font-mono font-bold text-[#008A20] px-2 py-0.5 rounded bg-[#008A20]/10 border border-[#008A20]/25 text-[11px]">
-                    +18.4 pts
-                  </span>
-                </div>
-                <div className="w-full bg-[#0B0D12]/10 h-1.5 rounded-full overflow-hidden p-[1px]">
-                  <div className="bg-gradient-to-r from-[#00A82F] to-[#00E83F] h-full rounded-full w-[88%] shadow-sm" />
-                </div>
-                <div className="text-[10px] font-mono text-[#0B0D12]/60 flex justify-between">
-                  <span>MOTION INDEX: 0.88</span>
-                  <span>SYNC: &lt;120ms</span>
-                </div>
-              </div>
-
-              {/* Channel 2 */}
-              <div className="p-4 rounded-xl bg-white/65 hover:bg-white/90 border border-white/80 shadow-[0_4px_16px_rgba(20,30,50,0.06)] transition-all space-y-2.5 group">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono font-semibold text-[#0B0D12] flex items-center gap-1.5">
-                    <span className="text-[#0066FF] font-bold">+</span> Optical Motion Vectors & Scene Cut Speed
-                  </span>
-                  <span className="font-mono font-bold text-[#0066FF] px-2 py-0.5 rounded bg-[#0066FF]/10 border border-[#0066FF]/25 text-[11px]">
-                    +12.6 pts
-                  </span>
-                </div>
-                <div className="w-full bg-[#0B0D12]/10 h-1.5 rounded-full overflow-hidden p-[1px]">
-                  <div className="bg-gradient-to-r from-[#0066FF] to-[#38BDF8] h-full rounded-full w-[65%] shadow-sm" />
-                </div>
-                <div className="text-[10px] font-mono text-[#0B0D12]/60 flex justify-between">
-                  <span>CADENCE: 1.8s AVG</span>
-                  <span>ABANDONMENT: MINIMAL</span>
-                </div>
-              </div>
-
-              {/* Channel 3 */}
-              <div className="p-4 rounded-xl bg-white/65 hover:bg-white/90 border border-white/80 shadow-[0_4px_16px_rgba(20,30,50,0.06)] transition-all space-y-2.5 group">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono font-semibold text-[#0B0D12] flex items-center gap-1.5">
-                    <span className="text-[#E11D48] font-bold">-</span> Prolonged Speech Silence Gap
-                  </span>
-                  <span className="font-mono font-bold text-[#E11D48] px-2 py-0.5 rounded bg-[#E11D48]/10 border border-[#E11D48]/25 text-[11px]">
-                    -7.2 pts
-                  </span>
-                </div>
-                <div className="w-full bg-[#0B0D12]/10 h-1.5 rounded-full overflow-hidden p-[1px]">
-                  <div className="bg-gradient-to-r from-[#E11D48] to-[#FB7185] h-full rounded-full w-[38%] shadow-sm" />
-                </div>
-                <div className="text-[10px] font-mono text-[#0B0D12]/60 flex justify-between">
-                  <span>SILENCE: 1.2s AT 0:14</span>
-                  <span>DROP-OFF RISK: HIGH</span>
-                </div>
-              </div>
-
-              {/* Channel 4 */}
-              <div className="p-4 rounded-xl bg-white/65 hover:bg-white/90 border border-white/80 shadow-[0_4px_16px_rgba(20,30,50,0.06)] transition-all space-y-2.5 group">
-                <div className="flex justify-between items-center text-xs">
-                  <span className="font-mono font-semibold text-[#0B0D12] flex items-center gap-1.5">
-                    <span className="text-[#D97706] font-bold">+</span> Semantic Climax & Narrative Peak
-                  </span>
-                  <span className="font-mono font-bold text-[#D97706] px-2 py-0.5 rounded bg-[#D97706]/10 border border-[#D97706]/25 text-[11px]">
-                    +7.4 pts
-                  </span>
-                </div>
-                <div className="w-full bg-[#0B0D12]/10 h-1.5 rounded-full overflow-hidden p-[1px]">
-                  <div className="bg-gradient-to-r from-[#D97706] to-[#FBBF24] h-full rounded-full w-[72%] shadow-sm" />
-                </div>
-                <div className="text-[10px] font-mono text-[#0B0D12]/60 flex justify-between">
-                  <span>POLARITY SPIKE: 0:28</span>
-                  <span>COMMENT VELOCITY: HIGH</span>
-                </div>
-              </div>
-            </div>
+          {/* 3D Paper Crumple-to-Flat Appearing Entrance Card */}
+          <div className="w-full flex justify-center items-center">
+            <PaperUnfoldCard
+              src="/cards/shap-collage-hd.png"
+              alt="SHAP Force Vector Balancer Neural Attribution HD Card"
+              width={1024}
+              height={576}
+              sceneHeight={580}
+              duration={1.3}
+              paperColor="#F7F3EC"
+            />
           </div>
         </div>
       </section>
 
-      {/* ── 02 GILDED FOLIAGE TAPESTRY INFINITE BAND (Between Section 7 & 8) ── */}
+      {/* ── 02 FLORAL ROSETTE & GOLDEN SUNFLOWER INFINITE BAND (Between Section 7 & 8) ── */}
       <InfiniteBand
         image="/bands/band2.png"
-        height={68}
+        height={64}
         direction="right"
         speedSeconds={32}
-        alt="Gilded foliage tapestry infinite band"
-        className="bg-[#DDE2EB] border-y border-[#CBD4E2]"
+        alt="Floral rosette and golden beaded infinite band"
+        className="bg-[#0B1530] border-y border-[#E6C65A]/40 shadow-sm"
       />
 
       {/* ── 08 / 09 LIVE PREDICTION INTERACTIVE UPLOAD EXPERIENCE ────────────── */}
-      <section className="py-28 px-6 md:px-12 border-t border-[#CBD4E2] studio-glass-bg">
-        <div className="max-w-4xl mx-auto space-y-10 text-center">
+      <section className="relative py-28 px-6 md:px-12 border-t border-[#D6CEC2] studio-glass-bg overflow-hidden">
+        {/* Floating 3D Social Media Sticker Cursor Trail (Active strictly inside Section 8 - Pop Preset) */}
+        <ImageTrail
+          items={[
+            '/stickers/sticker-instagram.png',
+            '/stickers/sticker-tiktok.png',
+            '/stickers/sticker-facebook.png',
+            '/stickers/sticker-youtube.png',
+            '/stickers/sticker-linkedin.png',
+            '/stickers/sticker-instagram.png',
+            '/stickers/sticker-tiktok.png',
+            '/stickers/sticker-facebook.png',
+            '/stickers/sticker-youtube.png',
+            '/stickers/sticker-linkedin.png',
+          ]}
+          size={135}
+          radius={15}
+          threshold={80}
+          lifetime={0.4}
+          appearScale={0}
+          exitScale={0.2}
+          zoom={0}
+          flash={0.6}
+          drift={0}
+          rotation={0}
+          sizeVariance={0}
+          stack={0}
+          tilt={0}
+          alignToMotion={false}
+        />
+
+        <div className="relative z-10 max-w-4xl mx-auto space-y-10 text-center">
           {/* Editorial Poster Header (Image 3 Poster Aesthetic) */}
           <div className="space-y-4 max-w-2xl mx-auto">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/70 backdrop-blur-md border border-white/80 text-xs font-mono font-bold tracking-widest text-[#008A20] uppercase shadow-sm">
@@ -582,8 +505,8 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
         className="bg-[#050608] border-y border-white/10"
       />
 
-      {/* ── 10 FINAL EDITORIAL CTA & FOOTER (STUDIO GLASS POSTER THEME) ─────── */}
-      <footer className="py-20 px-6 md:px-12 border-t border-[#CBD4E2] studio-glass-bg">
+      {/* ── 10 FINAL EDITORIAL CTA & FOOTER (CLOTH FABRIC THEME) ─────── */}
+      <footer className="py-20 px-6 md:px-12 border-t border-[#D6CEC2] studio-glass-bg">
         <div className="max-w-7xl mx-auto space-y-12">
           {/* Real Optical Glass Surface Footer Intelligence Console */}
           <div className="poster-glass-card poster-chromatic-rim relative rounded-3xl p-8 md:p-14 overflow-hidden space-y-10 shadow-[0_30px_85px_-15px_rgba(25,35,60,0.18)]">
@@ -600,8 +523,8 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
             </div>
 
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between border-t border-[#0B0D12]/10 pt-8 text-xs font-mono text-[#0B0D12]/70 gap-4">
-              <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-[#008A20]" />
+              <div className="flex items-center gap-2.5">
+                <img src="/logo.png" alt="VIRALYTIX Logo" className="w-5 h-5 object-contain" />
                 <span className="text-[#0B0D12] font-semibold">VIRALYTIX © 2026 • Built with ❤️ by Prabhu Shankar Mund (Raj)</span>
               </div>
               <div className="flex items-center gap-6 font-medium">

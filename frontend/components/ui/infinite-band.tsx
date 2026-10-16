@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-import Image from "next/image";
 
 interface InfiniteBandProps {
   image: string;
@@ -20,9 +19,13 @@ export const InfiniteBand: React.FC<InfiniteBandProps> = ({
   alt = "Decorative moving band",
   className = "",
 }) => {
-  // We generate 2 identical sets of repeated images (6 per set) to ensure seamless infinite looping
-  const tilesPerSet = 6;
+  // 24 tiles per set ensures 8,000px to 12,000px width per set,
+  // completely eliminating any empty gaps or cutoffs across any 4K/Ultrawide display.
+  const tilesPerSet = 24;
   const indices = Array.from({ length: tilesPerSet }, (_, i) => i);
+
+  // Scale duration proportionally so moving 24 tiles maintains the exact same smooth drift speed
+  const adjustedDuration = Math.round((tilesPerSet / 6) * speedSeconds);
 
   const animationClass =
     direction === "left" ? "animate-band-left" : "animate-band-right";
@@ -40,8 +43,10 @@ export const InfiniteBand: React.FC<InfiniteBandProps> = ({
         className={animationClass}
         style={
           {
-            "--band-speed": `${speedSeconds}s`,
+            "--band-speed": `${adjustedDuration}s`,
             height: `${height}px`,
+            width: "max-content",
+            display: "flex",
           } as React.CSSProperties
         }
       >
@@ -57,6 +62,7 @@ export const InfiniteBand: React.FC<InfiniteBandProps> = ({
                 imageRendering: "auto",
                 height: `${height}px`,
                 maxWidth: "none",
+                display: "block",
               }}
               loading="eager"
             />
@@ -75,6 +81,7 @@ export const InfiniteBand: React.FC<InfiniteBandProps> = ({
                 imageRendering: "auto",
                 height: `${height}px`,
                 maxWidth: "none",
+                display: "block",
               }}
               loading="eager"
             />
