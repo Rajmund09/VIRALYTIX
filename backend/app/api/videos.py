@@ -39,8 +39,8 @@ def cleanup_stale_uploads(upload_dir: Path, max_age_seconds: int = 3600):
     except Exception:
         pass
 
-# Maximum allowed video upload size: 50MB
-MAX_FILE_SIZE = 50 * 1024 * 1024
+# Maximum allowed video upload size: 500MB (Supports 4K/60fps master exports)
+MAX_FILE_SIZE = settings.MAX_UPLOAD_SIZE_MB * 1024 * 1024
 CHUNK_SIZE = 64 * 1024
 ALLOWED_EXTENSIONS = {".mp4", ".mov", ".webm", ".avi"}
 ALLOWED_MIME_TYPES = {"video/mp4", "video/quicktime", "video/x-msvideo", "video/webm", "application/octet-stream"}

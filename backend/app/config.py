@@ -13,7 +13,7 @@ class Settings(BaseSettings):
 
     # File Upload
     UPLOAD_DIR: str = "./uploads"
-    MAX_UPLOAD_SIZE_MB: int = 200
+    MAX_UPLOAD_SIZE_MB: int = 500
 
     # ML Model
     MODEL_PATH: str = "./app/models/viral_model.pkl"

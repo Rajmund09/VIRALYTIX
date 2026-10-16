@@ -1350,8 +1350,8 @@ export default function Dashboard() {
       return;
     }
     
-    if (selectedFile.size > 200 * 1024 * 1024) {
-      setFileError("File Size Limit: Upload limit is 200MB to preserve processing latency.");
+    if (selectedFile.size > 500 * 1024 * 1024) {
+      setFileError("File Size Limit: Maximum upload size is 500MB for ultra-high bitrate 4K video exports.");
       if (target === "A") setFile(null);
       else setFileB(null);
       return;
