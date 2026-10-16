@@ -1747,7 +1747,7 @@ export default function Dashboard() {
             className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-white border-2 border-[#05190e] flex items-center justify-center p-1.5 shadow-md hover:scale-110 transition-transform cursor-pointer shrink-0"
             title="Return to Landing Page"
           >
-            <img src="/logo.png" alt="VIRALYTIX Logo" className="w-full h-full object-contain" />
+            <img src="/logo.png" alt="VIRALYTIX Logo" width={36} height={36} className="w-full h-full object-contain" />
           </div>
 
           <button
@@ -1806,7 +1806,7 @@ export default function Dashboard() {
           <div className="max-w-4xl mx-auto space-y-6 text-center relative z-10">
             {/* Badge */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full text-xs font-mono bg-[#05190e] text-white font-bold border-2 border-[#05190e] shadow-md">
-              <img src="/logo.png" alt="VIRALYTIX Logo" className="w-5 h-5 object-contain" />
+              <img src="/logo.png" alt="VIRALYTIX Logo" width={20} height={20} className="w-5 h-5 object-contain" />
               <span>XGBoost + SHAP Explainer + 100-Agent Swarm Simulation</span>
             </div>
 

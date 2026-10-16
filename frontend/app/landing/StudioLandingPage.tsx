@@ -358,7 +358,7 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
           {/* 3D Paper Crumple-to-Flat Appearing Entrance Card */}
           <div className="w-full flex justify-center items-center">
             <PaperUnfoldCard
-              src="/cards/shap-collage-hd.png"
+              src="/cards/shap-collage-hd.webp"
               alt="SHAP Force Vector Balancer Neural Attribution HD Card"
               width={1024}
               height={576}
@@ -524,7 +524,7 @@ export const StudioLandingPage: React.FC<StudioLandingPageProps> = ({ onLaunchAp
 
             <div className="relative z-10 flex flex-col md:flex-row items-center justify-between border-t border-[#0B0D12]/10 pt-8 text-xs font-mono text-[#0B0D12]/70 gap-4">
               <div className="flex items-center gap-2.5">
-                <img src="/logo.png" alt="VIRALYTIX Logo" className="w-5 h-5 object-contain" />
+                <img src="/logo.png" alt="VIRALYTIX Logo" width={20} height={20} className="w-5 h-5 object-contain" />
                 <span className="text-[#0B0D12] font-semibold">VIRALYTIX © 2026 • Built with ❤️ by Prabhu Shankar Mund (Raj)</span>
               </div>
               <div className="flex items-center gap-6 font-medium">

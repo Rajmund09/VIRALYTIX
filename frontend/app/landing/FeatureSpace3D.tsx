@@ -73,11 +73,11 @@ export const FeatureSpace3D: React.FC = () => {
     }
 
     let animId: number;
-    let clock = new THREE.Clock();
+    const startTime = performance.now();
 
     const animate = () => {
       animId = requestAnimationFrame(animate);
-      const elapsedTime = clock.getElapsedTime();
+      const elapsedTime = (performance.now() - startTime) * 0.001;
 
       group.rotation.y = elapsedTime * 0.12;
       group.rotation.x = Math.sin(elapsedTime * 0.08) * 0.15;

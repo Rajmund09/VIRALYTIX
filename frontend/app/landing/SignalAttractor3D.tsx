@@ -56,13 +56,13 @@ export const SignalAttractor3D: React.FC = () => {
     );
     observer.observe(container);
 
-    let clock = new THREE.Clock();
+    const startTime = performance.now();
 
     const animate = () => {
       animId = requestAnimationFrame(animate);
       if (!isVisible) return;
 
-      const elapsedTime = clock.getElapsedTime();
+      const elapsedTime = (performance.now() - startTime) * 0.001;
 
       mesh.rotation.x = elapsedTime * 0.25;
       mesh.rotation.y = elapsedTime * 0.4;

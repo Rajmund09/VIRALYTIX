@@ -57,6 +57,7 @@ export const InfiniteBand: React.FC<InfiniteBandProps> = ({
               key={`set1-${idx}`}
               src={image}
               alt={alt}
+              height={height}
               className="h-full w-auto object-contain shrink-0"
               style={{
                 imageRendering: "auto",
@@ -64,7 +65,8 @@ export const InfiniteBand: React.FC<InfiniteBandProps> = ({
                 maxWidth: "none",
                 display: "block",
               }}
-              loading="eager"
+              decoding="async"
+              loading={idx < 6 ? "eager" : "lazy"}
             />
           ))}
         </div>
@@ -76,6 +78,7 @@ export const InfiniteBand: React.FC<InfiniteBandProps> = ({
               key={`set2-${idx}`}
               src={image}
               alt=""
+              height={height}
               className="h-full w-auto object-contain shrink-0"
               style={{
                 imageRendering: "auto",
@@ -83,7 +86,8 @@ export const InfiniteBand: React.FC<InfiniteBandProps> = ({
                 maxWidth: "none",
                 display: "block",
               }}
-              loading="eager"
+              decoding="async"
+              loading="lazy"
             />
           ))}
         </div>

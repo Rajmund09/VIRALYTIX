@@ -175,7 +175,7 @@ export const Hero: React.FC<HeroProps> = ({ onLaunchApp }) => {
                       >
                         {"src" in p ? (
                           <div className="w-6 h-6 md:w-7 md:h-7 filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
-                            <img src={p.src} alt="" className="w-full h-full object-contain" />
+                            <img src={p.src} alt="" width={28} height={28} className="w-full h-full object-contain" />
                           </div>
                         ) : (
                           <div

@@ -15,7 +15,7 @@ export interface PaperUnfoldCardProps {
 }
 
 export const PaperUnfoldCard: React.FC<PaperUnfoldCardProps> = ({
-  src = '/cards/shap-collage-hd.png',
+  src = '/cards/shap-collage-hd.webp',
   alt = 'SHAP Force Vector Balancer Neural Telemetry Card',
   width = 1024,
   height = 576,

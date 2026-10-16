@@ -79,6 +79,8 @@ export const HeroNavigation: React.FC<HeroNavigationProps> = ({ onLaunchApp }) =
               <img
                 src="/logo.png"
                 alt="VIRALYTIX Logo"
+                width={32}
+                height={32}
                 className="w-full h-full object-contain filter drop-shadow-[0_0_8px_rgba(0,232,63,0.55)]"
               />
             </div>
@@ -154,6 +156,8 @@ export const HeroNavigation: React.FC<HeroNavigationProps> = ({ onLaunchApp }) =
             <img
               src="/logo.png"
               alt="VIRALYTIX Logo"
+              width={36}
+              height={36}
               className="w-full h-full object-contain filter drop-shadow-[0_0_10px_rgba(0,232,63,0.55)]"
             />
           </div>
