@@ -147,20 +147,20 @@ VIRALYTIX extracts **16 core mathematical features** spanning visual, acoustic, 
 | # | Feature Name | Modality | Extraction Method / Algorithm | Mathematical / Analytical Meaning |
 | :---: | :--- | :---: | :--- | :--- |
 | **1** | `hook_score` | Temporal / Mixed | First 3.0s energy + motion + contrast composite | Measures visual and auditory stimulation in the critical 3-second decision window. |
-| **2** | `scene_change_rate` | Visual | Frame difference thresholding ($\Delta \text{Frame} > \tau$) | Cuts per minute. High cuts prevent visual fatigue; overly high cuts induce cognitive overload. |
-| **3** | `avg_brightness` | Visual | Mean pixel intensity in grayscale conversion | Normalized luminance ($[0, 1]$). Low values indicate under-exposed amateur lighting. |
+| **2** | `scene_change_rate` | Visual | Frame difference thresholding (ΔFrame > τ) | Cuts per minute. High cuts prevent visual fatigue; overly high cuts induce cognitive overload. |
+| **3** | `avg_brightness` | Visual | Mean pixel intensity in grayscale conversion | Normalized luminance ([0, 1]). Low values indicate under-exposed amateur lighting. |
 | **4** | `motion_score` | Visual | Dense Optical Flow / Frame variance | Pixel displacement vector magnitude. Captures camera pans, physical action, and dynamic movement. |
 | **5** | `text_density` | Visual | High-frequency edge detection / OCR heuristic | Proportion of frame area occupied by titles, captions, and text overlays. |
-| **6** | `speech_rate` | Acoustic | Syllable peak detection / Transcript WPM | Words per minute. Rapid speech ($150\text{--}180\text{ WPM}$) typically correlates with high retention in tech/explainer niches. |
-| **7** | `silence_ratio` | Acoustic | Audio frames where $\text{RMS} < 0.02$ divided by total | Fraction of dead air. Dead air ($> 0.15$) causes massive algorithmic swipe-aways. |
+| **6** | `speech_rate` | Acoustic | Syllable peak detection / Transcript WPM | Words per minute. Rapid speech (150\text{--}180\text{ WPM}) typically correlates with high retention in tech/explainer niches. |
+| **7** | `silence_ratio` | Acoustic | Audio frames where RMS < 0.02 divided by total | Fraction of dead air. Dead air (> 0.15) causes massive algorithmic swipe-aways. |
 | **8** | `audio_energy` | Acoustic | Root Mean Square (RMS) signal amplitude | Overall loudness and auditory presence of the soundtrack and voice. |
 | **9** | `word_count` | Semantic | Token count from acoustic transcription | Total information density delivered within the video duration. |
 | **10** | `cta_score` | Semantic | Regex matching for Call-To-Action tokens | Detects ending conversion cues (*"follow", "subscribe", "share", "link in bio"*). |
 | **11** | `question_present` | Semantic | Interrogative token detection (*"why", "how", "?"*) | Binary flag for curiosity-gap framing in the title or opening dialogue. |
-| **12** | `completion_rate` | Behavioral | Swarm simulation aggregate | Percentage of simulated viewers who watched $100\%$ of the video duration. |
+| **12** | `completion_rate` | Behavioral | Swarm simulation aggregate | Percentage of simulated viewers who watched 100% of the video duration. |
 | **13** | `watch_rate` | Behavioral | Swarm simulation aggregate | Average percentage of the video watched across the entire population. |
 | **14** | `like_rate` | Behavioral | Swarm simulation aggregate | Ratio of positive affective reactions per viewer session. |
-| **15** | `share_rate` | Behavioral | Swarm simulation aggregate | Coefficient of virality ($K$-factor proxy); indicates external network propagation. |
+| **15** | `share_rate` | Behavioral | Swarm simulation aggregate | Coefficient of virality (K-factor proxy); indicates external network propagation. |
 | **16** | `comment_rate` | Behavioral | Swarm simulation aggregate | Discussion trigger metric driven by controversy, curiosity, or value. |
 
 ---
@@ -182,7 +182,7 @@ pie title Synthetic Swarm Population Distribution (100 Agents)
     "General Entertainment Consumer" : 10
 ```
 
-1. **Gen Z Casual Scroller**: Extremely short attention span ($<1.8\text{s}$ hook window), high motion sensitivity, intolerant to silence.
+1. **Gen Z Casual Scroller**: Extremely short attention span (<1.8\text{s} hook window), high motion sensitivity, intolerant to silence.
 2. **Tech & AI Enthusiast**: High tolerance for dense information, sensitive to speech rate, values substance over visual flashy cuts.
 3. **Productivity & Founder**: Highly driven by structured takeaways, CTA clarity, and concise summaries.
 4. **Visual Designer & Creator**: Highly sensitive to lighting balance, color vibrancy, cinematic composition, and aspect ratio.
@@ -190,13 +190,13 @@ pie title Synthetic Swarm Population Distribution (100 Agents)
 6. **General Entertainment Consumer**: Driven by audio energy, humor cues, and emotional hooks.
 
 ### 7.2 The Monte Carlo Interaction Formulation
-For each persona $p$ evaluating video features $F$:
+For each persona p evaluating video features F:
 1. **Watch Probability**:
-   $$P_{\text{watch}}(p) = \sigma\left(w_{\text{hook}} \cdot F_{\text{hook}} + w_{\text{audio}} \cdot F_{\text{audio}} - \theta_{\text{patience}}(p)\right)$$
+   $P_{\text{watch}}(p) = \sigma\left(w_{\text{hook}} \cdot F_{\text{hook}} + w_{\text{audio}} \cdot F_{\text{audio}} - \theta_{\text{patience}}(p)\right)
 2. **Completion Probability**:
-   $$P_{\text{complete}}(p) = P_{\text{watch}}(p) \cdot \exp\left(-\lambda_{\text{drop}}(p) \cdot \text{Duration} \cdot (1 + F_{\text{silence}})\right)$$
-3. **Virality Multiplier ($K$-factor)**:
-   $$\text{Estimated Reach} = N_{\text{base}} \cdot \left(1 + \sum_{p} w_p \cdot (\text{ShareRate}_p \times 4.5 + \text{CommentRate}_p \times 2.8 + \text{CompletionRate}_p \times 3.2)\right)$$
+   P_{\text{complete}}(p) = P_{\text{watch}}(p) \cdot \exp\left(-\lambda_{\text{drop}}(p) \cdot \text{Duration} \cdot (1 + F_{\text{silence}})\right)
+3. **Virality Multiplier (K-factor)**:
+   \text{Estimated Reach} = N_{\text{base}} \cdot \left(1 + \sum_{p} w_p \cdot (\text{ShareRate}_p \times 4.5 + \text{CommentRate}_p \times 2.8 + \text{CompletionRate}_p \times 3.2)\right)
 
 ---
 
@@ -207,18 +207,18 @@ VIRALYTIX incorporates a multi-model architecture:
 
 | Model | Purpose | Justification |
 | :--- | :--- | :--- |
-| **XGBoost Regressor** | Continuous Virality Score ($0\text{--}100$) | Handles non-linear feature interactions, robust against multicollinearity, fast inference ($<15\text{ms}$). |
+| **XGBoost Regressor** | Continuous Virality Score (0–100) | Handles non-linear feature interactions, robust against multicollinearity, fast inference (<15\text{ms}). |
 | **XGBoost Classifier** | Performance Tier Categorization | Multi-class classification (*Low, Moderate, High, Viral*) with probabilistic confidence scores. |
 | **Random Forest Baseline** | Benchmarking & Cross-Validation | Ensemble bagging control to verify tree stability and prevent overfitting. |
-| **Ridge Regression Baseline** | Linear Regularization Baseline | Serves as an $L_2$ regularized baseline proving non-linear superiority. |
+| **Ridge Regression Baseline** | Linear Regularization Baseline | Serves as an L_2 regularized baseline proving non-linear superiority. |
 
 ### 8.2 Game-Theoretic Explainability via SHAP (SHapley Additive exPlanations)
 In predictive analytics, a prediction without explanation is unusable for a creator. VIRALYTIX integrates **TreeSHAP** to compute the exact marginal contribution of each feature:
 
-$$\phi_i(x) = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F| - |S| - 1)!}{|F|!} \left[ f_x(S \cup \{i\}) - f_x(S) \right]$$
+\phi_i(x) = \sum_{S \subseteq F \setminus \{i\}} \frac{|S|!(|F| - |S| - 1)!}{|F|!} \left[ f_x(S \cup \{i\}) - f_x(S) \right]
 
-- If `hook_score` has a SHAP value of $+14.2$, it increased the virality score by $14.2$ points above base expectation.
-- If `silence_ratio` has a SHAP value of $-8.5$, it penalized the virality score by $8.5$ points.
+- If `hook_score` has a SHAP value of +14.2, it increased the virality score by 14.2 points above base expectation.
+- If `silence_ratio` has a SHAP value of -8.5, it penalized the virality score by 8.5 points.
 
 ---
 
@@ -352,36 +352,36 @@ VIRALYTIX/
 ### Section A: Predictive Analytics & Academic Foundations
 
 #### Q1: How does this project come under "Predictive Analytics", considering the textbook definition is "predicting the future by analyzing historical data"?
-> **Answer:** By the formal textbook definition, **Predictive Analytics** is the branch of advanced analytics that makes predictions about unknown future events ($Y_{\text{future}}$) by exploiting historical relationships, data mining, and statistical learning ($Y = f(X_{\text{historical}}) + \epsilon$).
+> **Answer:** By the formal textbook definition, **Predictive Analytics** is the branch of advanced analytics that makes predictions about unknown future events (Y_future) by exploiting historical relationships, data mining, and statistical learning (Y = f(X_historical) + ε).
 > 
 > VIRALYTIX maps 1-to-1 to this definition:
-> 1. **The Historical Data ($X_{\text{historical}}, Y_{\text{historical}}$)**: We compiled thousands of previously published short-form video records whose ground-truth engagement outcomes (view counts, 3-second hook drop-off percentages, completion rates, and share multipliers) are permanently recorded.
-> 2. **The Predictive Mathematical Function ($f$)**: We trained Gradient-Boosted Decision Trees (XGBoost Regressor & Classifier) on this historical training set to discover the complex, non-linear relationships between low-level multimodal features and viral distribution.
-> 3. **The Future Being Predicted ($Y_{\text{future}}$)**: When a creator uploads an unpublished video today, that video has **zero views, zero likes, and has never been seen by any human audience**. VIRALYTIX extracts its feature vector $X_{\text{new}}$ and evaluates $f(X_{\text{new}})$ to **forecast its future algorithmic performance, audience retention curve, and virality tier before it is ever published**.
+> 1. **The Historical Data (X_{\text{historical}}, Y_{\text{historical}})**: We compiled thousands of previously published short-form video records whose ground-truth engagement outcomes (view counts, 3-second hook drop-off percentages, completion rates, and share multipliers) are permanently recorded.
+> 2. **The Predictive Mathematical Function (f)**: We trained Gradient-Boosted Decision Trees (XGBoost Regressor & Classifier) on this historical training set to discover the complex, non-linear relationships between low-level multimodal features and viral distribution.
+> 3. **The Future Being Predicted (Y_future)**: When a creator uploads an unpublished video today, that video has **zero views, zero likes, and has never been seen by any human audience**. VIRALYTIX extracts its feature vector X_new and evaluates f(X_new) to **forecast its future algorithmic performance, audience retention curve, and virality tier before it is ever published**.
 > 
 > *In summary: Existing tools like YouTube Studio are **descriptive** (reporting what happened yesterday). VIRALYTIX is **predictive** (forecasting what will happen tomorrow).*
 
 #### Q2: Where is the dataset, how was it constructed, and where can it be found in the codebase?
 > **Answer:** The primary training dataset is committed and stored in:  
 > `VIRALYTIX/viralytix/ml/datasets/viralytix_training_dataset.csv` *(and mirrored in `backend/app/ml/viralytix_training_dataset.csv`)*.
-> - **Size:** $1.4\text{ MB}$, containing **5,000 video records**.
+> - **Size:** 1.4\text{ MB}, containing **5,000 video records**.
 > - **Dimensions:** 18 columns (16 Multimodal Feature Vectors + 2 Ground-Truth Targets: continuous `target_score` and discrete `target_category`).
 > - **Construction Pipeline (`backend/app/ml/train.py`)**: Because social media giants (TikTok, Meta, Google) treat their private user telemetry as proprietary trade secrets and prohibit bulk scraping under Terms of Service, we engineered an empirical 5,000-sample benchmark dataset calibrated against observed real-world distributions (WPM speech distributions, scene cut rates, luminance, and completion rates).
 > - **Live Demonstration**: The dataset can be inspected in CSV format or re-trained live via `python backend/app/ml/train.py`, which regenerates, evaluates, and outputs the model artifacts in under 5 seconds.
 
 #### Q3: Did you train and validate your system using real short-form videos as well, or only synthetic data?
 > **Answer:** We utilized a **Hybrid Empirical Methodology** that bridges real-world video signals and synthetic population scaling:
-> 1. **Phase 1: Real-Video Feature Profiling & Calibration**: We collected and processed actual public short-form videos from TikTok, Instagram Reels, and YouTube Shorts across multiple genres (tech explainers, comedy sketches, education, and lifestyle). We ran them through our physical OpenCV and Librosa processing pipeline to determine the empirical ground-truth statistical distributions: e.g., viral video cut frequencies ($2.5\text{--}3.5\text{ cuts/min}$), optimal speech tempo ($140\text{--}180\text{ WPM}$), and tolerable silence ratios ($<15\%$).
+> 1. **Phase 1: Real-Video Feature Profiling & Calibration**: We collected and processed actual public short-form videos from TikTok, Instagram Reels, and YouTube Shorts across multiple genres (tech explainers, comedy sketches, education, and lifestyle). We ran them through our physical OpenCV and Librosa processing pipeline to determine the empirical ground-truth statistical distributions: e.g., viral video cut frequencies (2.5–3.5 cuts/min), optimal speech tempo (140–180 WPM), and tolerable silence ratios (<15\%).
 > 2. **Phase 2: Scaled Empirical Training**: We used these real-world distribution parameters to synthesize our 5,000-record training matrix, preventing model bias while complying with platform privacy constraints.
 > 3. **Phase 3: Real Video Production Inference**: Our live deployment evaluates **real, uncompressed user video files** (`.mp4`, `.mov`, `.webm`, `.avi`) in real time, executing genuine keyframe sampling, optical flow differencing, and acoustic Fourier transforms.
 
 #### Q4: What evaluation metrics did you use to validate the models, and what do they signify?
 > **Answer:**
 > - **For XGBoost Regressor (Continuous Virality Score)**:
->   - **Mean Absolute Error (MAE $\approx 2.45$)**: On average, the predicted virality score deviates by only $2.45$ points on a $0\text{--}100$ scale.
->   - **Coefficient of Determination ($R^2 \approx 0.984$)**: Explains $98.4\%$ of the variance in virality score based on the input multimodal features.
+>   - **Mean Absolute Error (MAE ≈ 2.45)**: On average, the predicted virality score deviates by only 2.45 points on a 0–100 scale.
+>   - **Coefficient of Determination (R² ≈ 0.984)**: Explains 98.4\% of the variance in virality score based on the input multimodal features.
 > - **For XGBoost Classifier (Performance Tiers: Low, Medium, High)**:
->   - **Accuracy ($\approx 96.2\%$)**: Accurately classifies the reach bracket of more than 96 out of 100 test videos.
+>   - **Accuracy (≈ 96.2%)**: Accurately classifies the reach bracket of more than 96 out of 100 test videos.
 >   - **Precision & Recall**: Evaluated via 5-fold cross-validation to ensure balanced performance across both low-reach and viral minority classes.
 
 ---
@@ -390,16 +390,16 @@ VIRALYTIX/
 
 #### Q5: Why did you choose XGBoost over a Deep Neural Network (e.g., 3D CNN or Video Transformer)?
 > **Answer:** 
-> 1. **Inference Latency & Compute Constraints**: Deep Video Transformers (e.g., VideoMAE, TimeSformer) require multi-GPU cloud instances and take 3–5 minutes per video. XGBoost performs tabular inference in under $15\text{ milliseconds}$ on standard CPU hardware.
+> 1. **Inference Latency & Compute Constraints**: Deep Video Transformers (e.g., VideoMAE, TimeSformer) require multi-GPU cloud instances and take 3–5 minutes per video. XGBoost performs tabular inference in under 15 milliseconds on standard CPU hardware.
 > 2. **Tabular Feature Efficiency**: Once domain-specific features (optical flow, audio RMS, speech WPM) are engineered, gradient-boosted decision trees consistently outperform deep networks on structured tabular datasets.
 > 3. **Exact Explainability**: TreeSHAP computes exact Shapley values in polynomial time for tree ensembles, whereas neural network saliency maps (e.g., Grad-CAM) are noisy and heuristic.
 
 #### Q6: How does XGBoost handle non-linear interactions between multimodal features?
-> **Answer:** Decision trees split feature spaces orthogonally. If a high `speech_rate` is only effective when accompanied by a high `motion_score`, deep tree branches ($depth \ge 4$) capture this conditional feature interaction naturally without requiring manual interaction cross-product terms.
+> **Answer:** Decision trees split feature spaces orthogonally. If a high `speech_rate` is only effective when accompanied by a high `motion_score`, deep tree branches (depth ≥ 4) capture this conditional feature interaction naturally without requiring manual interaction cross-product terms.
 
 #### Q7: How do you prevent overfitting in your machine learning models?
 > **Answer:** 
-> 1. Regularization parameters in XGBoost: $L_1$ regularization (`reg_alpha`) and $L_2$ regularization (`reg_lambda`).
+> 1. Regularization parameters in XGBoost: L_1 regularization (`reg_alpha`) and L_2 regularization (`reg_lambda`).
 > 2. Tree depth constraints (`max_depth = 5`) to prevent memorization of noise.
 > 3. Subsampling ratios (`subsample = 0.8`, `colsample_bytree = 0.8`).
 > 4. 80/20 train-test splits and 5-Fold Stratified Cross-Validation during training.
@@ -409,21 +409,21 @@ VIRALYTIX/
 ### Section C: Feature Engineering & Signal Processing
 
 #### Q8: How is the `hook_score` extracted from the raw video stream?
-> **Answer:** The hook score isolates the first $3.0\text{ seconds}$ of the video. It computes a weighted geometric mean of:
+> **Answer:** The hook score isolates the first 3.0 seconds of the video. It computes a weighted geometric mean of:
 > 1. Visual motion intensity via frame differencing.
 > 2. Average luminance and contrast dynamics.
 > 3. Audio RMS energy (preventing silent openings).
 > 4. Absence of initial silence dead air.
 
 #### Q9: What algorithm extracts the `motion_score`?
-> **Answer:** We sample frames at $1\text{ FPS}$ (or keyframes), convert consecutive frames to grayscale, and compute the mean absolute pixel difference:
-> $$\text{Motion} = \frac{1}{H \cdot W} \sum_{x=1}^{W} \sum_{y=1}^{H} |I_t(x,y) - I_{t-1}(x,y)|$$
+> **Answer:** We sample frames at 1 FPS (or keyframes), convert consecutive frames to grayscale, and compute the mean absolute pixel difference:
+> \text{Motion} = \frac{1}{H \cdot W} \sum_{x=1}^{W} \sum_{y=1}^{H} |I_t(x,y) - I_{t-1}(x,y)|
 > This acts as an efficient proxy for optical flow displacement.
 
 #### Q10: How is acoustic information separated and processed?
-> **Answer:** FFmpeg decouples the audio track into an isolated $16\text{kHz}$ 16-bit mono WAV container. Librosa processes the digital signal:
+> **Answer:** FFmpeg decouples the audio track into an isolated 16kHz 16-bit mono WAV container. Librosa processes the digital signal:
 > - Root Mean Square (RMS) energy is computed across short-time Fourier frames.
-> - Silence intervals are detected where amplitude falls below a dynamic $20\text{dB}$ threshold.
+> - Silence intervals are detected where amplitude falls below a dynamic 20dB threshold.
 
 ---
 
@@ -433,11 +433,11 @@ VIRALYTIX/
 > **Answer:** Video platforms rely on **cascade dynamics**: if the initial test cohort of 100 viewers swipes away within 2 seconds, the algorithm immediately terminates distribution. The 100-Agent Swarm simulates this sequential cascade, generating the synthetic behavioral inputs (`completion_rate`, `share_rate`, `drop-off curve`) that feed directly into the XGBoost model.
 
 #### Q12: What is the role of the Monte Carlo simulation in the Persona Engine?
-> **Answer:** Human behavior is non-deterministic. An agent with a $70\%$ probability of liking a video may not like it every time. By running stochastic Monte Carlo draws across the 100 agents, we generate realistic variance and compute bootstrap confidence intervals for the final prediction.
+> **Answer:** Human behavior is non-deterministic. An agent with a 70\% probability of liking a video may not like it every time. By running stochastic Monte Carlo draws across the 100 agents, we generate realistic variance and compute bootstrap confidence intervals for the final prediction.
 
 #### Q13: How do you validate that the 100-Agent Swarm actually mirrors real human demographics?
 > **Answer:** The 6 persona profiles are parameterized against empirical consumer studies:
-> - *Gen Z Casual Scrollers* are assigned high baseline impatience ($\theta_{\text{patience}} < 1.8\text{s}$) and high motion sensitivity.
+> - *Gen Z Casual Scrollers* are assigned high baseline impatience (Impatience threshold < 1.8s) and high motion sensitivity.
 > - *Tech Enthusiasts* are weighted toward speech density and information retention over visual cuts.
 > - *Founders/Productivity Viewers* prioritize CTA clarity and actionable summaries.
 
@@ -480,7 +480,7 @@ VIRALYTIX/
 > 3. VIRALYTIX executes real computer vision, acoustic DSP, and objective machine learning on the **compiled video file**, diagnosing editing pacing that text prompts can never detect.
 
 #### Q21: What is the purpose of the A/B Video Battle Arena?
-> **Answer:** In digital marketing, multivariate testing is the gold standard. The A/B Arena allows creators to upload Edit A (e.g., fast voiceover) vs. Edit B (e.g., dynamic sound effects) side-by-side. VIRALYTIX computes the delta ($\Delta V$) between both edits, proving which version will achieve superior retention before publishing.
+> **Answer:** In digital marketing, multivariate testing is the gold standard. The A/B Arena allows creators to upload Edit A (e.g., fast voiceover) vs. Edit B (e.g., dynamic sound effects) side-by-side. VIRALYTIX computes the delta (ΔV) between both edits, proving which version will achieve superior retention before publishing.
 
 #### Q22: What if a video goes viral due to a celebrity re-share or breaking news? How does your model account for this?
 > **Answer:** VIRALYTIX evaluates **Intrinsic Content Merit**—the features inherent to the video itself (pacing, hook, audio clarity). External virality catalysts (celebrity retweets, geopolitical news, trending audio spikes) represent **extrinsic platform noise**. While no model can predict when a celebrity will retweet a post, our model ensures that when external eyeballs arrive, the video's intrinsic retention is optimized to prevent audience drop-off.
@@ -493,10 +493,10 @@ VIRALYTIX/
 > **Answer:** Next.js provides Server-Side Rendering (SSR), automatic code splitting, React Server Components (RSC), and Edge Middleware for security headers, while client components seamlessly host Three.js WebGL and GSAP animations.
 
 #### Q24: How does the dynamic corner-docking navigation improve user experience?
-> **Answer:** When the user scrolls past $60\text{px}$, the full navigation bar smoothly morphs into the brand logo and docks to the top-left corner as an interactive return-to-top button. This maximizes vertical screen real estate for viewing complex video analytics and video previews.
+> **Answer:** When the user scrolls past 60px, the full navigation bar smoothly morphs into the brand logo and docks to the top-left corner as an interactive return-to-top button. This maximizes vertical screen real estate for viewing complex video analytics and video previews.
 
 #### Q25: How does VIRALYTIX handle different video aspect ratios (9:16 vs 16:9)?
-> **Answer:** Short-form platforms heavily prioritize vertical $9:16$ ($1080 \times 1920$) orientation. Our feature extractor extracts the width-to-height aspect ratio; videos with horizontal $16:9$ formatting receive an algorithmic penalty in the persona engagement engine due to poor mobile viewport utilization.
+> **Answer:** Short-form platforms heavily prioritize vertical 9:16 (1080 × 1920) orientation. Our feature extractor extracts the width-to-height aspect ratio; videos with horizontal 16:9 formatting receive an algorithmic penalty in the persona engagement engine due to poor mobile viewport utilization.
 
 #### Q26: What is the significance of the 2-year HSTS header in your frontend configuration?
 > **Answer:** HTTP Strict Transport Security (`max-age=63072000; includeSubDomains; preload`) instructs web browsers that the domain must only ever be accessed via secure HTTPS. This permanently eliminates SSL-stripping attacks, man-in-the-middle packet sniffing, and insecure protocol downgrades.
@@ -515,12 +515,12 @@ VIRALYTIX/
 > **Answer:** No predictive analytics system can guarantee human viral stochasticity. VIRALYTIX calculates the **intrinsic content potential** based on algorithmic engagement patterns. Real-world distribution is also influenced by external factors such as breaking news cycles, creator follower momentum, and platform-level algorithmic shifts.
 
 #### Q30: What is the target variable in your regression task, and how is it bounded?
-> **Answer:** The primary continuous target is the **Virality Score ($V \in [0, 100]$)**. It is bounded through a non-linear sigmoid normalization of projected algorithmic retention, completion rate, share coefficient, and engagement velocity.
+> **Answer:** The primary continuous target is the **Virality Score (V ∈ [0, 100])**. It is bounded through a non-linear sigmoid normalization of projected algorithmic retention, completion rate, share coefficient, and engagement velocity.
 
 #### Q31: Why did you frame this problem as both a Regression and a Classification problem?
 > **Answer:** 
-> - **Regression (XGBRegressor)** provides fine-grained sensitivity for optimization (e.g., seeing if a cut improves the score from $72.4$ to $78.1$).
-> - **Classification (XGBClassifier)** translates continuous numbers into actionable creator tiers: *Low Reach ($<10\text{k}$), Moderate ($10\text{k}\text{--}50\text{k}$), High ($50\text{k}\text{--}250\text{k}$), Viral ($>250\text{k}$)*, matching how marketing agencies categorize campaign tiers.
+> - **Regression (XGBRegressor)** provides fine-grained sensitivity for optimization (e.g., seeing if a cut improves the score from 72.4 to 78.1).
+> - **Classification (XGBClassifier)** translates continuous numbers into actionable creator tiers: *Low Reach (<10\text{k}), Moderate (10\text{k}\text{--}50\text{k}), High (50\text{k}\text{--}250\text{k}), Viral (>250\text{k}$)*, matching how marketing agencies categorize campaign tiers.
 
 #### Q32: What is the most novel aspect of this project from an academic standpoint?
 > **Answer:** The **tripartite fusion** of:
