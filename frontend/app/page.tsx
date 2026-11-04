@@ -2114,28 +2114,16 @@ export default function Dashboard() {
                   {videoUrl && (
                     <video
                       key={videoUrl}
-                      ref={(el) => {
-                        (videoPreviewRef as React.MutableRefObject<HTMLVideoElement | null>).current = el;
-                        if (el) {
-                          el.muted = true;
-                          el.load();
-                          el.play().catch(() => {});
-                        }
-                      }}
+                      ref={videoPreviewRef}
                       src={videoUrl}
                       autoPlay
                       muted
                       loop
                       playsInline
                       preload="auto"
-                      className="absolute inset-0 w-full h-full object-contain"
-                      style={{ background: "#000" }}
+                      className="absolute inset-0 w-full h-full object-cover z-10"
                       onLoadedMetadata={(e) => {
-                        const vid = e.currentTarget;
-                        setVideoMeta((prev) => ({ ...prev, duration: fmtDuration(vid.duration) }));
-                      }}
-                      onCanPlay={(e) => {
-                        (e.currentTarget as HTMLVideoElement).play().catch(() => {});
+                        setVideoMeta((prev) => ({ ...prev, duration: fmtDuration(e.currentTarget.duration) }));
                       }}
                     />
                   )}
