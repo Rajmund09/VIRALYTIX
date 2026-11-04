@@ -1239,21 +1239,7 @@ export default function Dashboard() {
   const [showMediaPreview, setShowMediaPreview] = useState(false);
   const mediaTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Force video element to reload & autoplay - must depend on showMediaPreview
-  // because the <video> element is NOT in the DOM until showMediaPreview=true (2.6s delay)
-  useEffect(() => {
-    if (!showMediaPreview || !videoUrl) return;
-    // Small tick to ensure ref is attached after React renders the video element
-    const timer = setTimeout(() => {
-      const vid = videoPreviewRef.current;
-      if (!vid) return;
-      vid.muted = true;
-      vid.src = videoUrl;
-      vid.load();
-      vid.play().catch(() => {});
-    }, 50);
-    return () => clearTimeout(timer);
-  }, [videoUrl, showMediaPreview]);
+  // Video playback is handled via ref callback on the <video> element (key={videoUrl} forces remount)
 
   const [result, setResult] = useState<PredictionResult | null>(null);
   const [resultB, setResultB] = useState<PredictionResult | null>(null);
@@ -2127,7 +2113,15 @@ export default function Dashboard() {
                   {/* Video Element */}
                   {videoUrl && (
                     <video
-                      ref={videoPreviewRef}
+                      key={videoUrl}
+                      ref={(el) => {
+                        (videoPreviewRef as React.MutableRefObject<HTMLVideoElement | null>).current = el;
+                        if (el) {
+                          el.muted = true;
+                          el.load();
+                          el.play().catch(() => {});
+                        }
+                      }}
                       src={videoUrl}
                       autoPlay
                       muted
@@ -2139,7 +2133,6 @@ export default function Dashboard() {
                       onLoadedMetadata={(e) => {
                         const vid = e.currentTarget;
                         setVideoMeta((prev) => ({ ...prev, duration: fmtDuration(vid.duration) }));
-                        vid.play().catch(() => {});
                       }}
                       onCanPlay={(e) => {
                         (e.currentTarget as HTMLVideoElement).play().catch(() => {});
