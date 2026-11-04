@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import React, { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import {
@@ -2117,15 +2117,21 @@ export default function Dashboard() {
                       muted
                       loop
                       playsInline
-                      className="absolute inset-0 w-full h-full object-cover opacity-80"
+                      controls
+                      className="absolute inset-0 w-full h-full object-contain"
+                      style={{ background: "#000" }}
                       onLoadedMetadata={(e) => {
                         const vid = e.currentTarget;
                         setVideoMeta((prev) => ({ ...prev, duration: fmtDuration(vid.duration) }));
+                        vid.play().catch(() => {});
+                      }}
+                      onCanPlay={(e) => {
+                        (e.currentTarget as HTMLVideoElement).play().catch(() => {});
                       }}
                     />
                   )}
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent pointer-events-none" />
+                  <div className="absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent pointer-events-none" />
 
                   {/* Remove Button */}
                   <button
