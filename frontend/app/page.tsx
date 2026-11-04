@@ -1239,20 +1239,21 @@ export default function Dashboard() {
   const [showMediaPreview, setShowMediaPreview] = useState(false);
   const mediaTimerRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Force video element to reload & autoplay whenever videoUrl changes
+  // Force video element to reload & autoplay - must depend on showMediaPreview
+  // because the <video> element is NOT in the DOM until showMediaPreview=true (2.6s delay)
   useEffect(() => {
-    const vid = videoPreviewRef.current;
-    if (!vid || !videoUrl) return;
-    vid.src = videoUrl;
-    vid.load();
-    vid.muted = true;
-    const playPromise = vid.play();
-    if (playPromise !== undefined) {
-      playPromise.catch(() => {
-        // Autoplay blocked - video is loaded but paused; user can click play
-      });
-    }
-  }, [videoUrl]);
+    if (!showMediaPreview || !videoUrl) return;
+    // Small tick to ensure ref is attached after React renders the video element
+    const timer = setTimeout(() => {
+      const vid = videoPreviewRef.current;
+      if (!vid) return;
+      vid.muted = true;
+      vid.src = videoUrl;
+      vid.load();
+      vid.play().catch(() => {});
+    }, 50);
+    return () => clearTimeout(timer);
+  }, [videoUrl, showMediaPreview]);
 
   const [result, setResult] = useState<PredictionResult | null>(null);
   const [resultB, setResultB] = useState<PredictionResult | null>(null);
