@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+﻿import type { NextConfig } from "next";
 
 const securityHeaders = [
   // 1. Prevent Clickjacking: Disallows embedding VIRALYTIX inside an iframe on another domain
@@ -24,6 +24,7 @@ const securityHeaders = [
       "script-src 'self' 'unsafe-eval' 'unsafe-inline' https://vercel.live",
       "connect-src 'self' https://viralytix-backend-162z.onrender.com http://localhost:8000 http://127.0.0.1:8000",
       "img-src 'self' blob: data: https:",
+      "media-src 'self' blob: data:",
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       "font-src 'self' data: https://fonts.gstatic.com",
       "frame-ancestors 'none'",
