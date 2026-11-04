@@ -1239,6 +1239,21 @@ export default function Dashboard() {
   const [showMediaPreview, setShowMediaPreview] = useState(false);
   const mediaTimerRef = useRef<NodeJS.Timeout | null>(null);
 
+  // Force video element to reload & autoplay whenever videoUrl changes
+  useEffect(() => {
+    const vid = videoPreviewRef.current;
+    if (!vid || !videoUrl) return;
+    vid.src = videoUrl;
+    vid.load();
+    vid.muted = true;
+    const playPromise = vid.play();
+    if (playPromise !== undefined) {
+      playPromise.catch(() => {
+        // Autoplay blocked - video is loaded but paused; user can click play
+      });
+    }
+  }, [videoUrl]);
+
   const [result, setResult] = useState<PredictionResult | null>(null);
   const [resultB, setResultB] = useState<PredictionResult | null>(null);
   const [simulation, setSimulation] = useState<SimulationCascade | null>(null);
@@ -2117,7 +2132,7 @@ export default function Dashboard() {
                       muted
                       loop
                       playsInline
-                      controls
+                      preload="auto"
                       className="absolute inset-0 w-full h-full object-contain"
                       style={{ background: "#000" }}
                       onLoadedMetadata={(e) => {
