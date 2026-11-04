@@ -2123,7 +2123,8 @@ export default function Dashboard() {
                       preload="auto"
                       className="absolute inset-0 w-full h-full object-cover z-10"
                       onLoadedMetadata={(e) => {
-                        setVideoMeta((prev) => ({ ...prev, duration: fmtDuration(e.currentTarget.duration) }));
+                        const dur = fmtDuration(e.currentTarget.duration);
+                        setVideoMeta((prev) => ({ ...prev, duration: dur }));
                       }}
                     />
                   )}
